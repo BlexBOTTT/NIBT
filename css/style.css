@@ -2035,14 +2035,14 @@ p {
 }
 .singel-counter span{
     font-size: 36px;
-    color: #ffc600;
+    color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
 .singel-counter p{
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    color: #fff;
+    color: #ffc600;
     font-size: 15px;
 }
 
@@ -2327,31 +2327,61 @@ p {
 }
 
 
-/*=====================================================
-    21. ABOUT PAGE css 
-======================================================*/
+    /*=====================================================
+        21. ABOUT PAGE css 
+    ======================================================*/
 
-.about-image img {
-    width: 100%;
-    border-radius: 5px;
-}
+    /* Centered and Subtle Logo */
+    .logo-container {
+        margin-bottom: 30px; /* Space below the logo */
+    }
 
-.about-singel-items{}
-.about-singel-items span{
-    font-size: 60px;
-    color: #dbdbdb;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    line-height: 46px;
-    padding-bottom: 22px;
-}
-.about-singel-items h4{
-    color: #000;
-    font-size: 24px;
-    padding-bottom: 25px;
-}
+    .about-logo {
+        max-width: 150px; /* Adjust size as needed */
+        height: auto;
+        display: block;
+        margin: 0 auto; /* Center the logo horizontally */
+        opacity: 0.8; /* Make it subtle */
+        transition: opacity 0.3s ease-in-out;
+    }
 
+    .about-image img {
+        width: 100%;
+        border-radius: 5px;
+    }
 
+    .about-singel-items{}
+    .about-singel-items span{
+        font-size: 60px;
+        color: #dbdbdb;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        line-height: 46px;
+        padding-bottom: 22px;
+    }
+    .about-singel-items h4{
+        color: #000;
+        font-size: 24px;
+        padding-bottom: 25px;
+    }
+
+    .about-singel-items ol {
+        list-style-type: decimal; /* Use numbers for the list */
+        padding-left: 20px;       /* Add padding for indentation */
+        margin-top: 10px;         /* Space above the list */
+    }
+
+    .about-singel-items ol li {
+        color: #555;              /* Change list item text color */
+        font-size: 16px;          /* Font size for the list items */
+        margin-bottom: 10px;      /* Space between list items */
+        line-height: 1.6;         /* Adjust line spacing for readability */
+    }
+
+    .about-singel-items ol li::marker {
+        color: #000;              /* Style the marker (number) color */
+        font-weight: bold;        /* Make the marker bold */
+    }
 
 /*=====================================================
     22. COURSES PAGE css 
@@ -3189,7 +3219,7 @@ p {
 
 .singel-blog{
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 50px;
 }
 .singel-blog .blog-thum img{
     width: 100%;
