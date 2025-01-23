@@ -575,7 +575,8 @@ p {
 }
 .navigation .navbar .navbar-nav li .sub-menu li a.active,
 .navigation .navbar .navbar-nav li .sub-menu li a:hover{
-    padding-left: 20px;
+    /* padding-left: 20px; */
+    /* moves the padding */
     color: #ffc600;
 }
 
@@ -1212,8 +1213,8 @@ p {
     text-align: center;
 }
 .singel-course .cont{
-    padding-top: 20px;
-    padding-bottom: 34px;
+    /* padding-top: 20px; */
+    /* padding-bottom: 34px; */
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -1726,10 +1727,10 @@ p {
     width: 35px;
     line-height: 35px;
     font-size: 15px;
-    color: #fff;
+    color: #ffffff;
     border-radius: 50%;
     text-align: center;
-    background-color: #021d3a;
+    background-color: #2b0001;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
     
@@ -3223,18 +3224,27 @@ p {
 }
 .singel-blog .blog-thum img{
     width: 100%;
+    height: 10%;
+    background-color: #ffffff;
 }
 
 .singel-blog .blog-cont{
     padding: 40px 50px;
-    background-color: #fff;
+    background-color: #76080B;
 }
 .singel-blog .blog-cont a{
     display: block;
+    
 }
+
+.singel-blog .blog-cont p{
+    color: #ffffff;
+    margin: 20px 0;
+}
+
 .singel-blog .blog-cont h3{
     font-size: 36px;
-    color: #000;
+    color: #ffffff;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
 }
@@ -3243,24 +3253,98 @@ p {
 }
 
 .singel-blog .blog-cont ul {
-    padding: 20px 0;
+    list-style-type: none;
 }
 .singel-blog .blog-cont ul li{
-    display: inline-block;
+    display: hide;
     margin-right: 30px;
+    margin-bottom: 10px;
+    color: #ffffff;
 }
 .singel-blog .blog-cont ul li:last-child{
     margin-right: 0;
 }
 .singel-blog .blog-cont ul li a{
     font-size: 15px;
-    color: #8a8a8a;
+    color: #ffffff;
+    margin: 20px, 0;
+    
 }
 .singel-blog .blog-cont ul li a i{
     color: #ffc600;
     margin-right: 5px;
 }
-.singel-blog .blog-cont p{}
+.singel-blog .blog-cont p{
+    margin: 20px, 0;
+}
+
+.singel-blog .blog-cont ol {
+    padding: 20px 0;
+    list-style-type: decimal;
+    margin-left: 20px;
+}
+.singel-blog .blog-cont ol li{
+    /* display: inline-block; */
+    margin-right: 30px;
+    margin-bottom: 10px;
+    color: #ffffff; 
+}
+
+.singel-blog .blog-cont table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.singel-blog .blog-cont table thead {
+    background-color: #76080B;
+    /* color: #ffffff; */
+}
+
+.singel-blog .blog-cont table th, .singel-blog .blog-cont table td {
+    padding: 15px;
+    text-align: left;
+    /* border: 1px solid #f0f0f0; */
+}
+
+.singel-blog .blog-cont table th {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffc600;
+    text-align: center;
+}
+
+.singel-blog .blog-cont table td {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #76080B;
+    text-align: center;
+}
+
+.singel-blog .blog-cont table tbody tr:hover {
+    background-color: #76080B;
+    cursor: pointer;
+}
+
+.singel-blog .blog-cont table tbody tr:nth-child(odd) {
+    background-color: #76080B;
+}
+
+.singel-blog .blog-cont table tbody tr:nth-child(even) {
+    background-color: #76080B;
+}
+
+.singel-blog .blog-cont table tbody tr td a {
+    color: #ffc600;
+    text-decoration: none;
+}
+
+.singel-blog .blog-cont table tbody tr td a:hover {
+    text-decoration: underline;
+}
+
 
 
 .saidbar{}
