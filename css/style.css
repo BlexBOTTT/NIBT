@@ -1197,8 +1197,8 @@ p {
 
 .singel-course .thum .price{
     position: absolute;
-    right: 20px;
-    bottom: -24px;
+    right: 0px;
+    bottom: 0px;
 }
 .singel-course .thum .price span{
     font-size: 14px;
@@ -1206,9 +1206,9 @@ p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     width: 100px;
-    height: 50px;
-    line-height: 55px;
-    border-radius: 50%;
+    height: 40px;
+    line-height: 40px;
+    /* border-radius: 50%; */
     background-color: #76080B;
     text-align: center;
 }
@@ -2527,7 +2527,7 @@ p {
 .corses-singel-left .course-terms ul li .teacher-name .name h6,
 .corses-singel-left .course-terms ul li .course-category h6{
     font-size: 16px;
-    color: #24486e;
+    color: #76080B;
     font-weight: 700;
 }
 
@@ -2560,7 +2560,7 @@ p {
 .corses-tab .nav .nav-item{}
 .corses-tab .nav .nav-item a {
 	font-size: 16px;
-	color: #24486e;
+	color: #76080B;
 	font-weight: 600;
 	font-family: 'Montserrat', sans-serif;
 	padding: 20px 0;
@@ -2863,7 +2863,7 @@ p {
 .course-features h4,
 .You-makelike h4{
     font-size: 24px;
-    color: #07294d;
+    color: #76080B;
     padding-bottom: 15px;
 }
 .course-features ul{}
@@ -2891,7 +2891,7 @@ p {
 }
 .course-features .price-button span{
     font-size: 18px;
-    color: #24486e;
+    color: #76080B;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     margin-top: 12px;
@@ -3264,11 +3264,16 @@ p {
 .singel-blog .blog-cont ul li:last-child{
     margin-right: 0;
 }
+
 .singel-blog .blog-cont ul li a{
     font-size: 15px;
     color: #ffffff;
-    margin: 20px, 0;
-    
+    margin: 20px, 0;    
+}
+
+.singel-blog .blog-cont ul li a:hover{
+    color: #ffc600;
+      
 }
 .singel-blog .blog-cont ul li a i{
     color: #ffc600;
