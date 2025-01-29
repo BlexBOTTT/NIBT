@@ -29,16 +29,33 @@
       </li> -->
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img src="../../dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
-          <span class="d-none d-md-inline">Alexander Pierce</span>
+          
+          <!-- database navbar img -->
+          <?php echo '<img src="data:image/jpeg;base64,' . base64_encode($user_img) . '" class="user-image img-circle elevation-2" alt="User Image">'?>
+
+          <span class="d-none d-md-inline"><?php echo $user_fullname; ?></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-dark">
-            <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <?php
+              // Check if the image path exists
+              if ($_SESSION['role'] == "Super Admin") {
+                  // Display a default image if logged in as super admin (no image as default)
+                  echo '<img class="img-circle elevation-2" src="../../dist/img/user2-160x160.jpg" alt="User Image">';    
+                  //    <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> 
+
+              } else {
+                  // Display the image if the role has image
+                  echo '<img class="img-circle elevation-2" src="data:image/jpeg;base64,' . base64_encode($user_img) . '" alt="User Image">';
+                  // Base code reference: 
+              }
+            ?>
+
+
             <p>
-              Alexander Pierce
-              <small>Student/Admin Role</small>
+            <?php echo $user_fullname; ?>
+              <small><?php echo $_SESSION['role'];?></small>
             </p>
           </li>
           <!-- Menu Body -->
@@ -48,7 +65,7 @@
                 <a href="../user/user-profile.php" class="btn btn-default btn-flat float-left">Profile</a>
               </div>
               <div class="col-6 text-center">
-                <a href="#" class="btn btn-default btn-flat float-right">Sign out</a>
+                <a href="../login/user-data/user-logout.php" class="btn btn-default btn-flat float-right">Sign out</a>
               </div>
             </div>
             <!-- /.row -->

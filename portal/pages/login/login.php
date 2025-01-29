@@ -1,42 +1,3 @@
-<?php
-include '../../includes/conn.php';
-
-$message = "";
-$toastClass = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Prepare and execute
-    $stmt = $conn->prepare("SELECT password FROM tbl_admin WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($db_password);
-        $stmt->fetch();
-
-        if ($password === $db_password) {
-            session_start();
-            $_SESSION['email'] = $email;
-            header("Location: ../dashboard/index.php");
-            exit();
-        } else {
-            $message = "Incorrect password";
-            $toastClass = "alert-danger";
-        }
-    } else {
-        $message = "Email not found";
-        $toastClass = "alert-warning";
-    }
-
-    $stmt->close();
-    $conn->close();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,21 +12,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>NIBT</b>PORTAL</a>
   </div>
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
       
-      <?php if ($message): ?>
+      <!-- <?php if ($message): ?>
         <div class="alert <?php echo $toastClass; ?> text-center">
             <?php echo $message; ?>
         </div>
-      <?php endif; ?>
+      <?php endif; ?> -->
       
-      <form action="" method="post">
+      <form action="user-data/user-login.php" method="post">
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email" required>
+          <input type="text" name="username" class="form-control" placeholder="username" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -83,24 +44,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <!-- <input type="checkbox" id="remember">
               <label for="remember">
                 Remember Me
-              </label>
+              </label> -->
             </div>
           </div>
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
         </div>
       </form>
 
-      <p class="mb-1">
+      <!-- <p class="mb-1">
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
         <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
+      </p> -->
     </div>
   </div>
 </div>
