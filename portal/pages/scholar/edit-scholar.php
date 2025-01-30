@@ -31,12 +31,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Admin List</h1>
+            <h1 class="m-0">Scholar List</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add Admin</li>
+              <li class="breadcrumb-item active">Scholar List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -51,11 +51,18 @@
         <div class="row">
           <!-- Left col -->
           <section class="col-lg-12">
+            <!-- Custom tabs (Charts with tabs)-->
+            
+            <!-- /.card -->
+
+            <!-- DIRECT CHAT -->
+
+            <!--/.direct-chat -->
 
             <?php
                 if (!empty($_SESSION['errors'])) {
                     echo '<div class="alert alert-danger fade show" role="alert">
-                        <div class="d-flex justify-content-between align-items-center">';
+                            <div class="d-flex justify-content-between align-items-center">';
                             echo '<div>';
                                 foreach ($_SESSION['errors'] as $error) {
                                     echo '<div class="mb-2">' . $error . '</div>';
@@ -66,53 +73,53 @@
                                 </button>
                                 </div>
                             </div>';
-                unset($_SESSION['errors']);
-                } elseif (!empty($_SESSION['success'])) {
-                    echo ' <div class="alert alert-success fade show" role="alert">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="alert-text"><strong>Successfully Added!</strong></span>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        </div>
-                                </div>';
-                    unset($_SESSION['success']);
+                    unset($_SESSION['errors']);
+                } elseif (!empty($_SESSION['success-edit'])) {
+                    echo '<div class="alert alert-success fade show" role="alert">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="alert-text"><strong>Successfully Added!</strong></span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                            </div>';
+                    unset($_SESSION['success-edit']);
                 }
             ?>
-            <!-- Custom tabs (Charts with tabs)-->
-            
-            <!-- /.card -->
-
-            <!-- DIRECT CHAT -->
-
-            <!--/.direct-chat -->
 
              <!-- CARD HEADER  -->
             <div class="card card-danger">
               <div class="card-header">
-                <h3 class="card-title">Add new NIBT-LP Admin</h3>
+                <h3 class="card-title">NIBT - LAS PINAS Admin List:</h3>
               </div>
               <!-- /.card-header -->
                 <!-- CARD BODY -->
                 <div class="card-body pad table-responsive">
+                    <form action="user-data/user-edit-scholar.php" method="POST" enctype="multipart/form-data">
+                        <?php
+                            $get_scholar = $conn->query("SELECT * FROM tbl_students WHERE stud_id = '$_GET[stud_id]'");
+                            $res_count = $get_scholar->num_rows;
+                            if ($res_count == 0) {
+                                // error code
+                            }
+                            $row = $get_scholar->fetch_array();
 
-                    <form action="user-data/user-add-admin.php" method="POST" enctype="multipart/form-data">
+                        ?>
+                        
+                        <input class="form-control" type="text" name="stud_id" value="<?php echo $row['stud_id']; ?>" hidden>
 
                         <div class="row mx-auto justify-content-center">
                             <div class="col-md-4 my-4">
                                 <div class="custom-file">
                                     <div class="text-center mb-4">
-                                        <!-- <img class="img-fluid img-circle" src="../../../portal/docs/assets/img/AdminLTELogo.png"
-                                            alt="User profile picture" style="width: 100px; height: 100px;"> -->
-                                            <img class="img-fluid img-circle" id="profile-img" src="../../../portal/docs/assets/img/AdminLTELogo.png" alt="User profile picture" style="width: 100px; height: 100px;">
-
+                                        <img class="img-fluid img-circle" id="profile-img" src="data:image/jpeg;base64, <?php echo base64_encode($row['img'] ?? ''); ?>" alt="User profile picture">
                                     </div>
                                     <div class="row justify-content-center">
-                                        <div class="form-group col-md-12">                                                                  
+                                        <div class="form-group col-md-12">
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                <input type="file" class="form-control" name="prof_img" id="prof_img" required>
-                                                <label for="prof_img" class="custom-file-label">Choose file</label>
+                                                    <input type="file" class="form-control" name="prof_img" id="prof_img" required>
+                                                    <label for="prof_img" class="custom-file-label">Choose file</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,26 +127,25 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row mx-auto">
                             <div class="col-md-4">
                                 <div class="my-3">
-                                    <label class="form-label">First Name</label>
-                                    <input type="text" name="firstname" class="form-control" autocomplete="off"
+                                    <label class="form-label">First Name</label>                                                    
+                                    <input type="text" name="firstname" class="form-control" autocomplete="off" required value="<?php echo $row['firstname']; ?>"
                                         required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="my-3">
                                     <label class="form-label">Last Name</label>
-                                    <input type="text" name="lastname" class="form-control" autocomplete="off"
+                                    <input type="text" name="lastname" class="form-control" autocomplete="off" required value="<?php echo $row['lastname']; ?>"
                                         required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="my-3">
-                                <label class="form-label">Email Address</label>
-                                    <input type="email" name="email" class="form-control" autocomplete="off"
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" name="email" class="form-control" autocomplete="off" required value="<?php echo $row['email']; ?>"
                                         required>
                                 </div>
                             </div>
@@ -148,14 +154,14 @@
                             <div class="col-md-4">
                                 <div class="my-3">
                                     <label class="form-label">Username</label>
-                                    <input type="text" name="username" class="form-control" autocomplete="off"
+                                    <input type="text" name="username" class="form-control" autocomplete="off" required value="<?php echo $row['username']; ?>"
                                         required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="my-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" autocomplete="off"
+                                    <input type="password" name="password" class="form-control" autocomplete="off" 
                                         required>
                                 </div>
                             </div>
@@ -169,7 +175,7 @@
                         </div>
 
                         <div class="row mx-auto">
-                        <div class="col-md-4">
+                            <div class="col-md-4">
                                 <a class="btn btn-secondary" href="list.admin.php">Go Back</a>
                             </div>
                             <div class="col-md-4"></div>
@@ -218,7 +224,6 @@
 <!-- jQuery -->
 <?php include '../../includes/script.php'; ?>
 
-<!-- Script for custom file input label with selected filename -->
 <script>
     const fileInput = document.getElementById('prof_img');
     const fileLabel = document.querySelector('label.custom-file-label');
@@ -250,7 +255,7 @@
             reader.readAsDataURL(file);
         } else {
             fileLabel.textContent = 'Choose file';
-            profileImg.src = "../../../portal/docs/assets/img/AdminLTELogo.png"; // Reset to default image
+            profileImg.src = "data:image/jpeg;base64, <?php echo base64_encode($row['admin_image'] ?? $row['img'] ?? ''); ?>"; // Reset to default image
         }
     });
 </script>

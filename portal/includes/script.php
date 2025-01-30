@@ -31,3 +31,17 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard.js"></script>
+
+<!-- DataTables JS -->
+<script src="../../vendor/datatables/jquery.js"></script>
+<script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="../../js/demo/datatables-demo.js"></script>
+
+  <!-- Initialize DataTables -->
+
+
+<!-- Script for custom file input label with selected filename -->
+  <!-- Location: located in script section of add-###.php or edit-###.php -->

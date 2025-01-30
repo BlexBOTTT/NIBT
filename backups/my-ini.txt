@@ -1,1 +1,11 @@
+Home Desktop:
 max_allowed_packet=100M
+
+[mysqldump]
+max_allowed_packet=16M -> ?????????
+
+Other:
+max_allowed_packet=100M
+
+[mysqldump]
+max_allowed_packet=16M -> 100M 1-30-2025

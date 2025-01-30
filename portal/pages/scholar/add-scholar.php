@@ -31,12 +31,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Admin List</h1>
+            <h1 class="m-0">Scholar List</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Add Admin</li>
+              <li class="breadcrumb-item active">Add Scholar</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -90,13 +90,13 @@
              <!-- CARD HEADER  -->
             <div class="card card-danger">
               <div class="card-header">
-                <h3 class="card-title">Add new NIBT-LP Admin</h3>
+                <h3 class="card-title">Add new NIBT-LP Scholar</h3>
               </div>
               <!-- /.card-header -->
                 <!-- CARD BODY -->
                 <div class="card-body pad table-responsive">
 
-                    <form action="user-data/user-add-admin.php" method="POST" enctype="multipart/form-data">
+                    <form action="user-data/user-add-scholar.php" method="POST" enctype="multipart/form-data">
 
                         <div class="row mx-auto justify-content-center">
                             <div class="col-md-4 my-4">
@@ -170,7 +170,7 @@
 
                         <div class="row mx-auto">
                         <div class="col-md-4">
-                                <a class="btn btn-secondary" href="list.admin.php">Go Back</a>
+                                <a class="btn btn-secondary" href="list-scholar.php">Go Back</a>
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4 ">

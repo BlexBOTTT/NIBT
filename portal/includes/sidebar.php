@@ -10,10 +10,24 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          
+          <?php
+            // Check if the image path exists
+            if ($_SESSION['role'] == "Super Admin") {
+                // Display a default image if logged in as super admin (no image as default)
+                echo '<img class="user-image img-circle elevation-2" src="../../dist/img/user2-160x160.jpg" alt="User Image">';    
+                //    <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> 
+
+            } else {
+                // Display the image if the role has image
+                echo '<img class="user-image  img-circle elevation-2" src="data:image/jpeg;base64,' . base64_encode($user_img) . '" alt="User Image">';
+                // Base code reference: 
+            }
+          ?>
+
         </div>
         <div class="info">
-          <a href="../user/user-profile.php" class="d-block">Alexander Pierce</a>
+          <a href="../user/user-profile.php" class="d-block"><?php echo $user_fullname; ?></a>
         </div>
       </div>
 
@@ -31,67 +45,174 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-                <a href="../dashboard/index.php" class="nav-link active">
-                  <p>Home</p>
-                </a>
-              </li>
-          <li class="nav-header">Functions</li>
-          <li class="nav-item">
-            <a href="../scholars/list-scholars.php" class="nav-link">
-              <p>
-                Scholar List
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href=".php" class="nav-link">
-              <p>
-                Training Schedule 
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <p>
-                Forms
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <a href="../admin/list-admin.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Admin List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../admin/add-admin.php" class="nav-link">
-                  <p>Admin Add</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-header">Excel</li>
-          <li class="nav-item">
-            <a href="../functions/upload-xlsx.php" class="nav-link">
-              <p>
-                Excel View
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">View</li>
-          <li class="nav-item">
-            <a href="../functions/view-xlsx.php" class="nav-link">
-              <p>
-                View Excel
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                <?php 
+                  if ($_SESSION['role'] == "Super Admin") {
+                    echo '
+                      <li class="nav-item">
+                        <a href="../dashboard/index.php" class="nav-link active">
+                          <p>Home</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-header">Functions</li>
+
+                      <li class="nav-item">
+                        <a href="../functions/upload-xlsx.php" class="nav-link">
+                          <p>
+                            Excel Upload
+                          </p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../functions/view-xlsx.php" class="nav-link">
+                          <p>
+                            Excel View
+                          </p>
+                        </a>
+                      </li>
+
+                      <li class="nav-header">Admins config</li>
+
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <p>
+                            Administrators
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                          <a href="../admin/list-admin.php" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Admin List</p>
+                            </a>
+                          </li>                   
+                          <li class="nav-item">
+                            <a href="../admin/add-admin.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>Admin Add</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+
+                      <li class="nav-header">Scholars config</li>
+
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <p>
+                            Scholars
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="../scholar/list-scholar.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>Scholar/Student List</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="../scholar/add-scholar.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>Scholar/Student Add</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>                    
+                    ';
+                  } elseif ($_SESSION['role'] == "Administrator") {
+                    echo '
+                      <li class="nav-item">
+                        <a href="../dashboard/index.php" class="nav-link active">
+                          <p>Home</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-header">Functions</li>
+
+                      <li class="nav-item">
+                        <a href="../functions/upload-xlsx.php" class="nav-link">
+                          <p>
+                            Excel Upload
+                          </p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../functions/view-xlsx.php" class="nav-link">
+                          <p>
+                            Excel View
+                          </p>
+                        </a>
+                      </li>
+
+                      <li class="nav-header">Scholars config</li>
+
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <p>
+                            Scholars
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="../scholar/list-scholar.php" class="nav-link">
+                              <p>Scholar/Student List</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="../scholar/add-scholar.php" class="nav-link">
+                              <p>Scholar/Student Add</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    ';
+                  } elseif ($_SESSION['role'] == "Student") { 
+                    echo '
+                      <li class="nav-item">
+                        <a href="../dashboard/index.php" class="nav-link active">
+                          <p>Home</p>
+                        </a>
+                      </li>
+
+                      <li class="nav-header">Functions</li>
+
+                      <li class="nav-item">
+                        <a href="../functions/upload-xlsx.php" class="nav-link">
+                          <p>
+                            Excel Upload
+                          </p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../functions/view-xlsx.php" class="nav-link">
+                          <p>
+                            Excel View
+                          </p>
+                        </a>
+                      </li>
+                    ';
+                  } else {
+                    echo '
+                      <li class="nav-item">
+                        <a href="../dashboard/index.php" class="nav-link active">
+                          <p>Home</p>
+                        </a>
+                      </li> 
+                      <li class="nav-header">Functions</li>
+                    ';
+                  } 
+                ?>
+          </ul>
+        </nav>
+
+
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

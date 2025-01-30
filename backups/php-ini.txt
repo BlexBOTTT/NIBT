@@ -1,2 +1,19 @@
+Home Desktop:
+
 upload_max_filesize=100M
 post_max_size=100M
+
+Other:
+
+upload_max_filesize=100M
+post_max_size=100M
+
+
+C:\xampp\phpMyAdmin\libraries\config.default.php
+/**
+ * maximum execution time in seconds (0 for no limit)
+ *
+ * @global integer $cfg['ExecTimeLimit']
+ */
+// blexbott other pc: 1-30-2025 DEFAULT VALUE - 300
+$cfg['ExecTimeLimit'] = 0;
