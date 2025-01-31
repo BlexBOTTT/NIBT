@@ -145,15 +145,15 @@
                               <td><?php echo $row['email'] ?></td>                          
                               <td><?php echo $row['username'] ?></td>
                               <td>
-                                  <a href="../forms/guidance.php" type="button" class="btn btn-primary mx-1">
-                                      <i class="fa fa-print"></i> Student Profile
+                                  <a href="../forms/scholar-profile.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
+                                      <i class="fa fa-print"></i> Scholar Profile
                                   </a>                                   
                                   <br>
-                                  <a href="prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1">
-                                  <i class="fa fa-address-card"></i> Edit Student Profile
+                                  <a href="prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">
+                                  <i class="fa fa-address-card"></i> Edit Scholar Profile
                                   </a>
                                   <br>                                              
-                                  <a href="edit-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-info mx-1">
+                                  <a href="edit-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-info mx-1" target="_blank">
                                   <i class="fa fa-edit"></i> Update
                                   </a>
                                   <br>

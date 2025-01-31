@@ -16,9 +16,9 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div> -->
 
   <!-- Navbar -->
   <?php include '../../includes/navbar.php'; ?>
@@ -61,40 +61,40 @@
                 <div class="row">
                   <div class="col-12">
 
-                  <?php
-                            if (!empty($_SESSION['errors'])) {
-                                echo '<div class="alert alert-danger fade show" role="alert">
-                                        <div class="d-flex justify-content-between align-items-center">';
-                                            echo '<div>';
-                                                foreach ($_SESSION['errors'] as $error) {
-                                                    echo '<div class="mb-2">' . $error . '</div>';
-                                                }
-                                            echo '</div>';
-                                            echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <?php
+                        if (!empty($_SESSION['errors'])) {
+                            echo '<div class="alert alert-danger fade show" role="alert">
+                                    <div class="d-flex justify-content-between align-items-center">';
+                                        echo '<div>';
+                                            foreach ($_SESSION['errors'] as $error) {
+                                                echo '<div class="mb-2">' . $error . '</div>';
+                                            }
+                                        echo '</div>';
+                                        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                        </div>';                              
+                            unset($_SESSION['errors']);
+                        } elseif (!empty($_SESSION['success-edit'])) {
+                            echo ' <div class="alert alert-success fade show" role="alert">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="alert-text"><strong>Successfully Updated!</strong></span>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                                 </div>
-                                            </div>';                              
-                                unset($_SESSION['errors']);
-                            } elseif (!empty($_SESSION['success-edit'])) {
-                                echo ' <div class="alert alert-success fade show" role="alert">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <span class="alert-text"><strong>Successfully Updated!</strong></span>
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    </div>
-                                            </div>';
-                                unset($_SESSION['success-edit']);
-                            }
-                            ?>
+                                        </div>';
+                            unset($_SESSION['success-edit']);
+                        }
+                    ?>
 
             <div class="card card-danger">
               <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
               </div>
               <!-- /.card-header -->
-              <div class="row justify-content-center">
+              <!-- <div class="row justify-content-center">
                   <div class="col-md-5 mb-3 mt-4">
                       <form method="GET">
                           <div class="input-group">
@@ -109,12 +109,12 @@
                           </div>
                       </form>
                   </div>
-              </div>
+              </div> -->
 
                 <div class="card-body pad table-responsive">
                 
                     <!-- Start Inputs -->
-                    <form action="userData/user.edit.prof.students.php" method="POST" enctype="multipart/form-data">
+                    <form action="user-data/user-edit-prof-scholar.php" method="POST" enctype="multipart/form-data">
                                 <?php
                                     $get_admin = $conn->query("SELECT * FROM tbl_students WHERE stud_id = '$_GET[stud_id]'");
                                     $res_count = $get_admin->num_rows;
@@ -200,6 +200,31 @@
                                                 <input type="text" name="middlename" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['middlename']; ?>"
                                                     placeholder="Middle name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mx-auto">
+                                    <div class="col-md-4">
+                                            <div class="my-3">
+                                                <label>Middle Initial</label>
+                                                <input type="text" name="birthplace" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['birthplace']; ?>"
+                                                    placeholder="Enter your Place of Birth">
+                                            </div>
+                                        </div>               
+                                        <div class="col-md-4">
+                                            <div class="my-3">
+                                                <label>Extension Name (e.g. Jr. Sr.)</label>
+                                                <input type="text" name="birthplace" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['birthplace']; ?>"
+                                                    placeholder="Enter your Place of Birth">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="my-3">
+                                                <label>Age</label>
+                                                <input type="text" name="age" class="form-control" autocomplete="off" 
+                                                    value="<?php echo $row['age']; ?>" placeholder="Enter your Age">
                                             </div>
                                         </div>
                                     </div>
@@ -295,201 +320,6 @@
                                 <div>
                                     <br>
                                     <h2 class="text-center"><b>Family Background</b></h2>
-                                    <!-- Father  -->
-                                    <div class="row mx-auto">
-                                        <div class="col">
-                                            <h4><b>Father</b></h4>
-                                        </div>
-                                    </div>
-                                                
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Last Name</label>
-                                                <input type="text" name="flastname" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['flastname']; ?>"
-                                                    placeholder="Last Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>First name</label>
-                                                <input type="text" name="ffirstname" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['ffirstname']; ?>" 
-                                                    placeholder="First Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Middle name</label>
-                                                <input type="text" name="fmiddlename" class="form-control" autocomplete="off"
-                                                    value="<?php echo $row['fmiddlename']; ?>"
-                                                    placeholder="Middle Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Age</label>
-                                                <input type="text" name="fage" class="form-control" autocomplete="off"
-                                                    value="<?php echo $row['fage']; ?>" placeholder="00 yrs old">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Birthdate</label>
-                                                <input type="date" name="fbirthdate" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['fbirthdate']; ?>" placeholder="First name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Citizenship</label>
-                                                <input type="text" name="fcitizenship" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['fcitizenship']; ?>"
-                                                    placeholder="Ex. Filipino">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Home Address</label>
-                                                <input type="text" name="faddress" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['faddress']; ?>" placeholder="Home Address">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Tel No.</label>
-                                                <input type="text" name="ftel_no" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['ftel_no']; ?>" placeholder="0123-4567">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Cell No.</label>
-                                                <input type="text" name="fcell_no" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['fcell_no']; ?>" placeholder="09123456789">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Education Attained</label>
-                                                <input type="text" name="feducation" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['feducation']; ?>"
-                                                    placeholder="Education Attained">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Occupation</label>
-                                                <input type="text" name="foccupation" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['foccupation']; ?>"
-                                                    placeholder="Occupation">
-                                            </div>
-                                        </div>
-                                    </div>  
-                                    
-                                    <!-- Mother -->
-                                    <br>
-                                    <div class="row mx-auto">
-                                        <div class="col">
-                                            <h4><b>Mother</b></h4>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Last Name</label>
-                                                <input type="text" name="mlastname" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['mlastname']; ?>" placeholder="Last Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>First name</label>
-                                                <input type="text" name="mfirstname" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['mfirstname']; ?>" placeholder="First name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Middle name</label>
-                                                <input type="text" name="mmiddlename" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['mmiddlename']; ?>"
-                                                    placeholder="Middle name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Age</label>
-                                                <input type="text" name="mage" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['mage']; ?>" placeholder="00 yrs old">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Birthdate</label>
-                                                <input type="date" name="mbirthdate" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['mbirthdate']; ?>" placeholder="First name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Citizenship</label>
-                                                <input type="text" name="mcitizenship" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['mcitizenship']; ?>"
-                                                    placeholder="Ex. Filipino">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Home Address</label>
-                                                <input type="text" name="maddress" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['maddress']; ?>" placeholder="Home Address">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Tel No.</label>
-                                                <input type="text" name="mtel_no" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['mtel_no']; ?>" placeholder="0123-4567">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Cell No.</label>
-                                                <input type="text" name="mcell_no" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['mcell_no']; ?>" placeholder="09123456789">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Education Attained</label>
-                                                <input type="text" name="meducation" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['meducation']; ?>"
-                                                    placeholder="Education Attained">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Occupation</label>
-                                                <input type="text" name="moccupation" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['moccupation']; ?>"
-                                                    placeholder="Occupation">
-                                            </div>
-                                        </div>
-                                    </div>
                                     
                                     <!-- Guardian -->
                                     <br>
@@ -602,7 +432,6 @@
                                     <div class="row mx-auto">
                                         <div class="col">
                                             <h2 class="text-center"><b>No. of Siblings</b></h2>
-                                            <h6 class="text-center">(from first to last child)</h6>
                                         </div>
                                     </div>        
                                     <div class="row mx-auto">
@@ -625,90 +454,6 @@
                                                 <label>Contact Number</label>
                                                 <input type="text" name="sib1_contact" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['sib1_contact']; ?>"
-                                                    placeholder="09123456789">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib2_name" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib2_name']; ?>" placeholder="Full name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib2_occ" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib2_occ']; ?>" placeholder="Occupation">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib2_contact" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib2_contact']; ?>"
-                                                    placeholder="09123456789">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib3_name" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib3_name']; ?>" placeholder="Full name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib3_occ" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib3_occ']; ?>" placeholder="Occupation">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib3_contact" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib3_contact']; ?>"
-                                                    placeholder="09123456789">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib4_name" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib4_name']; ?>" placeholder="Full name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib4_occ" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib4_occ']; ?>" placeholder="Occupation">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib4_contact" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib4_contact']; ?>"
-                                                    placeholder="09123456789">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib5_name" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib5_name']; ?>" placeholder="Full name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib5_occ" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib5_occ']; ?>" placeholder="Occupation">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="sib5_contact" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib5_contact']; ?>"
                                                     placeholder="09123456789">
                                             </div>
                                         </div>
@@ -814,127 +559,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                <!-- Voluntary Work/Athletic Affiliation -->
-                                <div>
-                                    <br>
-                                    <h2 class="text-center"><b>Voluntary Work/Athletic Affiliation</b></h2>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <label>Organizations/Athletics</label>
-                                                <input type="text" name="org1" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['org1']; ?>" placeholder="Enter Org. name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <label>Service Rendered</label>
-                                                <input type="text" name="org1_serv" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org1_serv']; ?>"
-                                                    placeholder="Services Rendered">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <label>Date of Affiliation/Membership</label>
-                                                <input type="text" name="org1_date" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org1_date']; ?>"
-                                                    placeholder="Date of Affiliation">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org2" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['org2']; ?>" placeholder="Enter Org. name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org2_serv" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org2_serv']; ?>"
-                                                    placeholder="Services Rendered">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org2_date" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org2_date']; ?>"
-                                                    placeholder="Date of Affiliation">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org3" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['org3']; ?>" placeholder="Enter Org. name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org3_serv" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org3_serv']; ?>"
-                                                    placeholder="Services Rendered">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org3_date" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org3_date']; ?>"
-                                                    placeholder="Date of Affiliation">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org4" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['org4']; ?>" placeholder="Enter Org. name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org4_serv" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org4_serv']; ?>"
-                                                    placeholder="Services Rendered">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org4_date" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org4_date']; ?>"
-                                                    placeholder="Date of Affiliation">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org5" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['org5']; ?>" placeholder="Enter Org. name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org5_serv" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org5_serv']; ?>"
-                                                    placeholder="Services Rendered">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <input type="text" name="org5_date" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['org5_date']; ?>"
-                                                    placeholder="Date of Affiliation">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
+                                </div>                               
+
                                 <!-- Student's Life Information -->
                                 <div>
                                     <br>
@@ -1040,378 +666,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                <!-- Health -->
-                                <div>
-                                    <br>
-                                    <h2 class="text-center"><b>Health</b></h2>
-                                    <!-- A. Physical -->
-                                    <div>
-                                        <div class="row mx-auto">
-                                            <div class="col">
-                                                <h5 class="">A. Physical</h5>
-                                                <h6>Do you have problems with your physical body?</h6>
-                                            </div>
-                                        </div>     
-                                        <div class="row mx-auto justify-content-center">                                          
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-3">Your vision</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                <select class="form-control" id="vision" name="vision" autocomplete="off" placeholder="Select your answer">
-                                                    <option value="Yes" <?php if ($row['vision'] == 'Yes') { echo 'selected'; } ?>>Yes</option>
-                                                    <option value="No" <?php if ($row['vision'] == 'No') { echo 'selected'; } ?>>No</option>
-                                                </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="mt-3">
-                                                    <input type="text" name="vision_spec" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['vision_spec']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-1">Your hearing</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <select class="form-control" id="hearing" name="hearing" autocomplete="off" placeholder="Select your answer">
-                                                        <option value="Yes" <?php if ($row['hearing'] == 'Yes') { echo 'selected'; } ?>>Yes</option>
-                                                        <option value="No" <?php if ($row['hearing'] == 'No') { echo 'selected'; } ?>>No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="mt-3">
-                                                    <input type="text" name="hearing_spec" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['hearing_spec']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-1">Your speech</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <select class="form-control" id="speech" name="speech" autocomplete="off" placeholder="Select your answer">
-                                                        <option value="Yes" <?php if ($row['speech'] == 'Yes') { echo 'selected'; } ?>>Yes</option>
-                                                        <option value="No" <?php if ($row['speech'] == 'No') { echo 'selected'; } ?>>No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="mt-3">
-                                                    <input type="text" name="speech_spec" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['speech_spec']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-1">Your general health</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <select class="form-control" id="gen_health" name="gen_health" autocomplete="off" placeholder="Select your answer">                                                          
-                                                        <option value="Yes" <?php if ($row['gen_health'] == 'Yes') { echo 'selected'; } ?>>Yes</option>
-                                                        <option value="No" <?php if ($row['gen_health'] == 'No') { echo 'selected'; } ?>>No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="mt-3">
-                                                    <input type="text" name="gen_health_spec" class="form-control" autocomplete="off"  placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['gen_health_spec']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- B. Socio-psychological -->                
-                                    <div>
-                                        <div class="row mx-auto">
-                                            <div class="col">
-                                                <h5 class="">B. Socio-psychological</h5>
-                                            </div>
-                                        </div>  
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                        
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="m-3">Yes / No</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="m-3">When</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="m-3">For what</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-3">Psychiatrist</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    
-                                                    <select class="form-control" id="psychiatrist" name="psychiatrist" autocomplete="off" placeholder="Select your answer">                                                          
-                                                        <option value="Yes" <?php if ($row['psychiatrist'] == 'Yes') { echo 'selected'; } ?>>Yes</option>
-                                                        <option value="No" <?php if ($row['psychiatrist'] == 'No') { echo 'selected'; } ?>>No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    
-                                                    <input type="text" name="psychiatrist_when" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['psychiatrist_when']?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">                                          
-                                                    <input type="text" name="psychiatrist_what" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['psychiatrist_what']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-3">Psychologist</span>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <select class="form-control" id="psychologist" name="psychologist" autocomplete="off" placeholder="Select your answer">                                                          
-                                                        <option value="Yes" <?php if ($row['psychologist'] == 'Yes') { echo 'selected'; } ?>>Yes</option>
-                                                        <option value="No" <?php if ($row['psychologist'] == 'No') { echo 'selected'; } ?>>No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    
-                                                    <input type="text" name="psychologist_when" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['psychologist_when']?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">                                          
-                                                    <input type="text" name="psychologist_what" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['psychologist_what']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-3">Counselor</span>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <select class="form-control" id="counselor" name="counselor" autocomplete="off" placeholder="Select your answer">                                                          
-                                                        <option value="Yes" <?php if ($row['counselor'] == 'Yes') { echo 'selected'; } ?>>Yes</option>
-                                                        <option value="No" <?php if ($row['counselor'] == 'No') { echo 'selected'; } ?>>No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    
-                                                    <input type="text" name="counselor_when" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['counselor_when']?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="my-3">                                          
-                                                    <input type="text" name="counselor_what" class="form-control" autocomplete="off" placeholder="If yes, please specify:"
-                                                    value="<?php echo $row['counselor_what']?>">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                
-                                    </div>
-                                </div>
-
-                                <!-- Interest and Hobbies -->
-                                <div>
-                                    <br>
-                                    <h2 class="text-center my-3"><b>Interest and Hobbies</b></h2>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-3">1. Favorite Academic Subjects</span>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="my-3">
-                                                    <select class="form-control" id="acad_sub" name="acad_sub" placeholder="Select your answer">                                       
-                                                        <?php 
-                                                        $query_acad_sub = mysqli_query($conn, "SELECT * FROM tbl_acad_subjects");
-                                                        while ($row_acad_sub = mysqli_fetch_array($query_acad_sub)) {
-                                                            $selected_acad_sub = ($row['acad_sub_id'] == $row_acad_sub['acad_sub_id']) ? 'selected' : '';
-                                                            echo '<option value="' . $row_acad_sub['acad_sub_id'] . '" ' . $selected_acad_sub . '>' . $row_acad_sub['acad_sub_name'] . '</option>';
-                                                        }
-                                                        ?>
-                                                    </select>                   
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="mt-3">     
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="my-3">
-                                                    <span class="mt-3">2. Extra - Curricular and Organizations</span>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="my-3">
-                                                    <select class="form-control" id="curri_org" name="curri_org" placeholder="Select your answer">                                       
-                                                        <?php 
-                                                        $query_curri_org = mysqli_query($conn, "SELECT * FROM tbl_curri_org");
-                                                        while ($row_curri_org = mysqli_fetch_array($query_curri_org)) {
-                                                            $selected_curri_org = ($row['curri_org_id'] == $row_curri_org['curri_org_id']) ? 'selected' : '';
-                                                            echo '<option value="' . $row_curri_org['curri_org_id'] . '" ' . $selected_curri_org . '>' . $row_curri_org['curri_org_name'] . '</option>';
-                                                        }
-                                                        ?>
-                                                    </select> 
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="mt-3">
-                                                <input type="text" id="curri_org_spec" name="curri_org_spec" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['curri_org_spec']; ?>"
-                                                    placeholder="If others, pleace specify">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mx-auto justify-content-center">
-                                            <div class="col-md-2">
-                                                <div class="input-group input-group-static my-3">
-                                                    <span class="mt-3">3. Position in Organization</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="input-group input-group-static my-3">
-                                                    <select class="form-control" id="pos_org" name="pos_org" autocomplete="off" placeholder="Select your answer">                                                          
-                                                        <option value="Officer" <?php if ($row['pos_org'] == 'Officer') { echo 'selected'; } ?>>Officer</option>
-                                                        <option value="Member" <?php if ($row['pos_org'] == 'Member') { echo 'selected'; } ?>>Member</option>
-                                                    </select>
-                                                </div>  
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="input-group input-group-static mt-3">
-                                                </div>
-                                            </div>
-                                        </div>                    
-                                </div>
-                                
-                                <!-- Display student evaluation and note if logged as admin role -->
-                                <?php
-                                    if ($_SESSION['role'] == "Administrator") {
-                                        echo '
-                                        <!-- Testing and Student Evaluation -->
-                                        <div>
-                                            <h2 class="text-center my-3"><b>Testing and Student Evaluation</b></h2>
-                                            <h5 class="text-center my-3">(to be filled up by a psychometrician)</h5>
-                                            <div class="table-responsive p-0 mx-3">
-                                                <table class="table align-items-center mb-0">
-                                                    <thead>
-                                                        <tr class="light">
-                                                            <th>Date of Assessment</th>
-                                                            <th>Nature of Exam</th>
-                                                            <th>Name of Test</th>
-                                                            <th>Key Result</th>
-                                                            <th>Description</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>';
-
-                                        $get_eval = mysqli_query($conn, "SELECT * FROM tbl_evaluation WHERE stud_id = '" . $_GET['stud_id'] . "'");
-                                        while ($row = mysqli_fetch_array($get_eval)) {
-                                            $id = $row['stud_id'];
-                                            echo '
-                                                        <tr>
-                                                            <td>' . $row['date'] . '</td>
-                                                            <td>' . $row['exam'] . '</td>
-                                                            <td>' . $row['test'] . '</td>
-                                                            <td>' . $row['result'] . '</td>
-                                                            <td>' . $row['description'] . '</td>
-                                                        </tr>';
-                                        }
-
-                                        echo '
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
-                                        <!-- Significant Notes -->
-                                        <div>
-                                            <h2 class="text-center my-3"><b>Significant Notes</b></h2>
-                                            <h5 class="text-center my-3">(to be filled up by the school counselor)</h5>
-                                            <div class="table-responsive p-0 mx-3">
-                                                <table class="table align-items-center mb-0">
-                                                    <thead>
-                                                        <tr class="light">
-                                                            <th>Date</th>
-                                                            <th>Incident</th>
-                                                            <th>Remarks</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>';
-
-                                        $get_notes = mysqli_query($conn, "SELECT * FROM tbl_notes WHERE stud_id = '" . $_GET['stud_id'] . "'");
-                                        while ($row = mysqli_fetch_array($get_notes)) {
-                                            $id = $row['stud_id'];
-                                            echo '
-                                                        <tr>
-                                                            <td>' . $row['date'] . '</td>
-                                                            <td>' . $row['incident'] . '</td>
-                                                            <td>' . $row['remarks'] . '</td>
-                                                        </tr>';
-                                        }
-
-                                        echo '
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>';
-                                    }
-                                ?>
+                                </div>                                                                         
                     
                             <!-- End Inputs -->
 

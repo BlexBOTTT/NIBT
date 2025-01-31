@@ -52,27 +52,35 @@
                   if ($_SESSION['role'] == "Super Admin") {
                     echo '
                       <li class="nav-item">
-                        <a href="../dashboard/index.php" class="nav-link active">
+                        <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
                       </li>
 
-                      <li class="nav-header">Functions</li>
+                      <li class="nav-header">Main Functions</li>
 
                       <li class="nav-item">
-                        <a href="../functions/upload-xlsx.php" class="nav-link">
+                        <a href="#" class="nav-link">
                           <p>
-                            Excel Upload
+                            Training Registration
+                            <i class="fas fa-angle-left right"></i>
                           </p>
                         </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="../functions/view-xlsx.php" class="nav-link">
-                          <p>
-                            Excel View
-                          </p>
-                        </a>
-                      </li>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                          <a href="" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Scholar Table</p>
+                            </a>
+                          </li>                   
+                          <li class="nav-item">
+                            <a href="" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>Add Scholar</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>                     
 
                       <li class="nav-header">Admins config</li>
 
@@ -123,12 +131,42 @@
                             </a>
                           </li>
                         </ul>
-                      </li>                    
+                      </li>         
+                      
+                      <li class="nav-header">Other Functions</li>
+
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <p>
+                            Excel Upload-View
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">                    
+                            <a href="../functions/upload-xlsx.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>
+                                Excel Upload
+                              </p>
+                            </a>
+                          </li>
+                          <li class="nav-item">                        
+                            <a href="../functions/view-xlsx.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>
+                                Excel View
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
                     ';
                   } elseif ($_SESSION['role'] == "Administrator") {
                     echo '
                       <li class="nav-item">
-                        <a href="../dashboard/index.php" class="nav-link active">
+                        <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
                       </li>
@@ -176,7 +214,7 @@
                   } elseif ($_SESSION['role'] == "Student") { 
                     echo '
                       <li class="nav-item">
-                        <a href="../dashboard/index.php" class="nav-link active">
+                        <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
                       </li>
@@ -201,7 +239,7 @@
                   } else {
                     echo '
                       <li class="nav-item">
-                        <a href="../dashboard/index.php" class="nav-link active">
+                        <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
                       </li> 
