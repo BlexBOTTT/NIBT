@@ -155,29 +155,7 @@
                                 <div> 
                                     <br>
                                     <h2 class="text-center"><b>Personal Data</b></h2> 
-                                    <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                            <label>Student No.</label>
-                                            <input type="text" name="stud_no" class="form-control" autocomplete="off" placeholder="Student No."
-                                                value="<?php echo $row['stud_no']; ?>" >
-                                            </div>
-                                        </div>   
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                            <label>Gender</label>                                       
-                                                <select class="form-control" id="gender" name="gender" placeholder="Select Gender">                                            
-                                                    <?php 
-                                                    $query1 = mysqli_query($conn, "SELECT * FROM tbl_genders");
-                                                    while ($row_gender = mysqli_fetch_array($query1)) {
-                                                        $selected = ($row['gender_id'] == $row_gender['gender_id']) ? 'selected' : '';
-                                                        echo '<option value="' . $row_gender['gender_id'] . '" ' . $selected . '>' . $row_gender['gender'] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>                                              
-                                            </div>
-                                        </div>
-                                    </div>
+
 
                                     <div class="row mx-auto">
                                         <div class="col-md-4">
@@ -202,44 +180,51 @@
                                                     placeholder="Middle name">
                                             </div>
                                         </div>
+                                        
                                     </div>
-                                    <div class="row mx-auto">
-                                    <div class="col-md-4">
-                                            <div class="my-3">
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-4">
+                                                <div class="my-3">
                                                 <label>Middle Initial</label>
-                                                <input type="text" name="birthplace" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['birthplace']; ?>"
-                                                    placeholder="Enter your Place of Birth">
-                                            </div>
-                                        </div>               
+                                                    <input type="text" name="birthplace" class="form-control" autocomplete="off"
+                                                            value="<?php echo $row['birthplace']; ?>"
+                                                        placeholder="Enter your Place of Birth">
+                                                </div>
+                                            </div>           
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Extension Name (e.g. Jr. Sr.)</label>
+                                                <select class="form-control" id="extname" name="extname" placeholder="Select your answer">                                            
+                                                    <?php 
+                                                    $query_ext_name = mysqli_query($conn, "SELECT * FROM tbl_extension_name");
+                                                    while ($row_ext_name = mysqli_fetch_array($query_ext_name)) {
+                                                        $selected_ext_name = ($row['ext_name_id'] == $row_ext_name['ext_name_id']) ? 'selected' : '';
+                                                        echo '<option value="' . $row_ext_name['ext_name_id'] . '" ' . $selected_marital . '>' . $row_ext_name['ext_name'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+            <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Birth Place (Province)</label>
                                                 <input type="text" name="birthplace" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['birthplace']; ?>"
                                                     placeholder="Enter your Place of Birth">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
-                                                <label>Age</label>
-                                                <input type="text" name="age" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['age']; ?>" placeholder="Enter your Age">
+                                                <label>Birth Place (Municipality/City)</label>
+                                                <input type="text" name="birthplace" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['birthplace']; ?>"
+                                                    placeholder="Enter your Place of Birth">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-12">
-                                            <div class="my-3">
-                                                <label>Address</label>
-                                                <input type="text" name="address" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['address']; ?>"
-                                                    placeholder="Enter your Address">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Date of birth</label>
                                                 <input type="date" name="birthdate" class="form-control" autocomplete="off"
@@ -247,48 +232,48 @@
                                                     placeholder="Enter your birthdate">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Place of Birth</label>
-                                                <input type="text" name="birthplace" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['birthplace']; ?>"
-                                                    placeholder="Enter your Place of Birth">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Age</label>
-                                                <input type="text" name="age" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['age']; ?>" placeholder="Enter your Age">
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
+
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Gender</label>                                       
+                                                <select class="form-control" id="gender" name="gender" placeholder="Select Gender">                                            
+                                                    <?php 
+                                                    $query1 = mysqli_query($conn, "SELECT * FROM tbl_genders");
+                                                    while ($row_gender = mysqli_fetch_array($query1)) {
+                                                        $selected = ($row['gender_id'] == $row_gender['gender_id']) ? 'selected' : '';
+                                                        echo '<option value="' . $row_gender['gender_id'] . '" ' . $selected . '>' . $row_gender['gender'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>                                              
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Civil Status</label>
-                                                <input type="text" name="civilstatus" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['civilstatus']; ?>"
-                                                    placeholder="Ex. Single/Married">
+                                                
+                                                <select class="form-control" id="civilstatus" name="civilstatus" placeholder="Select your answer">                                            
+                                                <?php 
+                                                $query_ext_name = mysqli_query($conn, "SELECT * FROM tbl_civil_status");
+                                                while ($row_ext_name = mysqli_fetch_array($query_ext_name)) {
+                                                    $selected_ext_name = ($row['civil_status_id'] == $row_ext_name['civil_status_id']) ? 'selected' : '';
+                                                    echo '<option value="' . $row_ext_name['civil_status_id'] . '" ' . $selected_marital . '>' . $row_ext_name['civil_status'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Citizenship</label>
-                                                <input type="text" name="citizenship" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['citizenship']; ?>"
-                                                    placeholder="Ex. Filipino">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Religion</label>
-                                                <input type="text" name="religion" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['religion']; ?>" placeholder="Ex. Catholic">
-                                            </div>
-                                        </div>
+                                        </div>                                
                                     </div>
-                                    <div class="row mx-auto">
+                                    
+                                                                      
+                                </div>
+                                                    
+
+                                <div>
+                                    <h2 class="text-center"><b>Contact Address</b></h2> 
+
+                                    <div class="row mx-auto justify-content-around">
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Email Address</label>
@@ -299,67 +284,219 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="my-3">
-                                                <label>Contact Number</label>
+                                                <label>Mobile Contact Number</label>
                                                 <input type="text" name="contact" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['contact']; ?>"
                                                     placeholder="Contact Number">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                    </div>  
+                                
+                                    <div class="row mx-auto">
+                                        <div class="col-md-12">
                                             <div class="my-3">
-                                                <label>Landline</label>
-                                                <input type="text" name="landline" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['landline']; ?>"
-                                                    placeholder="Landline Number">
+                                                <label>Number & Street</label>
+                                                <input type="text" name="address" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['address']; ?>"
+                                                    placeholder="Enter your Address">
                                             </div>
                                         </div>
-                                    </div>                                    
+                                    </div>
+                                    <div class="row mx-auto">
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Barangay</label>
+                                                <input type="text" name="barangay" class="form-control" autocomplete="off"
+                                                        value=""
+                                                    placeholder="Ex. Barangay 123">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Congressional District</label>
+                                                <input type="text" name="district" class="form-control" autocomplete="off"
+                                                        value=""
+                                                    placeholder="Ex. District IV">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Municipality/City</label>
+                                                <input type="text" name="municipality-city" class="form-control" autocomplete="off"
+                                                        value="" placeholder="Ex. Tacloban City">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Region</label>
+                                                <input type="text" name="region" class="form-control" autocomplete="off"
+                                                        value="" placeholder="Ex. NCR">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-4">
+                                            <div class="my-3">
+                                            <label>Facebook</label>
+                                            <input type="text" name="stud_no" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
+                                                value="" >
+                                            </div>
+                                        </div>   
+                                        <div class="col-md-4">
+                                            <div class="my-3">
+                                            <label>FB Messenger</label>                                       
+                                            <input type="text" name="stud_no" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
+                                            value="" >                                             
+                                            </div>
+                                        </div>
+                                    </div>                             
                                 </div>
 
-                                <!-- Family Background -->
+                                <!-- NIBT Scholar Info -->
                                 <div>
                                     <br>
-                                    <h2 class="text-center"><b>Family Background</b></h2>
+                                    <h2 class="text-center"><b>NIBT Scholar Info</b></h2>       
+                                    <div class="row mx-auto">
+                                        <div class="col-md-5 mx-auto">
+                                            <div class="my-3">
+                                                <label>Which qualification(s) are you interested in? (You Can Select all 4 qualifications)</label> 
+                                            </div>
+                                        </div>                                                      
+                                    </div>
+                                    
+                                    <div class="row mx-auto justify-content-around"> 
+                                        <div class="col-md-">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="customCheckbox1" name="course" value="option1">
+                                                <label class="form-check-label" for="customCheckbox1">Data Analytics</label>
+                                                <br>
+                                                <input class="form-check-input" type="checkbox" id="customCheckbox2" name="course" value="option2">
+                                                <label class="form-check-label" for="customCheckbox2">Cyber Threat Monitoring</label>
+                                                <br>
+                                                <input class="form-check-input" type="checkbox" id="customCheckbox3" name="course" value="option3">
+                                                <label class="form-check-label" for="customCheckbox3">RPG</label>
+                                                <br>
+                                                <input class="form-check-input" type="checkbox" id="customCheckbox4" name="course" value="option4">
+                                                <label class="form-check-label" for="customCheckbox4">Legacy System / Cobol</label>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                                
+
+
+                                    <div class="row mx-auto">
+                                     
+                                        <div class="col-md-5 mx-auto">
+                                            <div class="my-3">
+                                                <label>Learners ID/ULI No. (For those who have already taken up any TESDA Course before)</label>
+                                                <input type="text" name="voc" class="form-control" autocomplete="off"  value="" placeholder="text">
+                                            </div>
+                                        </div>                                
+                                    </div>
+
+                                    <div class="row mx-auto">
+                                     
+                                        <div class="col-md-5 mx-auto">
+                                            <div class="my-3">
+                                                <label>Educational Attainment Before The Training (Trainee)</label>
+                                                <input type="text" name="voc" class="form-control" autocomplete="off"  value="" placeholder="text">
+                                            </div>
+                                        </div>                                
+                                    </div>
+                                    
+                                    <div class="row mx-auto">                                       
+                                        <div class="col-md-5 mx-auto">
+                                            <div class="my-3">
+                                                <label>Institutional Requirements</label>
+                                            </div>
+                                            <div class="row mx-auto">                                        
+                                        <div class="row mx-auto">
+                                            <div class="col-md-">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="customCheckbox1" name="course" value="option1">
+                                                    <label class="form-check-label" for="customCheckbox1">College Diploma</label>
+                                                    <br>
+                                                    
+                                                    <input class="form-check-input" type="checkbox" id="customCheckbox2" name="course" value="option2">
+                                                    <label class="form-check-label" for="customCheckbox2">Senior High School Diploma</label>
+                                                    <br>
+
+                                                    <input class="form-check-input" type="checkbox" id="customCheckbox2" name="course" value="option2">
+                                                    <label class="form-check-label" for="customCheckbox2">High School Diploma</label>
+                                                    <br>
+
+                                                    <input class="form-check-input" type="checkbox" id="customCheckbox4" name="course" value="option4">
+                                                    <label class="form-check-label" for="customCheckbox4">Live Birth / PSA</label>
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="row mx-auto">
+                                        
+                                        <div class="col-md-5 mx-auto">
+                                            <div class="my-3">
+                                                <label>Employment Status</label>
+                                                <select class="form-control" id="employment" name="employment" placeholder="Select your answer">                                            
+                                                    <?php 
+                                                    $query_employment = mysqli_query($conn, "SELECT * FROM tbl_employment");
+                                                    while ($row_employment = mysqli_fetch_array($query_employment)) {
+                                                        $selected_employment = ($row['employment_id'] == $row_employment['employment_id']) ? 'selected' : '';
+                                                        echo '<option value="' . $row_employment['employment_id'] . '" ' . $selected_employment . '>' . $row_employment['employment_status'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row mx-auto">
+                                        
+                                        <div class="col-md-5 mx-auto">
+                                            <div class="my-3">
+                                                <label>Type of Disability (For Persons With Disability [PWDs] only)</label>
+                                                <input type="text" name="elem" class="form-control" autocomplete="off"  value="" placeholder="text">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>   
+                                <!-- E -->
+                                <div>
+                                    <br>
+                                    <h2 class="text-center"><b>Emergency Contact (In case of emergency)</b></h2>
                                     
                                     <!-- Guardian -->
                                     <br>
                                     <div class="row mx-auto">
                                         <div class="col">
-                                            <h4><b>Guardian</b></h4>
+                                            <h4><b>Contact Person of the Scholar</b></h4>
                                         </div>
                                     </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-6">
                                             <div class="my-3">
-                                                <label>Last Name</label>
+                                                <label>Full Name</label>
                                                 <input type="text" name="glastname" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['glastname']; ?>" placeholder="Last Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>First name</label>
-                                                <input type="text" name="gfirstname" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['gfirstname']; ?>" placeholder="First name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Middle name</label>
-                                                <input type="text" name="gmiddlename" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['gmiddlename']; ?>"
-                                                    placeholder="Middle name">
+                                                        value="<?php echo $row['glastname']; ?>" placeholder="Ex. Juanita Dela Cruz">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mx-auto">
+
+                                    <div class="row mx-auto justify-content-around">
                                         <div class="col-md-4">
                                             <div class="my-3">
-                                                <label>Age</label>
-                                                <input type="text" name="gage" class="form-control" autocomplete="off" 
-                                                    value="<?php echo $row['gage']; ?>" placeholder="00 yrs old">
+                                                <label>Cell No.</label>
+                                                <input type="text" name="gcell_no" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['gcell_no']; ?>" placeholder="09123456789">
                                             </div>
-                                        </div>
+                                        </div> 
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Birthdate</label>
@@ -367,306 +504,29 @@
                                                         value="<?php echo $row['gbirthdate']; ?>" placeholder="First name">
                                             </div>
                                         </div>
+                                        
+                                    </div>
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-9">
+                                            <div class="my-3">
+                                                <label>Parent/Guardian's Complete Mailing Address</label>
+                                                <input type="text" name="address" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['address']; ?>"
+                                                    placeholder="Enter your Address">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mx-auto justify-content-around">
                                         <div class="col-md-4">
                                             <div class="my-3">
-                                                <label>Relationship</label>
+                                                <label>Relationship to the scholar</label>
                                                 <input type="text" name="relationship" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['relationship']; ?>"
                                                     placeholder="Ex. Mother/Father">
                                             </div>
-                                        </div>
+                                        </div>                 
                                     </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Citizenship</label>
-                                                <input type="text" name="gcitizenship" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['gcitizenship']; ?>"
-                                                    placeholder="Ex. Filipino">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Home Address</label>
-                                                <input type="text" name="gaddress" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['gaddress']; ?>" placeholder="Home Address">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Education Attained</label>
-                                                <input type="text" name="geducation" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['geducation']; ?>"
-                                                    placeholder="Education Attained">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Cell No.</label>
-                                                <input type="text" name="gcell_no" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['gcell_no']; ?>" placeholder="09123456789">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Tel No.</label>
-                                                <input type="text" name="gtel_no" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['gtel_no']; ?>" placeholder="0123-4567">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Occupation</label>
-                                                <input type="text" name="goccupation" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['goccupation']; ?>"
-                                                    placeholder="Occupation">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    
-                                    <!-- Number of Siblings -->
-                                    <br>
-                                    <div class="row mx-auto">
-                                        <div class="col">
-                                            <h2 class="text-center"><b>No. of Siblings</b></h2>
-                                        </div>
-                                    </div>        
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <label>Full name</label>
-                                                <input type="text" name="sib1_name" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib1_name']; ?>" placeholder="Full name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <label>Occupation</label>
-                                                <input type="text" name="sib1_occ" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib1_occ']; ?>" placeholder="Occupation">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-1">
-                                                <label>Contact Number</label>
-                                                <input type="text" name="sib1_contact" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['sib1_contact']; ?>"
-                                                    placeholder="09123456789">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                
-                                
-                                <!-- Educational Background -->
-                                <div>
-                                    <br>
-                                    <h2 class="text-center"><b>Educational Background</b></h2>                                            
-                                    <div class="row mx-auto">
-                                        <div class="col-md-2 mx-auto d-flex align-items-center">
-                                            <div class="my-3">
-                                                <span class="mt-3">College</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>School name</label>
-                                                <input type="text" name="college" class="form-control" autocomplete="off"  value="<?php echo $row['college']; ?>" placeholder="School name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Year Graduated</label>
-                                                <input type="text" name="collegeSY" class="form-control" autocomplete="off"  value="<?php echo $row['collegeSY']; ?>" placeholder="Year Graduated">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-2 mx-auto d-flex align-items-center">
-                                            <div class="my-3">
-                                                <span class="mt-3">Vocational</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>School name</label>
-                                                <input type="text" name="voc" class="form-control" autocomplete="off"  value="<?php echo $row['voc']; ?>" placeholder="School name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Year Graduated</label>
-                                                <input type="text" name="vocSY" class="form-control" autocomplete="off"  value="<?php echo $row['vocSY']; ?>" placeholder="Year Graduated">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-2 mx-auto d-flex align-items-center">
-                                            <div class="my-3">
-                                                <span class="mt-3">Senior High School</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>School name</label>
-                                                <input type="text" name="shs" class="form-control" autocomplete="off"  value="<?php echo $row['shs']; ?>" placeholder="School name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Year Graduated</label>
-                                                <input type="text" name="shsSY" class="form-control" autocomplete="off"  value="<?php echo $row['shsSY']; ?>" placeholder="Year Graduated">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-2 mx-auto d-flex align-items-center">
-                                            <div class="my-3">
-                                                <span class="mt-3">Junior High School</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>School name</label>
-                                                <input type="text" name="jhs" class="form-control" autocomplete="off"  value="<?php echo $row['jhs']; ?>" placeholder="School name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Year Graduated</label>
-                                                <input type="text" name="jhsSY" class="form-control" autocomplete="off"  value="<?php echo $row['jhsSY']; ?>" placeholder="Year Graduated">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-2 mx-auto d-flex align-items-center">
-                                            <div class="my-3">
-                                                <span class="mt-3">Grade School</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>School name</label>
-                                                <input type="text" name="elem" class="form-control" autocomplete="off"  value="<?php echo $row['elem']; ?>" placeholder="School name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <div class="my-3">
-                                                <label>Year Graduated</label>
-                                                <input type="text" name="elemSY" class="form-control" autocomplete="off"  value="<?php echo $row['elemSY']; ?>" placeholder="Year Graduated">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                               
-
-                                <!-- Student's Life Information -->
-                                <div>
-                                    <br>
-                                    <h2 class="text-center"><b>Student's Life Information</b></h2>
-                                    <div class="row mx-auto justify-content-center">
-                                        <div class="col-md-2">
-                                            <div class="my-3">
-                                                <span class="mt-1">1. Parent's Marital Status</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="my-3">
-                                                <select class="form-control" id="marital" name="marital" placeholder="Select your answer">                                            
-                                                    <?php 
-                                                    $query_marital = mysqli_query($conn, "SELECT * FROM tbl_marital");
-                                                    while ($row_marital = mysqli_fetch_array($query_marital)) {
-                                                        $selected_marital = ($row['marital_id'] == $row_marital['marital_id']) ? 'selected' : '';
-                                                        echo '<option value="' . $row_marital['marital_id'] . '" ' . $selected_marital . '>' . $row_marital['marital_name'] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto justify-content-center">
-                                        <div class="col-md-2">
-                                            <div class="my-3">
-                                                <span class="mt-1">2. Who finances your schooling</span>                                                                 
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="my-3">
-                                                <select class="form-control" id="finances" name="finances" placeholder="Select your answer">                                            
-                                                    <?php 
-                                                    $query_fin = mysqli_query($conn, "SELECT * FROM tbl_finances");
-                                                    while ($row_fin = mysqli_fetch_array($query_fin)) {
-                                                        $selected_fin = ($row['fin_id'] == $row_fin['fin_id']) ? 'selected' : '';
-                                                        echo '<option value="' . $row_fin['fin_id'] . '" ' . $selected_fin . '>' . $row_fin['fin_name'] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto justify-content-center">
-                                        <div class="col-md-2">
-                                            <div class="my-3">
-                                                <span class="mt-1">3. How much is your daily allowance</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="my-3">
-                                                <select class="form-control" id="allowance" name="allowance" placeholder="Select your answer">                                            
-                                                    <?php 
-                                                    $query_allowance = mysqli_query($conn, "SELECT * FROM tbl_allowance");
-                                                    while ($row_allowance = mysqli_fetch_array($query_allowance)) {
-                                                        $selected_allowance = ($row['allowance_id'] == $row_allowance['allowance_id']) ? 'selected' : '';
-                                                        echo '<option value="' . $row_allowance['allowance_id'] . '" ' . $selected_allowance . '>' . $row_allowance['allowance_name'] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto justify-content-center">
-                                        <div class="col-md-2">
-                                            <div class="my-3">
-                                                <span class="mt-1">4. Family Income (Monthly)</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="my-3">
-                                                <select class="form-control" id="income" name="income" placeholder="Select your answer">                                            
-                                                    <?php 
-                                                    $query_income = mysqli_query($conn, "SELECT * FROM tbl_income");
-                                                    while ($row_income = mysqli_fetch_array($query_income)) {
-                                                        $selected_income = ($row['income_id'] == $row_income['income_id']) ? 'selected' : '';
-                                                        echo '<option value="' . $row_income['income_id'] . '" ' . $selected_income . '>' . $row_income['income_name'] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto justify-content-center">
-                                        <div class="col-md-2">
-                                            <div class="my-3">
-                                                <span class="mt-1">5. Nature of Residence</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="my-3">
-                                                <select class="form-control" id="residence" name="residence" placeholder="Select your answer">                                            
-                                                    <?php 
-                                                    $query_residence = mysqli_query($conn, "SELECT * FROM tbl_residence");
-                                                    while ($row_residence = mysqli_fetch_array($query_residence)) {
-                                                        $selected_income = ($row['residence_id'] == $row_residence['residence_id']) ? 'selected' : '';
-                                                        echo '<option value="' . $row_residence['residence_id'] . '" ' . $selected_income . '>' . $row_residence['residence_name'] . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                                                                         
+                                </div>                                                                       
                     
                             <!-- End Inputs -->
 
