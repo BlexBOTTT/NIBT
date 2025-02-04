@@ -186,9 +186,9 @@
                                         <div class="col-md-4">
                                                 <div class="my-3">
                                                 <label>Middle Initial</label>
-                                                    <input type="text" name="birthplace" class="form-control" autocomplete="off"
-                                                            value="<?php echo $row['birthplace']; ?>"
-                                                        placeholder="Enter your Place of Birth">
+                                                    <input type="text" name="middleinitial" class="form-control" autocomplete="off"
+                                                            value="<?php echo $row['middleinitial']; ?>"
+                                                        placeholder="Ex. B.">
                                                 </div>
                                             </div>           
                                         <div class="col-md-4">
@@ -211,17 +211,17 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Birth Place (Province)</label>
-                                                <input type="text" name="birthplace" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['birthplace']; ?>"
-                                                    placeholder="Enter your Place of Birth">
+                                                <input type="text" name="bpprovince" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['bpprovince']; ?>"
+                                                    placeholder="Ex. Metro Manila">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Birth Place (Municipality/City)</label>
-                                                <input type="text" name="birthplace" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['birthplace']; ?>"
-                                                    placeholder="Enter your Place of Birth">
+                                                <input type="text" name="bpmunicity" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['bpmunicity']; ?>"
+                                                    placeholder="Ex. Manila">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -296,9 +296,9 @@
                                         <div class="col-md-12">
                                             <div class="my-3">
                                                 <label>Number & Street</label>
-                                                <input type="text" name="address" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['address']; ?>"
-                                                    placeholder="Enter your Address">
+                                                <input type="text" name="numstreet" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['num_street']; ?>"
+                                                    placeholder="Enter your block number and street">
                                             </div>
                                         </div>
                                     </div>
@@ -307,7 +307,7 @@
                                             <div class="my-3">
                                                 <label>Barangay</label>
                                                 <input type="text" name="barangay" class="form-control" autocomplete="off"
-                                                        value=""
+                                                        value="<?php echo $row['barangay']; ?>"
                                                     placeholder="Ex. Barangay 123">
                                             </div>
                                         </div>
@@ -315,22 +315,22 @@
                                             <div class="my-3">
                                                 <label>Congressional District</label>
                                                 <input type="text" name="district" class="form-control" autocomplete="off"
-                                                        value=""
+                                                        value="<?php echo $row['district']; ?>"
                                                     placeholder="Ex. District IV">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Municipality/City</label>
-                                                <input type="text" name="municipality-city" class="form-control" autocomplete="off"
-                                                        value="" placeholder="Ex. Tacloban City">
+                                                <input type="text" name="addmunicity" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['addmunicity']; ?>" placeholder="Ex. Tacloban City">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Region</label>
                                                 <input type="text" name="region" class="form-control" autocomplete="off"
-                                                        value="" placeholder="Ex. NCR">
+                                                        value="<?php echo $row['region']; ?>" placeholder="Ex. NCR">
                                             </div>
                                         </div>
                                     </div>
@@ -338,14 +338,14 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                             <label>Facebook</label>
-                                            <input type="text" name="stud_no" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
-                                                value="" >
+                                            <input type="text" name="fb_account" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
+                                                value="<?php echo $row['region']; ?>">
                                             </div>
                                         </div>   
                                         <div class="col-md-4">
                                             <div class="my-3">
                                             <label>FB Messenger</label>                                       
-                                            <input type="text" name="stud_no" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
+                                            <input type="text" name="fb_mess" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
                                             value="" >                                             
                                             </div>
                                         </div>
@@ -389,7 +389,8 @@
                                         <div class="col-md-5 mx-auto">
                                             <div class="my-3">
                                                 <label>Learners ID/ULI No. (For those who have already taken up any TESDA Course before)</label>
-                                                <input type="text" name="voc" class="form-control" autocomplete="off"  value="" placeholder="text">
+                                                <input type="text" name="learneriduli" class="form-control" 
+                                                autocomplete="off"  value="<?php echo $row['learner_iduli']; ?>" placeholder="text">
                                             </div>
                                         </div>                                
                                     </div>
@@ -399,7 +400,8 @@
                                         <div class="col-md-5 mx-auto">
                                             <div class="my-3">
                                                 <label>Educational Attainment Before The Training (Trainee)</label>
-                                                <input type="text" name="voc" class="form-control" autocomplete="off"  value="" placeholder="text">
+                                                <input type="text" name="educattain" class="form-control" 
+                                                autocomplete="off"  value="<?php echo $row['educ_attain']; ?>" placeholder="text">
                                             </div>
                                         </div>                                
                                     </div>
@@ -461,7 +463,8 @@
                                         <div class="col-md-5 mx-auto">
                                             <div class="my-3">
                                                 <label>Type of Disability (For Persons With Disability [PWDs] only)</label>
-                                                <input type="text" name="elem" class="form-control" autocomplete="off"  value="" placeholder="text">
+                                                <input type="text" name="disability" class="form-control" 
+                                                autocomplete="off"  value="<?php echo $row['disability']; ?>" placeholder="text">
                                             </div>
                                         </div>
                                         
@@ -483,8 +486,8 @@
                                         <div class="col-md-6">
                                             <div class="my-3">
                                                 <label>Full Name</label>
-                                                <input type="text" name="glastname" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['glastname']; ?>" placeholder="Ex. Juanita Dela Cruz">
+                                                <input type="text" name="cfullname" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['cfullname']; ?>" placeholder="Ex. Juanita Dela Cruz">
                                             </div>
                                         </div>
                                     </div>
@@ -493,15 +496,15 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Cell No.</label>
-                                                <input type="text" name="gcell_no" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['gcell_no']; ?>" placeholder="09123456789">
+                                                <input type="text" name="ccell_no" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['ccell_no']; ?>" placeholder="09123456789">
                                             </div>
                                         </div> 
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Birthdate</label>
-                                                <input type="date" name="gbirthdate" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['gbirthdate']; ?>" placeholder="First name">
+                                                <input type="date" name="cbirthdate" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['cbirthdate']; ?>" placeholder="First name">
                                             </div>
                                         </div>
                                         
@@ -510,8 +513,8 @@
                                         <div class="col-md-9">
                                             <div class="my-3">
                                                 <label>Parent/Guardian's Complete Mailing Address</label>
-                                                <input type="text" name="address" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['address']; ?>"
+                                                <input type="text" name="caddress" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['caddress']; ?>"
                                                     placeholder="Enter your Address">
                                             </div>
                                         </div>
