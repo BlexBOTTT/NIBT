@@ -194,12 +194,12 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Extension Name (e.g. Jr. Sr.)</label>
-                                                <select class="form-control" id="extname" name="extname" placeholder="Select your answer">                                            
+                                                <select class="form-control" id="extname" name="extname">                                                
                                                     <?php 
                                                     $query_ext_name = mysqli_query($conn, "SELECT * FROM tbl_extension_name");
                                                     while ($row_ext_name = mysqli_fetch_array($query_ext_name)) {
-                                                        $selected_ext_name = ($row['ext_name_id'] == $row_ext_name['ext_name_id']) ? 'selected' : '';
-                                                        echo '<option value="' . $row_ext_name['ext_name_id'] . '" ' . $selected_marital . '>' . $row_ext_name['ext_name'] . '</option>';
+                                                        $selected_ext_name = ($row['ext_name_id'] == $row_ext_name['ext_name_id']) ? 'selected' : ''; // Fix variable reference
+                                                        echo '<option value="' . $row_ext_name['ext_name_id'] . '" ' . $selected_ext_name . '>' . $row_ext_name['ext_name'] . '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -339,14 +339,14 @@
                                             <div class="my-3">
                                             <label>Facebook</label>
                                             <input type="text" name="fb_account" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
-                                                value="<?php echo $row['region']; ?>">
+                                                value="<?php echo $row['fb_account']; ?>">
                                             </div>
                                         </div>   
                                         <div class="col-md-4">
                                             <div class="my-3">
                                             <label>FB Messenger</label>                                       
                                             <input type="text" name="fb_mess" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
-                                            value="" >                                             
+                                            value="<?php echo $row['fb_mess']; ?>" >                                             
                                             </div>
                                         </div>
                                     </div>                             
@@ -366,31 +366,30 @@
                                     
                                     <div class="row mx-auto justify-content-around"> 
                                         <div class="col-md-">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="customCheckbox1" name="course" value="option1">
-                                                <label class="form-check-label" for="customCheckbox1">Data Analytics</label>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" id="customCheckbox2" name="course" value="option2">
-                                                <label class="form-check-label" for="customCheckbox2">Cyber Threat Monitoring</label>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" id="customCheckbox3" name="course" value="option3">
-                                                <label class="form-check-label" for="customCheckbox3">RPG</label>
-                                                <br>
-                                                <input class="form-check-input" type="checkbox" id="customCheckbox4" name="course" value="option4">
-                                                <label class="form-check-label" for="customCheckbox4">Legacy System / Cobol</label>
-                                            </div>
+                                        <div class="form-check">
+                                            <?php
+                                            
+                                            $query_quali = "SELECT * FROM tbl_courses";
+                                            $result_quali = mysqli_query($conn, $query_quali);
+
+                                            while ($row_quali= mysqli_fetch_assoc($result_quali)): ?>
+                                                <label>
+                                                    <input type="checkbox" name="courses[]" value="<?= $row_quali['course_id']; ?>" />
+                                                    <?= htmlspecialchars($row_quali['course_name']); ?>
+                                                </label><br>
+                                            <?php endwhile; ?>
+                                        </div>
                                         </div>                                        
                                     </div>
                                                 
 
 
-                                    <div class="row mx-auto">
-                                     
+                                    <div class="row mx-auto">                                  
                                         <div class="col-md-5 mx-auto">
                                             <div class="my-3">
                                                 <label>Learners ID/ULI No. (For those who have already taken up any TESDA Course before)</label>
                                                 <input type="text" name="learneriduli" class="form-control" 
-                                                autocomplete="off"  value="<?php echo $row['learner_iduli']; ?>" placeholder="text">
+                                                autocomplete="off"  value="<?php echo $row['learner_iduli']; ?>" placeholder="Skip this section if first time taking a tesda course">
                                             </div>
                                         </div>                                
                                     </div>
@@ -464,7 +463,7 @@
                                             <div class="my-3">
                                                 <label>Type of Disability (For Persons With Disability [PWDs] only)</label>
                                                 <input type="text" name="disability" class="form-control" 
-                                                autocomplete="off"  value="<?php echo $row['disability']; ?>" placeholder="text">
+                                                autocomplete="off"  value="<?php echo $row['disability']; ?>" placeholder="Don't fill if don't have disability ">
                                             </div>
                                         </div>
                                         

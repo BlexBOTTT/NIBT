@@ -50,12 +50,40 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
     // CONTACT PERSON
 
-    $clastname = mysqli_real_escape_string($conn, $_POST['clastname']); // contact person full name
+    $cfullname = mysqli_real_escape_string($conn, $_POST['cfullname']); // contact person full name
     $ccell_no = mysqli_real_escape_string($conn, $_POST['ccell_no']); // contact number
     $cbirthdate = mysqli_real_escape_string($conn, $_POST['cbirthdate']); // contact date of birth
     $caddress = mysqli_real_escape_string($conn, $_POST['caddress']);// contact complete mailing address
     $relationship = mysqli_real_escape_string($conn, $_POST['relationship']); // relationship to scholar
 
+     // Get selected courses from the form (array of course IDs)
+    if (isset($_POST['courses']) && is_array($_POST['courses'])) {
+        $selected_courses = $_POST['courses'];
+        
+        // First, remove any previously selected courses for this student
+        $deleteQuery = "DELETE FROM tbl_student_courses WHERE stud_id = '$student_id'";
+        $deleteResult = mysqli_query($conn, $deleteQuery);
+        
+        if (!$deleteResult) {
+            $_SESSION['errors'] = true;
+            echo "Failed to delete old courses: " . mysqli_error($conn);
+            exit();
+        }
+        
+        // Now, insert the newly selected courses
+        foreach ($selected_courses as $course_id) {
+            $course_id = mysqli_real_escape_string($conn, $course_id);
+            $insertQuery = "INSERT INTO tbl_student_courses (stud_id, course_id) VALUES ('$student_id', '$course_id')";
+            $insertResult = mysqli_query($conn, $insertQuery);
+            
+            if (!$insertResult) {
+                $_SESSION['errors'] = true;
+                echo "Failed to update courses: " . mysqli_error($conn);
+                exit();
+            }
+        }
+    }
+    
     // Update section
     $query = "UPDATE tbl_students SET 
 
@@ -65,7 +93,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         firstname = '$firstname',
         middlename = '$middlename',
         middleinitial = '$middleinitial',
-        extensionname = '$extname',
+        ext_name_id = '$extname',
 
         bpprovince = '$bpprovince',
         bpmunicity = '$bpmunicity',
@@ -81,22 +109,25 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         district = '$district',
         addmunicity = '$addmunicity',
         region = '$region',
-     
-        -- NIBT SCHOLAR INFO
-        learner_iduli = '$learneriduli',
-        educ_attain = '$educattain',
-        employment_id = '$employment',
-        disability = '$disability',
 
         fb_account = '$fbacc',
         fb_mess = '$fbmess',
+     
+        -- NIBT SCHOLAR INFO
+        -- qualification CHECKBOX
+        learner_iduli = '$learneriduli',
+        educ_attain = '$educattain',
+        -- institutional requirements CHECKBOX
+        employment_id = '$employment',
+        disability = '$disability',
 
-        $clastname = mysqli_real_escape_string($conn, $_POST['clastname']); // contact person full name
-    $ccell_no = mysqli_real_escape_string($conn, $_POST['ccell_no']); // contact number
-    $cbirthdate = mysqli_real_escape_string($conn, $_POST['cbirthdate']); // contact date of birth
-    $caddress = mysqli_real_escape_string($conn, $_POST['caddress']);// contact complete mailing address
-    $relationship = mysqli_real_escape_string($conn, $_POST['relationship']); // relationship to scholar
+        -- CONTACT PERSON
 
+        cfullname = '$cfullname',
+        ccell_no = '$ccell_no',
+        cbirthdate = '$cbirthdate',
+        caddress = '$caddress',
+        relationship = '$relationship'
 
 
         WHERE stud_id = '$student_id'";

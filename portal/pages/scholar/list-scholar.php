@@ -13,9 +13,9 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div> -->
 
   <!-- Navbar -->
   <?php include '../../includes/navbar.php'; ?>
@@ -128,13 +128,14 @@
                           WHERE (firstname LIKE '%$_GET[search]%' 
                           OR middlename LIKE '%$_GET[search]%'
                           OR lastname  LIKE '%$_GET[search]%' 
-                          OR stud_no LIKE '%$_GET[search]%'
-                          OR yearlevel LIKE '%$_GET[search]%')                         
+                          -- OR stud_no LIKE '%$_GET[search]%'
+                          -- OR yearlevel LIKE '%$_GET[search]%'
+                          )                         
                           ORDER BY stud_id DESC
                           ") or die(mysqli_error($conn));
                               while ($row = mysqli_fetch_array($get_user)) {
                                   $id = $row['stud_id'];
-                                  $_SESSION['stud_no'] = $row['stud_no'];
+                                  // $_SESSION['stud_no'] = $row['stud_no'];
 
                           ?>
                           <tr>
