@@ -105,16 +105,20 @@
                       </form>
                   </div>
               </div>
-
+              
+              
               <div class="card-body pad table-responsive">              
-                  <table class="table table-bordered text-center" id="dataTable">                  
+                  <table class="table table-bordered text-center" id="myTable">
+                    <thead>
                       <tr>
                         <th>Image</th>
                         <th>Fullname</th>
                         <th>Email</th>
-                        <th>Year/Grade Level</th>
                         <th>Username</th>
-                      </tr>           
+                        <th>Contact #</th>
+                        <th>Actions</th>
+                      </tr>  
+                    </thead>                                             
                     <tbody>
                       <?php
                           if (isset($_GET['look'])) {
@@ -138,26 +142,28 @@
                                   // $_SESSION['stud_no'] = $row['stud_no'];
 
                           ?>
+                        
                           <tr>
-                              <td><img class="img-fluid mr-4"
+                              <td><img class="img-fluid"
                                               src="data:image/jpeg;base64, <?php echo base64_encode($row['img']); ?>"
-                                              alt="image" style="height: 80px; width: 100px"></td>
-                              <td><?php echo $row['fullname'] ?></td>
-                              <td><?php echo $row['email'] ?></td>                          
+                                              alt="image" style="height: 50px; width: 50px"></td>
+                              <td><?php echo $row['lastname'] ?>, <?php echo $row['firstname'] ?>, <?php echo $row['middlename'] . '' ?></td>
+                              <td><?php echo $row['email'] ?></td>
+                              <td></td>                          
                               <td><?php echo $row['username'] ?></td>
                               <td>
                                   <a href="../forms/scholar-profile.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
-                                      <i class="fa fa-print"></i> Scholar Profile
+                                  <i class="fa fa-print"></i> Scholar Profile
                                   </a>                                   
-                                  <br>
+                                  
                                   <a href="prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">
                                   <i class="fa fa-address-card"></i> Edit Scholar Profile
                                   </a>
-                                  <br>                                              
+                                                                             
                                   <a href="edit-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-info mx-1" target="_blank">
                                   <i class="fa fa-edit"></i> Update
                                   </a>
-                                  <br>
+                                  
                                   <!-- Button trigger modal -->
                                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>">
                                           <i class="fa fa-trash"></i> Delete
@@ -190,7 +196,11 @@
                           <?php }
                           } ?>
                       </tbody>
-                  </table>                
+                  </table>
+                  
+                  <a href="../forms/scholar-profile.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
+                                  <i class="fa fa-print"></i> Scholar Profile
+                                  </a>  
               </div>
               <!-- /.card-body -->
             </div>

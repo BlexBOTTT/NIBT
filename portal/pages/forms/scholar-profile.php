@@ -226,70 +226,10 @@ if ($stud_id > 0) {
         $pdf->Cell(30, 2, '', 0, 0); // SPACE
         $pdf->Cell(30, 3, '', 0, 1); // num
 
-        $pdf->Ln(3);
-        $pdf->SetFont('Arial', 'B', 9);
-        $pdf->Cell(85, 2, '', 0, 0); // SPACE
-        $pdf->Cell(30, 3, 'Siblings/Children ', 0, 1);
-        $pdf->Cell(81, 2, '', 0, 0); // SPACE
-        $pdf->Cell(30, 4, '(From first to last child) ', 0, 1);
-        $pdf->Ln(2);
-        $pdf->Cell(25, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(30, 5, 'asdasdasdasd', 0, 1); // data
         //////////////////////////   data boi sige lang
-        $pdf->SetFont('Arial', '', 9);
-        $pdf->Ln(1);
-        $pdf->Cell(25, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(30, 5, 'asdasdasdasd', 0, 1); // data
-        $pdf->Ln(1);
-        $pdf->Cell(25, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(30, 5, 'asdasdasdasd', 0, 1); // data
-        $pdf->Ln(1);
-        $pdf->Cell(25, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(30, 5, 'asdasdasdasd', 0, 1); // data
-        $pdf->Ln(1);
-        $pdf->Cell(25, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(45, 5, 'asdasdasd', 0, 0); // data
-        $pdf->Cell(15, 2, '', 0, 0); // SPACE
-        $pdf->Cell(30, 5, 'asdasdasdasd', 0, 1); // data
 
         // box for siblings 
-        $pdf->Rect(16, 130, 61, 6); // box
-        $pdf->Rect(77, 130, 60.5, 6); // box
-        $pdf->Rect(137.5, 130, 60.5, 6); // box
-
-        $pdf->Rect(16, 136, 61, 6); // box
-        $pdf->Rect(77, 136, 60.5, 6); // box
-        $pdf->Rect(137.5, 136, 60.5, 6); // box
-
-        $pdf->Rect(16, 142, 61, 6); // box
-        $pdf->Rect(77, 142, 60.5, 6); // box
-        $pdf->Rect(137.5, 142, 60.5, 6); // box
-
-        $pdf->Rect(16, 148, 61, 6); // box
-        $pdf->Rect(77, 148, 60.5, 6); // box
-        $pdf->Rect(137.5, 148, 60.5, 6); // box
-
-        $pdf->Rect(16, 154, 61, 6); // box
-        $pdf->Rect(77, 154, 60.5, 6); // box
-        $pdf->Rect(137.5, 154, 60.5, 6); // box
+   
 
         $pdf->Ln(2);
         $pdf->SetFont('Arial', 'B', 9);
@@ -298,7 +238,7 @@ if ($stud_id > 0) {
 
         $pdf->Ln(3);
         // box in education
-        $pdf->Rect(16, 166, 61, 6); // box
+        $pdf->Rect(16, 125, 61, 6); // box
         $pdf->Rect(77, 166, 60.5, 6); // box
         $pdf->Rect(137.5, 166, 60.5, 6); // box
 

@@ -15,3 +15,18 @@ Contains
 # Credits from:
 [EduBin](https://www.templateshub.net/template/edubin-education-html-template)
 [AdminLTE](https://adminlte.io/themes/v3/)
+
+# Softwares Utilized
+
+- Front
+    - EDUBIN
+        - Version: Boostrap 4 compatible
+
+- Backend
+- AdminLTE
+    - Version: 3
+- FPDF
+    - Version 1.86
+
+- Composer: 2.85 (prerequisite for below)
+    - PHPSpreadsheet

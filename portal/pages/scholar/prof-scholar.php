@@ -369,13 +369,28 @@
                                         <div class="form-check">
                                             <?php
                                             
-                                            $query_quali = "SELECT * FROM tbl_courses";
-                                            $result_quali = mysqli_query($conn, $query_quali);
+                                            $query_courses = "SELECT * FROM tbl_courses";
+                                            $result_courses = mysqli_query($conn, $query_courses);
+                                            
+                                            // Fetch selected courses for the student
+                                            $selected_courses = [];
 
-                                            while ($row_quali= mysqli_fetch_assoc($result_quali)): ?>
+                                            if (isset($_GET['stud_id'])) { // Assuming stud_id is passed via GET                     
+                                                $query_courses_selected = "SELECT course_id FROM tbl_student_courses WHERE stud_id = '$stud_id'";
+                                                $result_courses_selected = mysqli_query($conn, $query_courses_selected);
+
+                                                while ($row_courses_selected = mysqli_fetch_assoc($result_courses_selected)) {
+                                                    $selected_courses[] = $row_courses_selected['course_id'];
+                                                }
+                                            }
+
+                                            // Loop through all courses and pre-check the ones the student already has
+                                            while ($row_course = mysqli_fetch_assoc($result_courses)): 
+                                                $course_checked = in_array($row_course['course_id'], $selected_courses) ? 'checked' : '';
+                                            ?>
                                                 <label>
-                                                    <input type="checkbox" name="courses[]" value="<?= $row_quali['course_id']; ?>" />
-                                                    <?= htmlspecialchars($row_quali['course_name']); ?>
+                                                    <input type="checkbox" name="courses[]" value="<?= $row_course['course_id']; ?>" <?= $course_checked; ?> />
+                                                    <?= htmlspecialchars($row_course['course_name']); ?>
                                                 </label><br>
                                             <?php endwhile; ?>
                                         </div>
@@ -414,20 +429,32 @@
                                         <div class="row mx-auto">
                                             <div class="col-md-">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="customCheckbox1" name="course" value="option1">
-                                                    <label class="form-check-label" for="customCheckbox1">College Diploma</label>
-                                                    <br>
+                                                    <?php
+                                            
+                                                    $query_requirements = "SELECT * FROM tbl_requirements";
+                                                    $result_requirements = mysqli_query($conn, $query_requirements);
                                                     
-                                                    <input class="form-check-input" type="checkbox" id="customCheckbox2" name="course" value="option2">
-                                                    <label class="form-check-label" for="customCheckbox2">Senior High School Diploma</label>
-                                                    <br>
+                                                    // Fetch selected courses for the student
+                                                    $selected_requirements = [];
 
-                                                    <input class="form-check-input" type="checkbox" id="customCheckbox2" name="course" value="option2">
-                                                    <label class="form-check-label" for="customCheckbox2">High School Diploma</label>
-                                                    <br>
+                                                    if (isset($_GET['stud_id'])) { // Assuming stud_id is passed via GET                     
+                                                        $query_requirements_selected = "SELECT requirement_id FROM tbl_student_requirements WHERE stud_id = '$stud_id'";
+                                                        $result_requirements_selected = mysqli_query($conn, $query_requirements_selected);    
 
-                                                    <input class="form-check-input" type="checkbox" id="customCheckbox4" name="course" value="option4">
-                                                    <label class="form-check-label" for="customCheckbox4">Live Birth / PSA</label>
+                                                        while ($row_requirements_selected = mysqli_fetch_assoc($result_requirements_selected)) {
+                                                            $selected_requirements[] = $row_requirements_selected['requirement_id'];
+                                                        }
+                                                    }
+
+                                                    // Loop through all courses and pre-check the ones the student already has
+                                                    while ($row_requirements = mysqli_fetch_assoc($result_requirements)): 
+                                                        $requirements_checked = in_array($row_requirements['requirement_id'], $selected_requirements) ? 'checked' : '';
+                                                    ?>
+                                                        <label>
+                                                            <input type="checkbox" name="requirements[]" value="<?= $row_requirements['requirement_id']; ?>" <?= $requirements_checked; ?> />
+                                                            <?= htmlspecialchars($row_requirements['requirement_name']); ?>
+                                                        </label><br>
+                                                    <?php endwhile; ?>
                                                     
                                                 </div>
                                             </div>
