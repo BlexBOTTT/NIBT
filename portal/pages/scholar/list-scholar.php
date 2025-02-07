@@ -198,8 +198,8 @@
                       </tbody>
                   </table>
                   
-                  <a href="../forms/scholar-profile.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
-                                  <i class="fa fa-print"></i> Scholar Profile
+                  <a href="../forms/scholar-online-registration.php" type="button" class="btn btn-primary mx-1" target="_blank">
+                                  <i class="fa fa-print"></i> Online Register Responses
                                   </a>  
               </div>
               <!-- /.card-body -->
