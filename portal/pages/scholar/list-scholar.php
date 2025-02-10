@@ -113,9 +113,10 @@
                       <tr>
                         <th>Image</th>
                         <th>Fullname</th>
-                        <th>Email</th>
-                        <th>Username</th>
+                        <th>Email</th>                     
                         <th>Contact #</th>
+                        <th>Facebook & Messenger</th>
+                        <th>Username</th>
                         <th>Actions</th>
                       </tr>  
                     </thead>                                             
@@ -149,10 +150,11 @@
                                               alt="image" style="height: 50px; width: 50px"></td>
                               <td><?php echo $row['lastname'] ?>, <?php echo $row['firstname'] ?>, <?php echo $row['middlename'] . '' ?></td>
                               <td><?php echo $row['email'] ?></td>
-                              <td></td>                          
+                              <td><?php echo $row['contact'] ?></td>                          
+                              <td>Facebook: <b><?php echo $row['fb_account'] ?></b> <br> Messenger: <b><?php echo $row['fb_mess'] ?></b></td>
                               <td><?php echo $row['username'] ?></td>
                               <td>
-                                  <a href="../forms/scholar-profile.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
+                                  <a href="../forms/scholar-profile-a4.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
                                   <i class="fa fa-print"></i> Scholar Profile
                                   </a>                                   
                                   
