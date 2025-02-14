@@ -154,8 +154,14 @@
                                 <!-- Personal Data-->
                                 <div> 
                                     <br>
-                                    <h2 class="text-center"><b>Personal Data</b></h2> 
+                                    <h2 class="text-center"><b>1.1 Learner/Manpower Profile</b></h2> 
 
+                                    <br>
+                                    <div class="row mx-auto">
+                                        <div class="col">
+                                            <h4><b>Name</h4>
+                                        </div>
+                                    </div>
 
                                     <div class="row mx-auto">
                                         <div class="col-md-4">
@@ -182,6 +188,9 @@
                                         </div>
                                         
                                     </div>
+
+                                
+
                                     <div class="row mx-auto justify-content-around">
                                         <div class="col-md-4">
                                                 <div class="my-3">
@@ -206,8 +215,106 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <div class="row mx-auto">
+                                        <div class="col">
+                                            <h4><b>Address</b></h4>
+                                        </div>
+                                    </div>
+                                
 
-            <div class="row mx-auto justify-content-around">
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-4">
+                                            <div class="my-3">
+                                                <label>Email Address</label>
+                                                <input type="email" name="email" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['email']; ?>"
+                                                    placeholder="example@gmail.com">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="my-3">
+                                                <label>Mobile Contact Number</label>
+                                                <input type="text" name="contact" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['contact']; ?>"
+                                                    placeholder="Contact Number">
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <br>
+                                    
+                                    <div class="row mx-auto">
+                                        <div class="col-md-6">
+                                            <div class="my-3">
+                                                <label>Number & Street</label>
+                                                <input type="text" name="numstreet" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['num_street']; ?>"
+                                                    placeholder="Enter your block number and street">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Barangay</label>
+                                                <input type="text" name="barangay" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['barangay']; ?>"
+                                                    placeholder="Ex. Barangay 123">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Congressional District</label>
+                                                <input type="text" name="district" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['district']; ?>"
+                                                    placeholder="Ex. District IV">
+                                            </div>
+                                        </div>                                     
+                                    </div>
+                                    <div class="row mx-auto">
+                                        
+                                        
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Municipality/City</label>
+                                                <input type="text" name="addmunicity" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['addmunicity']; ?>" placeholder="Ex. Tacloban City">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Province</label>
+                                                <input type="text" name="province" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['province']; ?>"
+                                                    placeholder="Ex. Manila">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Region</label>
+                                                <input type="text" name="region" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['region']; ?>" placeholder="Ex. NCR">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-4">
+                                            <div class="my-3">
+                                            <label>Facebook</label>
+                                            <input type="text" name="fb_account" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
+                                                value="<?php echo $row['fb_account']; ?>">
+                                            </div>
+                                        </div>   
+                                        <div class="col-md-4">
+                                            <div class="my-3">
+                                            <label>FB Messenger</label>                                       
+                                            <input type="text" name="fb_mess" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
+                                            value="<?php echo $row['fb_mess']; ?>" >                                             
+                                            </div>
+                                        </div>
+                                    </div>                             
+                                </div>
+
+                                    <div class="row mx-auto justify-content-around">
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Birth Place (Province)</label>
@@ -226,15 +333,40 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="my-3">
+                                                <label>Birth Place (Region)</label>
+                                                <input type="text" name="bpregion" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['bpregion']; ?>"
+                                                    placeholder="Ex. Manila">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="my-3">
                                                 <label>Date of birth</label>
                                                 <input type="date" name="birthdate" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['birthdate']; ?>"
                                                     placeholder="Enter your birthdate">
                                             </div>
                                         </div>
+                                        
                                     </div>
 
                                     <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Age</label>
+                                                <input type="text" name="age" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['age']; ?>"
+                                                    placeholder="Enter Age Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="my-3">
+                                                <label>Nationality</label>
+                                                <input type="text" name="nationality" class="form-control" autocomplete="off"
+                                                        value="<?php echo $row['nationality']; ?>"
+                                                    placeholder="Enter Nationality">
+                                            </div>
+                                        </div>
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Gender</label>                                       
@@ -270,87 +402,7 @@
                                 </div>
                                                     
 
-                                <div>
-                                    <h2 class="text-center"><b>Contact Address</b></h2> 
-
-                                    <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Email Address</label>
-                                                <input type="email" name="email" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['email']; ?>"
-                                                    placeholder="example@gmail.com">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                                <label>Mobile Contact Number</label>
-                                                <input type="text" name="contact" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['contact']; ?>"
-                                                    placeholder="Contact Number">
-                                            </div>
-                                        </div>
-                                    </div>  
                                 
-                                    <div class="row mx-auto">
-                                        <div class="col-md-12">
-                                            <div class="my-3">
-                                                <label>Number & Street</label>
-                                                <input type="text" name="numstreet" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['num_street']; ?>"
-                                                    placeholder="Enter your block number and street">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto">
-                                        <div class="col-md-3">
-                                            <div class="my-3">
-                                                <label>Barangay</label>
-                                                <input type="text" name="barangay" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['barangay']; ?>"
-                                                    placeholder="Ex. Barangay 123">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="my-3">
-                                                <label>Congressional District</label>
-                                                <input type="text" name="district" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['district']; ?>"
-                                                    placeholder="Ex. District IV">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="my-3">
-                                                <label>Municipality/City</label>
-                                                <input type="text" name="addmunicity" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['addmunicity']; ?>" placeholder="Ex. Tacloban City">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="my-3">
-                                                <label>Region</label>
-                                                <input type="text" name="region" class="form-control" autocomplete="off"
-                                                        value="<?php echo $row['region']; ?>" placeholder="Ex. NCR">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                            <label>Facebook</label>
-                                            <input type="text" name="fb_account" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
-                                                value="<?php echo $row['fb_account']; ?>">
-                                            </div>
-                                        </div>   
-                                        <div class="col-md-4">
-                                            <div class="my-3">
-                                            <label>FB Messenger</label>                                       
-                                            <input type="text" name="fb_mess" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
-                                            value="<?php echo $row['fb_mess']; ?>" >                                             
-                                            </div>
-                                        </div>
-                                    </div>                             
-                                </div>
 
                                 <!-- NIBT Scholar Info -->
                                 <div>

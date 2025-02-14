@@ -155,7 +155,7 @@
                               <td><?php echo $row['username'] ?></td>
                               <td>
                                   <a href="../forms/scholar-profile-a4.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
-                                  <i class="fa fa-print"></i> Scholar Profile
+                                  <i class="fa fa-print"></i> View Scholar Profile
                                   </a>                                   
                                   
                                   <a href="prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">

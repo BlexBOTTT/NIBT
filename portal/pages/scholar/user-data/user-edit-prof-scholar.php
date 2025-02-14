@@ -20,6 +20,11 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     $bpmunicity = mysqli_real_escape_string($conn, $_POST['bpmunicity']);
     $birthdate = mysqli_real_escape_string($conn, $_POST['birthdate']);
 
+    $province = mysqli_real_escape_string($conn, $_POST['province']);
+    $age = mysqli_real_escape_string($conn, $_POST['age']);
+    $bpregion = mysqli_real_escape_string($conn, $_POST['bpregion']);
+    $nationality = mysqli_real_escape_string($conn, $_POST['nationality']);
+
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $civilstatus = mysqli_real_escape_string($conn, $_POST['civilstatus']);
 
@@ -134,7 +139,12 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         birthdate = '$birthdate',
         gender_id = '$gender',
         civilstatus = '$civilstatus',
-
+        
+        province = '$province',
+        age = '$age',
+        bpregion = '$bpregion',
+        nationality = '$nationality',
+        
         -- ADDRESS 
         email = '$email',
         contact = '$contact',

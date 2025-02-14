@@ -37,415 +37,415 @@ if ($stud_id > 0) {
         // fully get the all usable 10mm bottom marjin
         $pdf->SetAutoPageBreak(false); 
 
-        // $pdf->AddPage();
+        $pdf->AddPage();
         
 
-        // $pdf->SetLineWidth(0.1);
-        // $pdf->SetDash(1,3); //5mm on, 5mm off
-        // $pdf->Line(105, 0, 105, 297); // Draws a vertical line down the center of an A4 page
-        // $pdf->Line(0, 148.5, 210, 148.5); // Horizontal center line (Y = 148.5)
+        $pdf->SetLineWidth(0.1);
+        $pdf->SetDash(1,3); //5mm on, 5mm off
+        $pdf->Line(105, 0, 105, 297); // Draws a vertical line down the center of an A4 page
+        $pdf->Line(0, 148.5, 210, 148.5); // Horizontal center line (Y = 148.5)
         
-        // $pdf->SetDash(); // restores no dash and default to line
-        // $pdf->SetLineWidth(0); // default line thickness
+        $pdf->SetDash(); // restores no dash and default to line
+        $pdf->SetLineWidth(0); // default line thickness
 
 
 
-        // // Logo(x axis, y axis, height, width)
-        // // $pdf->Image('../../img/SFAC-logo1.jpg', 45, 8, 15, 15);
-        // // text color
-        // $pdf->SetTextColor(0, 0, 0);
-        // // font(font type,style,font size)
-        // // Dummy cell
-        // $pdf->Cell(50);
+        // Logo(x axis, y axis, height, width)
+        // $pdf->Image('../../img/SFAC-logo1.jpg', 45, 8, 15, 15);
+        // text color
+        $pdf->SetTextColor(0, 0, 0);
+        // font(font type,style,font size)
+        // Dummy cell
+        $pdf->Cell(50);
 
 
-        // $pdf->Ln(3);
-        // $pdf->SetTextColor(0, 0, 0);
+        $pdf->Ln(3);
+        $pdf->SetTextColor(0, 0, 0);
 
   
 
-        // $margin = 10; // 0.5 inch in mm
-        // $page_width = 210;
-        // $page_height = 297;
+        $margin = 10; // 0.5 inch in mm
+        $page_width = 210;
+        $page_height = 297;
         
         
-        // $usable_width = $page_width - ($margin * 2);
-        // $usable_height = $page_height - ($margin * 2);
+        $usable_width = $page_width - ($margin * 2);
+        $usable_height = $page_height - ($margin * 2);
         
-        // $pdf->Rect($margin, $margin, $usable_width, $usable_height); // Full-height box with 0.5-inch margins
+        $pdf->Rect($margin, $margin, $usable_width, $usable_height); // Full-height box with 0.5-inch margins
         
-        // // header tesda top divider
-        // $pdf->Rect($margin, $margin, $usable_width, 15);
-        // //cell(width,height,text,border,end line,[align])
+        // header tesda top divider
+        $pdf->Rect($margin, $margin, $usable_width, 15);
+        //cell(width,height,text,border,end line,[align])
         
-        // $pdf->Rect($margin, $margin, 30, 15);
-        
-
-        // $pdf->Cell(63.33, 5, '', 0, 0, 'C');    // tesda logo
-        // $pdf->SetFont('times', 'B', 11);
-
-        // $pdf->Cell(63.33, 5, 'Technical Education and Skills Development Authority', 0, 0, 'C');
-        // $pdf->Cell(58.33, 5, 'MIS 03-01', 0, 1, 'R');
-
-        // $pdf->Rect(170, $margin, 30, 15);
-
-        // $pdf->Cell(63.33, 5, '', 0, 0, 'C');    // tesda logo
-        // $pdf->SetFont('times', '', 11);
-        // $pdf->Cell(63.33, 5, 'Pangasiwaan sa Edukasyong Teknikal at Pagpapaunlad ng Kasanayan', 0, 0, 'C');
-        // $pdf->SetFont('times', 'B', 11);
-        // $pdf->Cell(60.33, 5, 'Version 2020', 0, 1, 'R');
-
-        // // header tesda top divider
-        // $pdf->Ln(5);
-        // $pdf->Rect($margin, 25, $usable_width, 11);
-        // $pdf->SetFont('arial', 'B', 20);
-        // $pdf->Cell(190, 5, 'REGISTRATION FORM', 0, 0, 'C');
-
-
-        // $pdf->Ln(20);
-        // $pdf->SetFont('arial', 'B', 15);
-        // $pdf->Cell(150, 5, 'LEARNERS PROFILE FORM', 0, 0, 'C');
-        // $pdf->SetFont('arial', '', 11);
-        // $pdf->Cell(30, 5, '1x1 ID Picture', 0, 1, 'R');
-
-        // // Convert BLOB to an actual image file
-        // $imageData = $row['img']; // Assuming this is binary BLOB data from DB
-        // $tempFile = tempnam(sys_get_temp_dir(), 'img_') . '.jpg'; // Create temp file
-        // file_put_contents($tempFile, $imageData); // Save binary data as a file
-        // // Set the specific X and Y position
-        // $x = 160;  // Adjust for horizontal position
-        // $y = 38;   // Adjust for vertical position
-        // $width = 35;  // Force width (ID picture size)
-        // $height = 26; // Force height (ID picture size)
-        // // Insert image into PDF at the exact (X, Y) position with forced width & height
-        // $pdf->Image($tempFile, $x, $y, $width, $height); // X, Y, Width, Height
-        // unlink($tempFile); // Delete temp file after use
-        // // Draw the bounding box for ID picture
-        // $pdf->Rect(160, 38, $width, $height); // Ensures image is within the box
+        $pdf->Rect($margin, $margin, 30, 15);
         
 
-        // $pdf->Image('../../assets/img/tesda-logo.png', 18, 11, 13, 13);
-        // $pdf->Ln(14);
-        // $pdf->Rect($margin, 66, $usable_width, 7);
-        // $pdf->SetFont('arial', 'B', 11);
-        // $pdf->Cell($margin, 5, '1. T2MIS Auto Generated', 0, 1, 'L');
-        // $pdf->Ln(3);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(43, 2, '1.1. Unique Learner Identifier', 0, 1, 'C');
+        $pdf->Cell(63.33, 5, '', 0, 0, 'C');    // tesda logo
+        $pdf->SetFont('times', 'B', 11);
 
-        // $pdf->SetFont('arial', '', 7);
-        // $pdf->Cell(100, 5, '                (ULI Number)', 0, 0, 'L');
+        $pdf->Cell(63.33, 5, 'Technical Education and Skills Development Authority', 0, 0, 'C');
+        $pdf->Cell(58.33, 5, 'MIS 03-01', 0, 1, 'R');
+
+        $pdf->Rect(170, $margin, 30, 15);
+
+        $pdf->Cell(63.33, 5, '', 0, 0, 'C');    // tesda logo
+        $pdf->SetFont('times', '', 11);
+        $pdf->Cell(63.33, 5, 'Pangasiwaan sa Edukasyong Teknikal at Pagpapaunlad ng Kasanayan', 0, 0, 'C');
+        $pdf->SetFont('times', 'B', 11);
+        $pdf->Cell(60.33, 5, 'Version 2020', 0, 1, 'R');
+
+        // header tesda top divider
+        $pdf->Ln(5);
+        $pdf->Rect($margin, 25, $usable_width, 11);
+        $pdf->SetFont('arial', 'B', 20);
+        $pdf->Cell(190, 5, 'REGISTRATION FORM', 0, 0, 'C');
+
+
+        $pdf->Ln(20);
+        $pdf->SetFont('arial', 'B', 15);
+        $pdf->Cell(150, 5, 'LEARNERS PROFILE FORM', 0, 0, 'C');
+        $pdf->SetFont('arial', '', 11);
+        $pdf->Cell(30, 5, '1x1 ID Picture', 0, 1, 'R');
+
+        // Convert BLOB to an actual image file
+        $imageData = $row['img']; // Assuming this is binary BLOB data from DB
+        $tempFile = tempnam(sys_get_temp_dir(), 'img_') . '.jpg'; // Create temp file
+        file_put_contents($tempFile, $imageData); // Save binary data as a file
+        // Set the specific X and Y position
+        $x = 160;  // Adjust for horizontal position
+        $y = 38;   // Adjust for vertical position
+        $width = 35;  // Force width (ID picture size)
+        $height = 26; // Force height (ID picture size)
+        // Insert image into PDF at the exact (X, Y) position with forced width & height
+        $pdf->Image($tempFile, $x, $y, $width, $height); // X, Y, Width, Height
+        unlink($tempFile); // Delete temp file after use
+        // Draw the bounding box for ID picture
+        $pdf->Rect(160, 38, $width, $height); // Ensures image is within the box
+        
+
+        $pdf->Image('../../assets/img/tesda-logo.png', 18, 11, 13, 13);
+        $pdf->Ln(14);
+        $pdf->Rect($margin, 66, $usable_width, 7);
+        $pdf->SetFont('arial', 'B', 11);
+        $pdf->Cell($margin, 5, '1. T2MIS Auto Generated', 0, 1, 'L');
+        $pdf->Ln(3);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(43, 2, '1.1. Unique Learner Identifier', 0, 1, 'C');
+
+        $pdf->SetFont('arial', '', 7);
+        $pdf->Cell(100, 5, '                (ULI Number)', 0, 0, 'L');
         
         
         
-        // $pdf->Rect(55, 73, 5, 9);
-        // $pdf->Rect(60, 73, 5, 9);
-        // $pdf->Rect(65, 73, 5, 9);
-        // $pdf->Rect(70, 73, 5, 9);
-        // $pdf->Rect(75, 73, 5, 9);
-        // $pdf->Rect(80, 73, 5, 9);
-        // $pdf->Rect(85, 73, 5, 9);
-        // $pdf->Rect(90, 73, 5, 9);
-        // $pdf->Rect(95, 73, 5, 9);
-        // $pdf->Rect(100, 73, 5, 9);
-        // $pdf->Rect(105, 73, 5, 9);
-        // $pdf->Rect(110, 73, 5, 9);
-        // $pdf->Rect(105, 73, 5, 9);
-        // $pdf->Rect(110, 73, 5, 9);
-        // $pdf->Rect(115, 73, 5, 9);
-        // $pdf->Rect(120, 73, 5, 9);
-        // $pdf->Rect(125, 73, 5, 9);
-        // $pdf->Rect(130, 73, 5, 9);
-        // $pdf->Rect(135, 73, 5, 9);
-        // $pdf->Rect(140, 73, 5, 9);
-        // $pdf->Rect(145, 73, 5, 9);
-        // $pdf->Rect(150, 73, 5, 9);
+        $pdf->Rect(55, 73, 5, 9);
+        $pdf->Rect(60, 73, 5, 9);
+        $pdf->Rect(65, 73, 5, 9);
+        $pdf->Rect(70, 73, 5, 9);
+        $pdf->Rect(75, 73, 5, 9);
+        $pdf->Rect(80, 73, 5, 9);
+        $pdf->Rect(85, 73, 5, 9);
+        $pdf->Rect(90, 73, 5, 9);
+        $pdf->Rect(95, 73, 5, 9);
+        $pdf->Rect(100, 73, 5, 9);
+        $pdf->Rect(105, 73, 5, 9);
+        $pdf->Rect(110, 73, 5, 9);
+        $pdf->Rect(105, 73, 5, 9);
+        $pdf->Rect(110, 73, 5, 9);
+        $pdf->Rect(115, 73, 5, 9);
+        $pdf->Rect(120, 73, 5, 9);
+        $pdf->Rect(125, 73, 5, 9);
+        $pdf->Rect(130, 73, 5, 9);
+        $pdf->Rect(135, 73, 5, 9);
+        $pdf->Rect(140, 73, 5, 9);
+        $pdf->Rect(145, 73, 5, 9);
+        $pdf->Rect(150, 73, 5, 9);
         
 
-        // $pdf->Rect(174, 74, 25, 7);
-        // $pdf->Cell(64, 1, 'Entry Date:', 0, 0, 'R');
-        // $pdf->Cell(24, 1, 'mm/dd/yyyy', 0, 0, 'R');
+        $pdf->Rect(174, 74, 25, 7);
+        $pdf->Cell(64, 1, 'Entry Date:', 0, 0, 'R');
+        $pdf->Cell(24, 1, 'mm/dd/yyyy', 0, 0, 'R');
 
-        // // LEARNER MANPOWER PROFILE START
-        // $pdf->Ln(6);
-        // $pdf->Rect($margin, 82, $usable_width, 7);
-        // $pdf->SetFont('arial', 'B', 11);
-        // $pdf->Cell($margin, 5, '2. Learner/Manpower Profile', 0, 1, 'L');
+        // LEARNER MANPOWER PROFILE START
+        $pdf->Ln(6);
+        $pdf->Rect($margin, 82, $usable_width, 7);
+        $pdf->SetFont('arial', 'B', 11);
+        $pdf->Cell($margin, 5, '2. Learner/Manpower Profile', 0, 1, 'L');
         
-        // $pdf->Ln(3);
-        // $pdf->Rect($margin, 82, $usable_width, 56);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '2.1 Name', 0, 0, 'L');
+        $pdf->Ln(3);
+        $pdf->Rect($margin, 82, $usable_width, 56);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '2.1 Name', 0, 0, 'L');
 
-        // $pdf->SetFont('arial', 'B', 9);
-        // $pdf->Cell(55, 5, $row['lastname'] . '          ' . $row['ext_name'], 0, 0, 'L');
-        // $pdf->Cell(55, 5, $row['firstname'], 0, 0, 'L');
-        // $pdf->Cell(50, 5, $row['middlename'], 0, 1, 'L');
-        // $pdf->Rect(39, 90, 50, 7);
-        // $pdf->Rect(94, 90, 50, 7);
-        // $pdf->Rect(149, 90, 50, 7);
-        // $pdf->Ln(1);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'Last Name, Extension Name', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'First Name', 0, 0, 'L');
-        // $pdf->Cell(50, 5, 'Middle Name', 0, 1, 'L');
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(55, 5, $row['lastname'] . '          ' . $row['ext_name'], 0, 0, 'L');
+        $pdf->Cell(55, 5, $row['firstname'], 0, 0, 'L');
+        $pdf->Cell(50, 5, $row['middlename'], 0, 1, 'L');
+        $pdf->Rect(39, 90, 50, 7);
+        $pdf->Rect(94, 90, 50, 7);
+        $pdf->Rect(149, 90, 50, 7);
+        $pdf->Ln(1);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'Last Name, Extension Name', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'First Name', 0, 0, 'L');
+        $pdf->Cell(50, 5, 'Middle Name', 0, 1, 'L');
         
-        // $pdf->Ln(1);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '2.2 Address', 0, 0, 'L');
-        // $pdf->SetFont('arial', 'B', 9);
-        // $pdf->Cell(55, 5, $row['num_street'], 0, 0, 'L');
-        // $pdf->Cell(55, 5, $row['barangay'], 0, 0, 'L');
-        // $pdf->Cell(50, 5, $row['district'], 0, 1, 'L');
-        // $pdf->Rect(39, 102, 50, 7);
-        // $pdf->Rect(94, 102, 50, 7);
-        // $pdf->Rect(149, 102, 50, 7);
-        // $pdf->Ln(1);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'Number & Street', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'Barangay', 0, 0, 'L');
-        // $pdf->Cell(50, 5, 'District', 0, 0, 'L');
+        $pdf->Ln(1);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '2.2 Address', 0, 0, 'L');
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(55, 5, $row['num_street'], 0, 0, 'L');
+        $pdf->Cell(55, 5, $row['barangay'], 0, 0, 'L');
+        $pdf->Cell(50, 5, $row['district'], 0, 1, 'L');
+        $pdf->Rect(39, 102, 50, 7);
+        $pdf->Rect(94, 102, 50, 7);
+        $pdf->Rect(149, 102, 50, 7);
+        $pdf->Ln(1);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'Number & Street', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'Barangay', 0, 0, 'L');
+        $pdf->Cell(50, 5, 'District', 0, 0, 'L');
 
-        // $pdf->Ln(6);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', 'B', 9);
-        // $pdf->Cell(55, 5, $row['addmunicity'], 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'MISSING PROVINCE', 0, 0, 'L');
-        // $pdf->Cell(50, 5, $row['region'], 0, 1, 'L');
-        // $pdf->Rect(39, 114, 50, 7);
-        // $pdf->Rect(94, 114, 50, 7);
-        // $pdf->Rect(149, 114, 50, 7);
-        // $pdf->Ln(1);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'City/Municipality', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'Province', 0, 0, 'L');
-        // $pdf->Cell(50, 5, 'Region', 0, 0, 'L');
+        $pdf->Ln(6);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(55, 5, $row['addmunicity'], 0, 0, 'L');
+        $pdf->Cell(55, 5, $row['province'], 0, 0, 'L');
+        $pdf->Cell(50, 5, $row['region'], 0, 1, 'L');
+        $pdf->Rect(39, 114, 50, 7);
+        $pdf->Rect(94, 114, 50, 7);
+        $pdf->Rect(149, 114, 50, 7);
+        $pdf->Ln(1);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'City/Municipality', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'Province', 0, 0, 'L');
+        $pdf->Cell(50, 5, 'Region', 0, 0, 'L');
 
-        // $pdf->Ln(6);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', 'B', 9);
-        // $pdf->Cell(55, 5, $row['email'], 0, 0, 'L');
-        // $pdf->Cell(55, 5, $row['contact'], 0, 0, 'L');
-        // $pdf->Cell(50, 5, 'MISSING NATIONALITY', 0, 1, 'L');
-        // $pdf->Rect(39, 126, 50, 7);
-        // $pdf->Rect(94, 126, 50, 7);
-        // $pdf->Rect(149, 126, 50, 7);
-        // $pdf->Ln(1);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'Email Address/FB', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'Contact', 0, 0, 'L');
-        // $pdf->Cell(50, 5, 'Nationality', 0, 0, 'L');
-        // // LEARNER MANPOWER PROFILE END
+        $pdf->Ln(6);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(55, 5, $row['email'], 0, 0, 'L');
+        $pdf->Cell(55, 5, $row['contact'], 0, 0, 'L');
+        $pdf->Cell(50, 5, $row['nationality'], 0, 1, 'L');
+        $pdf->Rect(39, 126, 50, 7);
+        $pdf->Rect(94, 126, 50, 7);
+        $pdf->Rect(149, 126, 50, 7);
+        $pdf->Ln(1);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'Email Address/FB', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'Contact', 0, 0, 'L');
+        $pdf->Cell(50, 5, 'Nationality', 0, 0, 'L');
+        // LEARNER MANPOWER PROFILE END
 
-        // // PERSONAL INFO START
-        // $pdf->Ln(6);
-        // $pdf->Rect($margin, 138, $usable_width, 7);
-        // $pdf->SetFont('arial', 'B', 11);
-        // $pdf->Cell($margin, 5, '3. Personal Information', 0, 1, 'L');
+        // PERSONAL INFO START
+        $pdf->Ln(6);
+        $pdf->Rect($margin, 138, $usable_width, 7);
+        $pdf->SetFont('arial', 'B', 11);
+        $pdf->Cell($margin, 5, '3. Personal Information', 0, 1, 'L');
 
-        // $pdf->Ln(3);
-        // $pdf->Rect($margin, 138, $usable_width, 43);
+        $pdf->Ln(3);
+        $pdf->Rect($margin, 138, $usable_width, 43);
 
-        // $pdf->Rect($margin, 145, 63, 36);
-        // $pdf->Rect($margin, 145, 126, 36);
-        // $pdf->Rect($margin, 145, 190, 36);
+        $pdf->Rect($margin, 145, 63, 36);
+        $pdf->Rect($margin, 145, 126, 36);
+        $pdf->Rect($margin, 145, 190, 36);
 
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(63, 5, '3.1 Sex', 0, 0, 'L');
-        // $pdf->Cell(63, 5, '3.2 Civil Status', 0, 0, 'L');
-        // $pdf->Cell(29, 5, '3.3 Employment status (before the training)', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(63, 5, '3.1 Sex', 0, 0, 'L');
+        $pdf->Cell(63, 5, '3.2 Civil Status', 0, 0, 'L');
+        $pdf->Cell(29, 5, '3.3 Employment status (before the training)', 0, 0, 'L');
 
-        // $pdf->Rect(25, 155, 3, 3);
-        // $pdf->Rect(25, 160, 3, 3);
+        $pdf->Rect(25, 155, 3, 3);
+        $pdf->Rect(25, 160, 3, 3);
 
-        // $pdf->Rect(85, 155, 3, 3);
-        // $pdf->Rect(85, 160, 3, 3);
-        // $pdf->Rect(85, 165, 3, 3);
-        // $pdf->Rect(85, 170, 3, 3);
-        // $pdf->Rect(85, 175, 3, 3);
+        $pdf->Rect(85, 155, 3, 3);
+        $pdf->Rect(85, 160, 3, 3);
+        $pdf->Rect(85, 165, 3, 3);
+        $pdf->Rect(85, 170, 3, 3);
+        $pdf->Rect(85, 175, 3, 3);
 
-        // $pdf->Rect(145, 155, 3, 3);
-        // $pdf->Rect(145, 160, 3, 3);
+        $pdf->Rect(145, 155, 3, 3);
+        $pdf->Rect(145, 160, 3, 3);
 
-        // $pdf->Ln(7);
+        $pdf->Ln(7);
         
-        // $pdf->Cell(20, 5, '', 0, 0, 'C');
-        // $pdf->Cell(60, 5, 'Male', 0, 0, 'L');
-        // $pdf->Cell(60, 5, 'Single', 0, 0, 'L');
-        // $pdf->Cell(60, 5, 'Employed', 0, 1, 'L');
+        $pdf->Cell(20, 5, '', 0, 0, 'C');
+        $pdf->Cell(60, 5, 'Male', 0, 0, 'L');
+        $pdf->Cell(60, 5, 'Single', 0, 0, 'L');
+        $pdf->Cell(60, 5, 'Employed', 0, 1, 'L');
 
-        // $pdf->Cell(20, 5, '', 0, 0, 'C');
-        // $pdf->Cell(60, 5, 'Female', 0, 0, 'L');
-        // $pdf->Cell(60, 5, 'Married', 0, 0, 'L');
-        // $pdf->Cell(60, 5, 'Unmployed', 0, 1, 'L');
+        $pdf->Cell(20, 5, '', 0, 0, 'C');
+        $pdf->Cell(60, 5, 'Female', 0, 0, 'L');
+        $pdf->Cell(60, 5, 'Married', 0, 0, 'L');
+        $pdf->Cell(60, 5, 'Unmployed', 0, 1, 'L');
 
-        // $pdf->Cell(20, 5, '', 0, 0, 'C');
-        // $pdf->Cell(60, 5, '', 0, 0, 'L');
-        // $pdf->Cell(60, 5, 'Widow/er', 0, 0, 'L');
-        // $pdf->Cell(60, 5, '', 0, 1, 'L');
+        $pdf->Cell(20, 5, '', 0, 0, 'C');
+        $pdf->Cell(60, 5, '', 0, 0, 'L');
+        $pdf->Cell(60, 5, 'Widow/er', 0, 0, 'L');
+        $pdf->Cell(60, 5, '', 0, 1, 'L');
 
-        // $pdf->Cell(20, 5, '', 0, 0, 'C');
-        // $pdf->Cell(60, 5, '', 0, 0, 'L');
-        // $pdf->Cell(60, 5, 'Separated', 0, 0, 'L');
-        // $pdf->Cell(60, 5, '', 0, 1, 'L');
+        $pdf->Cell(20, 5, '', 0, 0, 'C');
+        $pdf->Cell(60, 5, '', 0, 0, 'L');
+        $pdf->Cell(60, 5, 'Separated', 0, 0, 'L');
+        $pdf->Cell(60, 5, '', 0, 1, 'L');
 
-        // $pdf->Cell(20, 5, '', 0, 0, 'C');
-        // $pdf->Cell(60, 5, '', 0, 0, 'L');
-        // $pdf->Cell(60, 5, 'Solo Parent', 0, 0, 'L');
-        // $pdf->Cell(60, 5, '', 0, 1, 'L');
+        $pdf->Cell(20, 5, '', 0, 0, 'C');
+        $pdf->Cell(60, 5, '', 0, 0, 'L');
+        $pdf->Cell(60, 5, 'Solo Parent', 0, 0, 'L');
+        $pdf->Cell(60, 5, '', 0, 1, 'L');
 
         
 
-        // // BIRTH DATE START
-        // $pdf->Ln(8);
-        // $pdf->Rect($margin, 181, $usable_width, 18);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell($margin, 4, '4. Birth Date', 0, 0, 'L');
+        // BIRTH DATE START
+        $pdf->Ln(8);
+        $pdf->Rect($margin, 181, $usable_width, 18);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell($margin, 4, '4. Birth Date', 0, 0, 'L');
         
-        // $pdf->Rect(60, 185, 30, 7);
-        // $pdf->Rect(95, 185, 30, 7);
-        // $pdf->Rect(130, 185, 30, 7);
-        // $pdf->Rect(165, 185, 30, 7);
+        $pdf->Rect(60, 185, 30, 7);
+        $pdf->Rect(95, 185, 30, 7);
+        $pdf->Rect(130, 185, 30, 7);
+        $pdf->Rect(165, 185, 30, 7);
         
-        // $pdf->Cell(40, 5, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', 'B', 9);
-        // $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
-        // $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
-        // $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
-        // $pdf->Cell(35, 3, "MISSING AGE", 0, 1, 'L');
+        $pdf->Cell(40, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
+        $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
+        $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
+        $pdf->Cell(35, 3, $row['age'], 0, 1, 'L');
 
-        // $pdf->Ln(3);
-        // $pdf->Cell(54, 3, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(36, 3, 'Month of Birth', 0, 0, 'L');
-        // $pdf->Cell(34, 3, 'Day of Birth', 0, 0, 'L');
-        // $pdf->Cell(42, 3, 'Year of Birth', 0, 0, 'L');
-        // $pdf->Cell(38, 3, 'Age', 0, 0, 'L');
+        $pdf->Ln(3);
+        $pdf->Cell(54, 3, '', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(36, 3, 'Month of Birth', 0, 0, 'L');
+        $pdf->Cell(34, 3, 'Day of Birth', 0, 0, 'L');
+        $pdf->Cell(42, 3, 'Year of Birth', 0, 0, 'L');
+        $pdf->Cell(38, 3, 'Age', 0, 0, 'L');
 
-        // // BIRTH PLACE START
-        // $pdf->Ln(8);
-        // $pdf->Rect($margin, 199, $usable_width, 18);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell($margin, 12, '5. Birth Place', 0, 0, 'L');
+        // BIRTH PLACE START
+        $pdf->Ln(8);
+        $pdf->Rect($margin, 199, $usable_width, 18);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell($margin, 12, '5. Birth Place', 0, 0, 'L');
         
-        // $pdf->Ln(3);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', 'B', 9);
-        // $pdf->Cell(55, 5, $row['bpmunicity'], 0, 0, 'L');
-        // $pdf->Cell(55, 5, $row['bpprovince'], 0, 0, 'L');
-        // $pdf->Cell(50, 5, "MISSING BP-REGION", 0, 1, 'L');
+        $pdf->Ln(3);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(55, 5, $row['bpmunicity'], 0, 0, 'L');
+        $pdf->Cell(55, 5, $row['bpprovince'], 0, 0, 'L');
+        $pdf->Cell(50, 5, $row['bpregion'], 0, 1, 'L');
 
-        // $pdf->Rect(39, 203, 50, 7);
-        // $pdf->Rect(94, 203, 50, 7);
-        // $pdf->Rect(149, 203, 50, 7);
-        // $pdf->Ln(1);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(29, 5, '', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'City/Municipality', 0, 0, 'L');
-        // $pdf->Cell(55, 5, 'Province', 0, 0, 'L');
-        // $pdf->Cell(50, 5, 'Region', 0, 0, 'L');
-        // // BIRTH PLACE END
+        $pdf->Rect(39, 203, 50, 7);
+        $pdf->Rect(94, 203, 50, 7);
+        $pdf->Rect(149, 203, 50, 7);
+        $pdf->Ln(1);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(29, 5, '', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'City/Municipality', 0, 0, 'L');
+        $pdf->Cell(55, 5, 'Province', 0, 0, 'L');
+        $pdf->Cell(50, 5, 'Region', 0, 0, 'L');
+        // BIRTH PLACE END
 
-        // // EDUC ATAIN START
-        // $pdf->Ln(8);
-        // $pdf->Rect($margin, 217, $usable_width, 7);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell($margin, 5, '3.6 Educational Attainment Before the Training (Trainee)', 0, 1, 'L');
+        // EDUC ATAIN START
+        $pdf->Ln(8);
+        $pdf->Rect($margin, 217, $usable_width, 7);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell($margin, 5, '3.6 Educational Attainment Before the Training (Trainee)', 0, 1, 'L');
 
-        // $pdf->Rect($margin, 224, 47.5, 30);
-        // $pdf->Rect($margin, 224, 95, 30);
-        // $pdf->Rect($margin, 224, 142.5, 30);
-        // $pdf->Rect($margin, 224, 190, 30);
+        $pdf->Rect($margin, 224, 47.5, 30);
+        $pdf->Rect($margin, 224, 95, 30);
+        $pdf->Rect($margin, 224, 142.5, 30);
+        $pdf->Rect($margin, 224, 190, 30);
 
-        // $pdf->Rect($margin, 234, $usable_width, 10);
+        $pdf->Rect($margin, 234, $usable_width, 10);
 
-        // $pdf->Rect(12, 227, 3, 3);
-        // $pdf->Rect(12, 237, 3, 3);
-        // $pdf->Rect(12, 247, 3, 3);
+        $pdf->Rect(12, 227, 3, 3);
+        $pdf->Rect(12, 237, 3, 3);
+        $pdf->Rect(12, 247, 3, 3);
 
-        // $pdf->Rect(59, 227, 3, 3);
-        // $pdf->Rect(59, 237, 3, 3);
-        // $pdf->Rect(59, 247, 3, 3);
+        $pdf->Rect(59, 227, 3, 3);
+        $pdf->Rect(59, 237, 3, 3);
+        $pdf->Rect(59, 247, 3, 3);
 
-        // $pdf->Rect(107, 227, 3, 3);
-        // $pdf->Rect(107, 237, 3, 3);
-        // $pdf->Rect(107, 247, 3, 3);
+        $pdf->Rect(107, 227, 3, 3);
+        $pdf->Rect(107, 237, 3, 3);
+        $pdf->Rect(107, 247, 3, 3);
 
-        // $pdf->Rect(154, 227, 3, 3);
-        // $pdf->Rect(154, 237, 3, 3);
-        // $pdf->Rect(154, 247, 3, 3);
+        $pdf->Rect(154, 227, 3, 3);
+        $pdf->Rect(154, 237, 3, 3);
+        $pdf->Rect(154, 247, 3, 3);
         
-        // $pdf->Ln(3);
+        $pdf->Ln(3);
 
-        // $pdf->Cell(5, 5, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', '', 8);
-        // $pdf->Cell(47, 5, 'No Grade Completed', 0, 0, 'L');
-        // $pdf->Cell(48, 5, 'Pre-School (Nursery/Kinder/Prep)', 0, 0, 'L');
-        // $pdf->Cell(48, 5, 'High School Undergraduate', 0, 0, 'L');
-        // $pdf->Cell(47, 5, 'High School Graduate', 0, 1, 'L');
-        // $pdf->Ln(5);
-        // $pdf->Cell(5, 5, '', 0, 0, 'L');
-        // $pdf->Cell(47, 5, 'Elementary Undergraduate', 0, 0, 'L');
-        // $pdf->Cell(48, 5, 'Post Secondary Undergradate', 0, 0, 'L');
-        // $pdf->Cell(48, 5, 'College Undergraduate', 0, 0, 'L');
-        // $pdf->Cell(47, 5, 'College Graduate or Higher', 0, 1, 'L');
-        // $pdf->Ln(5);
-        // $pdf->Cell(5, 5, '', 0, 0, 'L');
-        // $pdf->Cell(47, 5, 'Elementary Graduate', 0, 0, 'L');
-        // $pdf->Cell(48, 5, 'Post Secondary Gradate', 0, 0, 'L');
-        // $pdf->Cell(48, 5, 'Junior High Graduate', 0, 0, 'L');
-        // $pdf->Cell(47, 5, 'Senior High Graduate', 0, 1, 'L');
-        // // EDUC ATTAIN END
+        $pdf->Cell(5, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 8);
+        $pdf->Cell(47, 5, 'No Grade Completed', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'Pre-School (Nursery/Kinder/Prep)', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'High School Undergraduate', 0, 0, 'L');
+        $pdf->Cell(47, 5, 'High School Graduate', 0, 1, 'L');
+        $pdf->Ln(5);
+        $pdf->Cell(5, 5, '', 0, 0, 'L');
+        $pdf->Cell(47, 5, 'Elementary Undergraduate', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'Post Secondary Undergradate', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'College Undergraduate', 0, 0, 'L');
+        $pdf->Cell(47, 5, 'College Graduate or Higher', 0, 1, 'L');
+        $pdf->Ln(5);
+        $pdf->Cell(5, 5, '', 0, 0, 'L');
+        $pdf->Cell(47, 5, 'Elementary Graduate', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'Post Secondary Gradate', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'Junior High Graduate', 0, 0, 'L');
+        $pdf->Cell(47, 5, 'Senior High Graduate', 0, 1, 'L');
+        // EDUC ATTAIN END
 
-        // // PARENT-GUARDIAN START
-        // $pdf->Ln(8);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell($margin, 5, '3.6 Parent/Guardian', 0, 0, 'L');
+        // PARENT-GUARDIAN START
+        $pdf->Ln(8);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell($margin, 5, '3.6 Parent/Guardian', 0, 0, 'L');
 
-        // $pdf->Cell(22, 5, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', 'B', 9);
-        // $pdf->Cell(52, 5, $row['cfullname'], 0, 0, 'L');
-        // $pdf->Cell(55, 5, '', 0, 0, 'L');
-        // $pdf->Cell(55, 5, $row['ccell_no'], 0, 1, 'L');
+        $pdf->Cell(22, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(52, 5, $row['cfullname'], 0, 0, 'L');
+        $pdf->Cell(55, 5, '', 0, 0, 'L');
+        $pdf->Cell(55, 5, $row['ccell_no'], 0, 1, 'L');
 
 
-        // $pdf->Rect(42, 258, 102, 7);
-        //     // $pdf->Rect(94, 258, 50, 7);
-        // $pdf->Rect(149, 258, 50, 7);
+        $pdf->Rect(42, 258, 102, 7);
+            // $pdf->Rect(94, 258, 50, 7);
+        $pdf->Rect(149, 258, 50, 7);
 
-        // $pdf->Ln(1);
-        // $pdf->SetFont('arial', '', 9);
-        // $pdf->Cell(32, 5, '', 0, 0, 'L');
-        // $pdf->Cell(52, 5, 'Full Name of Parent/Guardian', 0, 0, 'L');
-        // $pdf->Cell(55, 5, '', 0, 0, 'L');
-        // $pdf->Cell(50, 5, 'Contact No.', 0, 1, 'L');
+        $pdf->Ln(1);
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(32, 5, '', 0, 0, 'L');
+        $pdf->Cell(52, 5, 'Full Name of Parent/Guardian', 0, 0, 'L');
+        $pdf->Cell(55, 5, '', 0, 0, 'L');
+        $pdf->Cell(50, 5, 'Contact No.', 0, 1, 'L');
 
-        // $pdf->Rect(42, 270, 102, 7);
-        // // $pdf->Rect(94, 270, 50, 7);
-        // $pdf->Rect(149, 270, 50, 7);
+        $pdf->Rect(42, 270, 102, 7);
+        // $pdf->Rect(94, 270, 50, 7);
+        $pdf->Rect(149, 270, 50, 7);
         
-        // $pdf->Ln(1);
-        // $pdf->Cell(32, 5, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', 'B', 6);
-        // $pdf->Cell(52, 5, $row['caddress'], 0, 0, 'L');
-        // $pdf->Cell(55, 5, '', 0, 0, 'L');
-        // $pdf->SetFont('arial', 'B', 9);
-        // $pdf->Cell(55, 5, $row['relationship'], 0, 1, 'L');
+        $pdf->Ln(1);
+        $pdf->Cell(32, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', 'B', 6);
+        $pdf->Cell(52, 5, $row['caddress'], 0, 0, 'L');
+        $pdf->Cell(55, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(55, 5, $row['relationship'], 0, 1, 'L');
 
-        // $pdf->Ln(1);
-        // $pdf->SetFont('arial', '', 9);
+        $pdf->Ln(1);
+        $pdf->SetFont('arial', '', 9);
 
-        // $pdf->Cell(32, 1, '', 0, 0, 'L');
-        // $pdf->Cell(52, 5, 'Full Mailing Address of Parent/Guardian', 0, 0, 'L');
-        // $pdf->Cell(55, 5, '', 0, 0, 'L');
-        // $pdf->Cell(50, 5, 'Relationship to Scholar', 0, 1, 'L');
+        $pdf->Cell(32, 1, '', 0, 0, 'L');
+        $pdf->Cell(52, 5, 'Full Mailing Address of Parent/Guardian', 0, 0, 'L');
+        $pdf->Cell(55, 5, '', 0, 0, 'L');
+        $pdf->Cell(50, 5, 'Relationship to Scholar', 0, 1, 'L');
 
         // PERSONAL INFO EMD
 
@@ -684,31 +684,145 @@ if ($stud_id > 0) {
 
         $pdf->Rect($margin, 116, $usable_width, 7);
         $pdf->SetFont('arial', 'B', 11);
-        $pdf->Cell(104, 5, '7.0 Name of Course/Qualification', 0, 0, 'L');
-        $pdf->SetFont('arial', 'I', 11);
-        $pdf->Cell($margin, 5, '', 0, 1, 'L');
+        $pdf->Cell(63, 5, '7.0 Name of Course/Qualification:', 0, 0, 'L');
+        $pdf->SetFont('arial', 'IU', 9);
+        $pdf->Cell($margin, 5, 'Career Entry Course for Software Developers - Cyber Threat Monitoring LEVEL II', 0, 1, 'L');
 
+        // 7 NAME OF COURSE/QUALIFICATION END
+
+
+        
+
+        // 8 If Scholar.... START
         $pdf->Ln(2);
-
         $pdf->Rect($margin, 123, $usable_width, 7);
         $pdf->SetFont('arial', 'B', 11);
-        $pdf->Cell(104, 5, '8.0 If Scholar, WHat Type of Scholarship Package (TWSP, PESFA, STEP, others)?', 0, 0, 'L');
+        // TWSP - Training for Work Scholarship Program
+        // PESFA - Private Education Student Financial Assistance
+        // STEP - Special Training for Employment Program
+        $pdf->Cell(150, 5, '8.0 If Scholar, What Type of Scholarship Package (TWSP, PESFA, STEP, others)?', 0, 0, 'L');
         $pdf->SetFont('arial', 'I', 11);
-        $pdf->Cell($margin, 5, '', 0, 1, 'L');
+        $pdf->Cell(50, 5, 'test', 0, 1, 'L');
+        
+        // Answer Boxes
+        $pdf->Rect($margin, 130, $usable_width, 14);
+
+        // Column Dividers
+        $pdf->Rect($margin, 130, 47.5, 14);
+        $pdf->Rect($margin, 130, 95, 14);
+        $pdf->Rect($margin, 130, 142.5, 14);
+        $pdf->Rect($margin, 130, 190, 14);
+
+        // square boxses - horizontal
+        $pdf->Rect(12, 132, 3, 3);
+        $pdf->Rect(59, 132, 3, 3);
+        $pdf->Rect(107, 132, 3, 3);
+        $pdf->Rect(154, 132, 3, 3);
 
         $pdf->Ln(2);
 
-        $pdf->Rect($margin, 130, $usable_width, 7);
+        $pdf->Cell(5, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 8);
+        $pdf->Cell(47, 5, 'TWSP', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'PESFA', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'STEP', 0, 0, 'L');
+        $pdf->Cell(47, 5, 'Others:', 0, 1, 'L');
+
+        $pdf->Cell(1, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 6);
+        $pdf->Cell(47, 5, 'Training for Work Scholarship Program', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'Private Education Student Financial Assistance', 0, 0, 'L');
+        $pdf->Cell(48, 5, 'Special Training for Employment Program', 0, 0, 'L');
+        $pdf->Cell(47, 5, '_____________________________________', 0, 1, 'L');
+        $pdf->Ln(2);
+
+        // 8 If Scholar.... END
+
+        // 9 Privacy Disclaimer START
+        $pdf->Ln(2);
+
+        $pdf->Rect($margin, 144, $usable_width, 7);
         $pdf->SetFont('arial', 'B', 11);
         $pdf->Cell(104, 5, '9.0 Privacy Disclaimer', 0, 0, 'L');
-        $pdf->SetFont('arial', 'I', 11);
         $pdf->Cell($margin, 5, '', 0, 1, 'L');
 
+        // Answer Box
+        $pdf->Rect($margin, 151, $usable_width, 20);
+
+        $pdf->Ln(2);
+        $pdf->SetFont('arial', 'I', 9);
+        $pdf->MultiCell(190, 5, 'I hereby allow TESDA to use/post my contact details, name, email, cellphone/landline nos. and other information provided which may be used for processing of my scholarship application, for employment opportunities, and for the survey of TESDA programs', 0, 'L', false);
+        $pdf->Ln(2);
+
+        $pdf->Rect(71, 165, 3, 3); // 71.5 for accuracy
+        $pdf->Rect(135, 165, 3, 3); // 143 accuracy
+
+        $pdf->SetFont('arial', '', 9);
+        $pdf->Cell(65, 5, '', 0, 0, 'L');
+        $pdf->Cell(64, 5, 'Agree', 0, 0, 'L');
+        $pdf->Cell(20, 5, 'Disagree', 0, 1, 'L');
+
+        // 9 Privacy Disclaimer END
+
+        // 9 Applicant Signature Start
+        $pdf->Ln(3);
+
+        $pdf->Rect($margin, 171, $usable_width, 7);
+        $pdf->SetFont('arial', 'B', 11);
+        $pdf->Cell(104, 5, '9.0 Applicant Signature', 0, 0, 'L');
+        $pdf->Cell($margin, 5, '', 0, 1, 'L');
+
+        // Answer Box
+        // $pdf->Rect($margin, 171, $usable_width, 70);
+
+        //
+        $pdf->Ln(2);
+        $pdf->SetFont('arial', 'I', 9);
+        $pdf->Cell(190, 5, 'This is to certify that the information stated above is true and correct.', 0, 0, 'C');
+        // 9 Applicant Signature END
+
+        $pdf->Ln(30);
+
+        // Boxes
+            // ID picture
+        $pdf->Rect(150, 200, 35, 26);
+            // Right Thumbmark
+        $pdf->Rect(150, 240, 35, 26);
 
 
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(10, 5, '', 0, 0, 'L');
+        $pdf->Cell(80, 5, '__________________________________________', 0, 0, 'L');
+        $pdf->Cell(50, 5, '____________________', 0, 0, 'L');
+        $pdf->MultiCell(35, 3, '1x1 picture taken within the last 6 months', 0, 'C', false);
 
+        $pdf->Cell(6, 5, '', 0, 0, 'L');
+        $pdf->Cell(84, 1, 'APPLICANTS SIGNATURE OVER PRINTED NAME', 0, 0, 'C');
+        $pdf->Cell(10, 1, 'DATE ACCOMPLISHED', 0, 1, 'L');
 
+        // NOTE
+        $pdf->Ln(20);
 
+        $pdf->SetFont('arial', 'B', 9);
+        $pdf->Cell(10, 5, '', 0, 0, 'L');
+        $pdf->Cell(50, 5, 'Noted By:', 0, 1, 'L');
+
+        $pdf->Ln(10);
+
+        $pdf->Cell(10, 5, '', 0, 0, 'L');
+        $pdf->Cell(80, 5, '__________________________________________', 0, 0, 'L');
+        $pdf->Cell(50, 5, '____________________', 0, 1, 'L');
+        
+
+        
+        $pdf->Ln(2);
+        $pdf->Cell(5, 5, '', 0, 0, 'L');
+        $pdf->Cell(89, 5, 'REGISTRAR/SCHOOL ADMINISTRATOR', 0, 0, 'C');
+        $pdf->Cell(10, 5, 'DATE RECEIVED', 0, 1, 'L');
+        $pdf->Cell(95, 2, '(Signature Over Printed Name)', 0, 0, 'C');
+
+        $pdf->Cell(125, 5, 'Right Thumbmark', 0, 0, 'C');
+     
         // tapos na boi
         $pdf->Output();
 
