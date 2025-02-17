@@ -163,8 +163,10 @@ if ($stud_id > 0) {
         
 
         $pdf->Rect(174, 74, 25, 7);
-        $pdf->Cell(64, 1, 'Entry Date:', 0, 0, 'R');
-        $pdf->Cell(24, 1, 'mm/dd/yyyy', 0, 0, 'R');
+        $pdf->Cell(64, 1, 'Entry Date', 0, 0, 'R');
+        // date and time to date only
+        $pdf->Cell(20, 1, date('m/d/Y', strtotime($row['create_datetime'])), 0, 0, 'R');
+
 
         // LEARNER MANPOWER PROFILE START
         $pdf->Ln(6);
@@ -381,6 +383,55 @@ if ($stud_id > 0) {
         $pdf->Rect(154, 227, 3, 3);
         $pdf->Rect(154, 237, 3, 3);
         $pdf->Rect(154, 247, 3, 3);
+
+        // Draw all squares with optional fill
+
+
+        $row = $result->fetch_assoc();
+
+        $attain_id = $row['attainment_id'];
+
+        switch ($attain_id) {
+            case 1:
+                $pdf->Rect(12, 227, 3, 3, 'F'); // Fill this square
+                break;
+            case 2:
+                $pdf->Rect(12, 237, 3, 3, 'F');
+                break;
+            case 3:
+                $pdf->Rect(12, 247, 3, 3, 'F');
+                break;
+            case 4:
+                $pdf->Rect(59, 227, 3, 3, 'F');
+                break;
+            case 5:
+                $pdf->Rect(59, 237, 3, 3, 'F');
+                break;
+            case 6:
+                $pdf->Rect(59, 247, 3, 3, 'F');
+                break;
+            case 7:
+                $pdf->Rect(107, 227, 3, 3, 'F');
+                break;
+            case 8:
+                $pdf->Rect(107, 237, 3, 3, 'F');
+                break;
+            case 9:
+                $pdf->Rect(107, 247, 3, 3, 'F');
+                break;
+            case 10:
+                $pdf->Rect(154, 227, 3, 3, 'F');
+                break;
+            case 11:
+                $pdf->Rect(154, 237, 3, 3, 'F');
+                break;
+            case 12:
+                $pdf->Rect(154, 247, 3, 3, 'F');
+                break;
+            default:
+                // Do nothing if attain_id is not in range 1-12
+                break;
+        }
         
         $pdf->Ln(3);
 

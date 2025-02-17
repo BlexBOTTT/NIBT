@@ -43,12 +43,14 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     
     $learneriduli = mysqli_real_escape_string($conn, $_POST['learneriduli']);
 
-    $educattain = mysqli_real_escape_string($conn, $_POST['educattain']);
+    $attainment = mysqli_real_escape_string($conn, $_POST['attainment']);
 
     // institutional requirements (checkbox)
 
     $employment = mysqli_real_escape_string($conn, $_POST['employment']);
-    $disability = mysqli_real_escape_string($conn, $_POST['disability']);
+    $type_disability = mysqli_real_escape_string($conn, $_POST['type_disability']);
+    $cause_disability = mysqli_real_escape_string($conn, $_POST['cause_disability']);
+    $scholar_package = mysqli_real_escape_string($conn, $_POST['scholar_package']);
 
     $fbacc = mysqli_real_escape_string($conn, $_POST['fb_account']);
     $fbmess = mysqli_real_escape_string($conn, $_POST['fb_mess']);
@@ -60,67 +62,70 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     $cbirthdate = mysqli_real_escape_string($conn, $_POST['cbirthdate']); // contact date of birth
     $caddress = mysqli_real_escape_string($conn, $_POST['caddress']);// contact complete mailing address
     $relationship = mysqli_real_escape_string($conn, $_POST['relationship']); // relationship to scholar
+
+    $disclaimer = isset($_POST['disclaimer']) ? 1 : 0;
+
     
 
     // CHECKBOX COURSES/QUALI START
      // Get selected courses from the form (array of course IDs)
-    if (isset($_POST['courses']) && is_array($_POST['courses'])) {
-        $selected_courses = $_POST['courses'];
+    // if (isset($_POST['courses']) && is_array($_POST['courses'])) {
+    //     $selected_courses = $_POST['courses'];
         
-        // First, remove any previously selected courses for this student
-        $delete_query_courses = "DELETE FROM tbl_student_courses WHERE stud_id = '$student_id'";
-        $delete_result_courses = mysqli_query($conn, $delete_query_courses);
+    //     // First, remove any previously selected courses for this student
+    //     $delete_query_courses = "DELETE FROM tbl_student_courses WHERE stud_id = '$student_id'";
+    //     $delete_result_courses = mysqli_query($conn, $delete_query_courses);
         
-        if (!$delete_result_courses) {
-            $_SESSION['errors'] = true;
-            echo "Failed to delete old courses: " . mysqli_error($conn);
-            exit();
-        }
+    //     if (!$delete_result_courses) {
+    //         $_SESSION['errors'] = true;
+    //         echo "Failed to delete old courses: " . mysqli_error($conn);
+    //         exit();
+    //     }
         
-        // Now, insert the newly selected courses
-        foreach ($selected_courses as $course_id) {
-            $course_id = mysqli_real_escape_string($conn, $course_id);
-            $insert_query_courses = "INSERT INTO tbl_student_courses (stud_id, course_id) VALUES ('$student_id', '$course_id')";
-            $insert_result_courses = mysqli_query($conn, $insert_query_courses);
+    //     // Now, insert the newly selected courses
+    //     foreach ($selected_courses as $course_id) {
+    //         $course_id = mysqli_real_escape_string($conn, $course_id);
+    //         $insert_query_courses = "INSERT INTO tbl_student_courses (stud_id, course_id) VALUES ('$student_id', '$course_id')";
+    //         $insert_result_courses = mysqli_query($conn, $insert_query_courses);
             
-            if (!$insert_result_courses) {
-                $_SESSION['errors'] = true;
-                echo "Failed to update courses: " . mysqli_error($conn);
-                exit();
-            }
-        }
-    }
+    //         if (!$insert_result_courses) {
+    //             $_SESSION['errors'] = true;
+    //             echo "Failed to update courses: " . mysqli_error($conn);
+    //             exit();
+    //         }
+    //     }
+    // }
     // CHECKBOX QUALI END
 
     
     // CHECKBOX REQUIREMENTS START
      // Get selected courses from the form (array of course IDs)
-     if (isset($_POST['requirements']) && is_array($_POST['requirements'])) {
-        $selected_requirements = $_POST['requirements'];
+    //  if (isset($_POST['requirements']) && is_array($_POST['requirements'])) {
+    //     $selected_requirements = $_POST['requirements'];
         
-        // First, remove any previously selected courses for this student
-        $delete_query_requirements = "DELETE FROM tbl_student_requirements WHERE stud_id = '$student_id'";
-        $delete_result_requirements = mysqli_query($conn, $delete_query_requirements);
+    //     // First, remove any previously selected courses for this student
+    //     $delete_query_requirements = "DELETE FROM tbl_student_requirements WHERE stud_id = '$student_id'";
+    //     $delete_result_requirements = mysqli_query($conn, $delete_query_requirements);
         
-        if (!$delete_result_requirements) {
-            $_SESSION['errors'] = true;
-            echo "Failed to delete old requirements: " . mysqli_error($conn);
-            exit();
-        }
+    //     if (!$delete_result_requirements) {
+    //         $_SESSION['errors'] = true;
+    //         echo "Failed to delete old requirements: " . mysqli_error($conn);
+    //         exit();
+    //     }
         
-        // Now, insert the newly selected courses
-        foreach ($selected_requirements as $requirement_id) {
-            $requirement_id = mysqli_real_escape_string($conn, $requirement_id);
-            $insert_query_requirements = "INSERT INTO tbl_student_requirements (stud_id, requirement_id) VALUES ('$student_id', '$requirement_id')";
-            $insert_result_requirements = mysqli_query($conn, $insert_query_requirements);
+    //     // Now, insert the newly selected courses
+    //     foreach ($selected_requirements as $requirement_id) {
+    //         $requirement_id = mysqli_real_escape_string($conn, $requirement_id);
+    //         $insert_query_requirements = "INSERT INTO tbl_student_requirements (stud_id, requirement_id) VALUES ('$student_id', '$requirement_id')";
+    //         $insert_result_requirements = mysqli_query($conn, $insert_query_requirements);
             
-            if (!$insert_result_requirements) {
-                $_SESSION['errors'] = true;
-                echo "Failed to update requirements: " . mysqli_error($conn);
-                exit();
-            }
-        }
-    }
+    //         if (!$insert_result_requirements) {
+    //             $_SESSION['errors'] = true;
+    //             echo "Failed to update requirements: " . mysqli_error($conn);
+    //             exit();
+    //         }
+    //     }
+    // }
     // CHECKBOX QUALI END END
 
     // Update section
@@ -160,18 +165,22 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         -- NIBT SCHOLAR INFO
         -- qualification CHECKBOX
         learner_iduli = '$learneriduli',
-        educ_attain = '$educattain',
+        attainment_id = '$attainment',
         -- institutional requirements CHECKBOX
         employment_id = '$employment',
-        disability = '$disability',
+        type_disability_id = '$type_disability',
+        cause_disability_id = '$cause_disability',
 
+        scholar_package_id = '$scholar_package',
         -- CONTACT PERSON
 
         cfullname = '$cfullname',
         ccell_no = '$ccell_no',
         cbirthdate = '$cbirthdate',
         caddress = '$caddress',
-        relationship = '$relationship'
+        relationship = '$relationship',
+
+        disclaimer = '$disclaimer'
 
 
         WHERE stud_id = '$student_id'";
