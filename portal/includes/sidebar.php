@@ -165,28 +165,37 @@
                     ';
                   } elseif ($_SESSION['role'] == "Administrator") {
                     echo '
+                    
                       <li class="nav-item">
                         <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
                       </li>
 
-                      <li class="nav-header">Functions</li>
+                      <li class="nav-header">Main Functions</li>
 
                       <li class="nav-item">
-                        <a href="../functions/upload-xlsx.php" class="nav-link">
+                        <a href="#" class="nav-link">
                           <p>
-                            Excel Upload
+                            Training Registration
+                            <i class="fas fa-angle-left right"></i>
                           </p>
                         </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="../functions/view-xlsx.php" class="nav-link">
-                          <p>
-                            Excel View
-                          </p>
-                        </a>
-                      </li>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                          <a href="" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Scholar Table</p>
+                            </a>
+                          </li>                   
+                          <li class="nav-item">
+                            <a href="" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>Add Scholar</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>                     
 
                       <li class="nav-header">Scholars config</li>
 
@@ -200,12 +209,43 @@
                         <ul class="nav nav-treeview">
                           <li class="nav-item">
                             <a href="../scholar/list-scholar.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
                               <p>Scholar/Student List</p>
                             </a>
                           </li>
                           <li class="nav-item">
                             <a href="../scholar/add-scholar.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
                               <p>Scholar/Student Add</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>         
+                      
+                      <li class="nav-header">Other Functions</li>
+
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <p>
+                            Excel Upload-View
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">                    
+                            <a href="../functions/upload-xlsx.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>
+                                Excel Upload
+                              </p>
+                            </a>
+                          </li>
+                          <li class="nav-item">                        
+                            <a href="../functions/view-xlsx.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>
+                                Excel View
+                              </p>
                             </a>
                           </li>
                         </ul>
@@ -213,27 +253,63 @@
                     ';
                   } elseif ($_SESSION['role'] == "Student") { 
                     echo '
+                    
                       <li class="nav-item">
                         <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
                       </li>
+                      
 
-                      <li class="nav-header">Functions</li>
+                      <li class="nav-header">Admins config</li>
 
                       <li class="nav-item">
-                        <a href="../functions/upload-xlsx.php" class="nav-link">
+                        <a href="#" class="nav-link">
                           <p>
-                            Excel Upload
+                            Administrators
+                            <i class="fas fa-angle-left right"></i>
                           </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                          <a href="../admin/list-admin.php" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Admin List</p>
+                            </a>
+                          </li>                   
+                          <li class="nav-item">
+                            <a href="../admin/add-admin.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>Admin Add</p>
+                            </a>
+                          </li>
+                        </ul>
                       </li>
+
+
+                      <li class="nav-header">Scholars config</li>
+
                       <li class="nav-item">
-                        <a href="../functions/view-xlsx.php" class="nav-link">
+                        <a href="#" class="nav-link">
                           <p>
-                            Excel View
+                            Scholars
+                            <i class="fas fa-angle-left right"></i>
                           </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="../scholar/list-scholar.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>Scholar/Student List</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="../scholar/add-scholar.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>Scholar/Student Add</p>
+                            </a>
+                          </li>
+                        </ul>
                       </li>
                     ';
                   } else {

@@ -222,7 +222,7 @@
                                         </div>
                                     </div>
                                  
-                                    <br>
+                                    
                                     
                                     <div class="row mx-auto justify-content-around">
                                         <div class="col-md-4">
@@ -639,14 +639,27 @@
                                             <div class="my-3">
                                                 <p>
                                                     I hereby allow TESDA to use/post my contact details, name, email, cellphone/landline nos. and other information provided which may be used for processing my scholarship application, employment opportunities, and TESDA program surveys.
-                                                </p>                                             
-                                                <?php 
-                                                    $checked_disclaimer = ($row['disclaimer'] == 1) ? 'checked' : ''; 
-                                                ?>
-                                                <input type="checkbox" name="disclaimer" value="1" <?php echo $checked_disclaimer; ?>> I Agree
-                                                   
+                                                </p>                                                
                                             </div>
                                         </div>                                                                                                                                                          
+                                    </div>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-9">
+                                            <div class="my-3 text-center">
+                                                <?php 
+                                                    // Set the 'checked' status based on the value in the database (0 for Disagree, 1 for Agree)
+                                                    $checked_agree = (isset($_POST['disclaimer']) && $_POST['disclaimer'] == 1) || ($row['disclaimer'] == 1) ? 'checked' : ''; 
+                                                    $checked_disagree = (isset($_POST['disclaimer']) && $_POST['disclaimer'] == 0) || ($row['disclaimer'] == 0) ? 'checked' : '';
+                                                ?>
+                                                <label>
+                                                    <input type="radio" name="disclaimer" value="1" <?php echo $checked_agree; ?>> I Agree
+                                                </label>
+                                                <label class="mx-3">
+                                                    <input type="radio" name="disclaimer" value="0" <?php echo $checked_disagree; ?>> I Disagree
+                                                </label>
+                                            </div>
+                                        </div>                                                                                                                                                           
                                     </div>
 
 

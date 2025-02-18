@@ -53,13 +53,27 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>### Scholars</h3>
+
+                <?php 
+                  // Query to count the number of students in tbl_students
+                  $sql = "SELECT COUNT(*) AS total_students FROM tbl_students";
+                  $result = $conn->query($sql);
+
+                  // Fetch the result and store the total number of students
+                  if ($result->num_rows > 0) {
+                      $row = $result->fetch_assoc();
+                      $totalStudents = $row['total_students'];
+                  } else {
+                      $totalStudents = 0;
+                  }
+                ?>
+                <h3><?php echo $totalStudents; ?> Scholars</h3>
                 <p>Scholars Count</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="../scholars/list-scholars.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="../scholar/list-scholar.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -67,14 +81,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>##<sup style="font-size: 20px">%</sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Approved Scholars</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->
@@ -82,14 +96,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>##</h3>
 
-                <p>User Registrations</p>
+                <p>Pending Scholars</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->
@@ -97,14 +111,14 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>##?</h3>
 
-                <p>Unique Visitors</p>
+                <p>Dropped Scholars</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->

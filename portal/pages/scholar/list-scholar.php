@@ -118,6 +118,7 @@
                         <th>Facebook & Messenger</th>
                         <th>Username</th>
                         <th>Actions</th>
+                        <th>Enrollment Status</th>
                       </tr>  
                     </thead>                                             
                     <tbody>
@@ -155,20 +156,22 @@
                               <td><?php echo $row['username'] ?></td>
                               <td>
                                   <a href="../forms/scholar-profile-a4.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
-                                  <i class="fa fa-print"></i> View Scholar Profile
+                                  <i class="fa fa-print"></i> View Printable Profile
                                   </a>                                   
                                   
                                   <a href="prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">
                                   <i class="fa fa-address-card"></i> Edit Scholar Profile
                                   </a>
-                                                                             
+                                  
+                                  <br>
+                                  <br>
                                   <a href="edit-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-info mx-1" target="_blank">
-                                  <i class="fa fa-edit"></i> Update
+                                  <i class="fa fa-edit"></i> Update Account
                                   </a>
                                   
                                   <!-- Button trigger modal -->
                                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>">
-                                          <i class="fa fa-trash"></i> Delete
+                                          <i class="fa fa-trash"></i> Delete Scholar
                                       </button>
 
                                   <!-- Delete Modal Window -->
@@ -193,6 +196,11 @@
                                           </div>
                                       </div>
                                   </div> 
+                              </td>
+                              <td>
+                                <span class="badge badge-success">ENROLLED</span> <br>
+                                <span class="badge badge-warning">PENDING</span> <br>
+                                <span class="badge badge-danger">???????????</span>
                               </td>
                           </tr>
                           <?php }

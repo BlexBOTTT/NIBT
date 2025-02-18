@@ -28,6 +28,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $civilstatus = mysqli_real_escape_string($conn, $_POST['civilstatus']);
 
+    $courses = mysqli_real_escape_string($conn, $_POST['courses']);
+
     // ADDRESS 
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $contact = mysqli_real_escape_string($conn, $_POST['contact']);
@@ -52,6 +54,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     $cause_disability = mysqli_real_escape_string($conn, $_POST['cause_disability']);
     $scholar_package = mysqli_real_escape_string($conn, $_POST['scholar_package']);
 
+    $classification = mysqli_real_escape_string($conn, $_POST['classification']);
+
     $fbacc = mysqli_real_escape_string($conn, $_POST['fb_account']);
     $fbmess = mysqli_real_escape_string($conn, $_POST['fb_mess']);
 
@@ -63,7 +67,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     $caddress = mysqli_real_escape_string($conn, $_POST['caddress']);// contact complete mailing address
     $relationship = mysqli_real_escape_string($conn, $_POST['relationship']); // relationship to scholar
 
-    $disclaimer = isset($_POST['disclaimer']) ? 1 : 0;
+    $disclaimer = isset($_POST['disclaimer']) ? $_POST['disclaimer'] : 0;
 
     
 
@@ -144,6 +148,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         birthdate = '$birthdate',
         gender_id = '$gender',
         civilstatus = '$civilstatus',
+
+        course_id = '$courses',
         
         province = '$province',
         age = '$age',
@@ -172,6 +178,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         cause_disability_id = '$cause_disability',
 
         scholar_package_id = '$scholar_package',
+        classification_id = '$classification',
         -- CONTACT PERSON
 
         cfullname = '$cfullname',

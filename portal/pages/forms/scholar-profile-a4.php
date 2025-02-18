@@ -11,7 +11,7 @@ if ($stud_id > 0) {
     $query = "SELECT tbl_students.*, 
                  tbl_extension_name.ext_name,
                  tbl_courses.course_name
-          FROM tbl_students
+          FROM tbl_students 
           LEFT JOIN tbl_extension_name ON tbl_students.ext_name_id = tbl_extension_name.ext_name_id
             LEFT JOIN tbl_courses ON tbl_students.course_id = tbl_courses.course_id
           WHERE tbl_students.stud_id = '$stud_id'";
@@ -40,13 +40,13 @@ if ($stud_id > 0) {
         $pdf->AddPage();
         
 
-        $pdf->SetLineWidth(0.1);
-        $pdf->SetDash(1,3); //5mm on, 5mm off
-        $pdf->Line(105, 0, 105, 297); // Draws a vertical line down the center of an A4 page
-        $pdf->Line(0, 148.5, 210, 148.5); // Horizontal center line (Y = 148.5)
+        // $pdf->SetLineWidth(0.1);
+        // $pdf->SetDash(1,3); //5mm on, 5mm off
+        // $pdf->Line(105, 0, 105, 297); // Draws a vertical line down the center of an A4 page
+        // $pdf->Line(0, 148.5, 210, 148.5); // Horizontal center line (Y = 148.5)
         
-        $pdf->SetDash(); // restores no dash and default to line
-        $pdf->SetLineWidth(0); // default line thickness
+        // $pdf->SetDash(); // restores no dash and default to line
+        // $pdf->SetLineWidth(0); // default line thickness
 
 
 
@@ -110,17 +110,40 @@ if ($stud_id > 0) {
 
         // Convert BLOB to an actual image file
         $imageData = $row['img']; // Assuming this is binary BLOB data from DB
-        $tempFile = tempnam(sys_get_temp_dir(), 'img_') . '.jpg'; // Create temp file
-        file_put_contents($tempFile, $imageData); // Save binary data as a file
-        // Set the specific X and Y position
-        $x = 160;  // Adjust for horizontal position
-        $y = 38;   // Adjust for vertical position
-        $width = 35;  // Force width (ID picture size)
-        $height = 26; // Force height (ID picture size)
-        // Insert image into PDF at the exact (X, Y) position with forced width & height
-        $pdf->Image($tempFile, $x, $y, $width, $height); // X, Y, Width, Height
-        unlink($tempFile); // Delete temp file after use
-        // Draw the bounding box for ID picture
+        $tempFile = tempnam(sys_get_temp_dir(), 'img_');
+
+        // Check if the image is valid and get its MIME type
+        $imageInfo = @getimagesizefromstring($imageData);
+        if ($imageInfo === false) {
+            // Handle error or skip adding image
+            $pdf->Rect(160, 38, $width, $height); // Draw bounding box without image
+        } else {
+            // Save the image data as a file based on its MIME type
+            $mimeType = $imageInfo['mime'];
+            $ext = 'jpg'; // Default extension
+            
+            // Set the file extension based on MIME type
+            if ($mimeType === 'image/png') {
+                $ext = 'png';
+            } elseif ($mimeType === 'image/jpeg') {
+                $ext = 'jpg';
+            }
+
+            $tempFile .= '.' . $ext;
+            file_put_contents($tempFile, $imageData); // Save binary data as a file
+
+            // Set the specific X and Y position
+            $x = 160;  // Adjust for horizontal position
+            $y = 38;   // Adjust for vertical position
+            $width = 35;  // Force width (ID picture size)
+            $height = 26; // Force height (ID picture size)
+
+            // Insert image into PDF at the exact (X, Y) position with forced width & height
+            $pdf->Image($tempFile, $x, $y, $width, $height); // X, Y, Width, Height
+            unlink($tempFile); // Delete temp file after use
+        }
+
+        // Draw the bounding box for ID picture (if image is added or not)
         $pdf->Rect(160, 38, $width, $height); // Ensures image is within the box
         
 
@@ -131,45 +154,67 @@ if ($stud_id > 0) {
         $pdf->Cell($margin, 5, '1. T2MIS Auto Generated', 0, 1, 'L');
         $pdf->Ln(3);
         $pdf->SetFont('arial', '', 9);
-        $pdf->Cell(43, 2, '1.1. Unique Learner Identifier', 0, 1, 'C');
+        $pdf->Cell(44, 2, '1.1. Unique Learner Identifier', 0, 0, 'C');
+        
+        $pdf->SetFont('arial', 'B', 15);
+
+        // QBB-02-347-13076-001
+        $uli = '';
+        $spaced_uli = implode(' ', str_split($uli)); // Adds two spaces between characters
+        $pdf->Cell(103, 4, $spaced_uli, 0, 0, 'L');
 
         $pdf->SetFont('arial', '', 7);
-        $pdf->Cell(100, 5, '                (ULI Number)', 0, 0, 'L');
+        $pdf->Cell(17, 5, 'Entry Date:', 0, 0, 'L');
+
+        $pdf->SetFont('arial', '', 11);
+        $pdf->Cell(20, 4, date('m/d/Y', strtotime($row['create_datetime'])), 0, 1, 'L');
+
+        $pdf->SetFont('arial', '', 7);
+        $pdf->Cell(8, 1, '', 0, 0, 'L');
+        $pdf->Cell(141, 1, '(ULI Number)', 0, 0, 'L');
         
         
         
         $pdf->Rect(55, 73, 5, 9);
         $pdf->Rect(60, 73, 5, 9);
         $pdf->Rect(65, 73, 5, 9);
+
         $pdf->Rect(70, 73, 5, 9);
+
         $pdf->Rect(75, 73, 5, 9);
         $pdf->Rect(80, 73, 5, 9);
+
         $pdf->Rect(85, 73, 5, 9);
+
         $pdf->Rect(90, 73, 5, 9);
         $pdf->Rect(95, 73, 5, 9);
         $pdf->Rect(100, 73, 5, 9);
+
         $pdf->Rect(105, 73, 5, 9);
-        $pdf->Rect(110, 73, 5, 9);
-        $pdf->Rect(105, 73, 5, 9);
+
         $pdf->Rect(110, 73, 5, 9);
         $pdf->Rect(115, 73, 5, 9);
         $pdf->Rect(120, 73, 5, 9);
         $pdf->Rect(125, 73, 5, 9);
         $pdf->Rect(130, 73, 5, 9);
+        
         $pdf->Rect(135, 73, 5, 9);
+
         $pdf->Rect(140, 73, 5, 9);
         $pdf->Rect(145, 73, 5, 9);
         $pdf->Rect(150, 73, 5, 9);
+  
+
         
 
         $pdf->Rect(174, 74, 25, 7);
-        $pdf->Cell(64, 1, 'Entry Date', 0, 0, 'R');
+        // $pdf->Cell(80, 1, 'Entry Date:', 0, 0, 'L');
         // date and time to date only
-        $pdf->Cell(20, 1, date('m/d/Y', strtotime($row['create_datetime'])), 0, 0, 'R');
+        $pdf->SetFont('arial', '', 11);
 
 
         // LEARNER MANPOWER PROFILE START
-        $pdf->Ln(6);
+        $pdf->Ln(4);
         $pdf->Rect($margin, 82, $usable_width, 7);
         $pdf->SetFont('arial', 'B', 11);
         $pdf->Cell($margin, 5, '2. Learner/Manpower Profile', 0, 1, 'L');
@@ -253,7 +298,8 @@ if ($stud_id > 0) {
 
         $pdf->Ln(3);
         $pdf->Rect($margin, 138, $usable_width, 43);
-
+        
+        // column borders
         $pdf->Rect($margin, 145, 63, 36);
         $pdf->Rect($margin, 145, 126, 36);
         $pdf->Rect($margin, 145, 190, 36);
@@ -266,14 +312,49 @@ if ($stud_id > 0) {
         $pdf->Rect(25, 155, 3, 3);
         $pdf->Rect(25, 160, 3, 3);
 
+        $gender_id_fill = isset($row['gender_id']) ? intval($row['gender_id']) : null;
+
+        if ($gender_id_fill !== null) {
+            switch ($gender_id_fill) {
+                case 1: $pdf->Rect(25, 155, 3, 3, 'F'); break;
+                case 2: $pdf->Rect(25, 160, 3, 3, 'F'); break;
+         
+                default: // Do nothing if no match break;
+            }
+        }
+
         $pdf->Rect(85, 155, 3, 3);
         $pdf->Rect(85, 160, 3, 3);
         $pdf->Rect(85, 165, 3, 3);
         $pdf->Rect(85, 170, 3, 3);
         $pdf->Rect(85, 175, 3, 3);
 
+        $civilstatus_fill = isset($row['civilstatus']) ? intval($row['civilstatus']) : null;
+
+        if ($civilstatus_fill !== null) {
+            switch ($civilstatus_fill) {
+                case 1: $pdf->Rect(85, 155, 3, 3, 'F'); break;
+                case 2: $pdf->Rect(85, 160, 3, 3, 'F'); break;
+                case 3: $pdf->Rect(85, 165, 3, 3, 'F'); break;
+                case 4: $pdf->Rect(85, 170, 3, 3, 'F'); break;
+                case 5: $pdf->Rect(85, 175, 3, 3, 'F'); break;
+
+                default: // Do nothing if no    match break;
+            }
+        }
+
         $pdf->Rect(145, 155, 3, 3);
         $pdf->Rect(145, 160, 3, 3);
+
+        $employment_id_fill = isset($row['employment_id']) ? intval($row['employment_id']) : null;
+
+        if ($employment_id_fill !== null) {
+            switch ($employment_id_fill) {
+                case 1: $pdf->Rect(145, 155, 3, 3, 'F'); break;
+                case 2: $pdf->Rect(145, 160, 3, 3, 'F'); break;
+                default: // Do nothing if no    match break;
+            }
+        }
 
         $pdf->Ln(7);
         
@@ -315,11 +396,19 @@ if ($stud_id > 0) {
         $pdf->Rect(130, 185, 30, 7);
         $pdf->Rect(165, 185, 30, 7);
         
-        $pdf->Cell(40, 5, '', 0, 0, 'L');
+        
         $pdf->SetFont('arial', 'B', 9);
-        $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
-        $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
-        $pdf->Cell(35, 3, $row['birthdate'], 0, 0, 'L');
+
+
+        $birthdate = isset($row['birthdate']) ? strtotime($row['birthdate']) : null;
+        $month = $birthdate ? date('F', $birthdate) : ''; // Full month name (e.g., January)
+        $day = $birthdate ? date('d', $birthdate) : '';   // Day (e.g., 05)
+        $year = $birthdate ? date('Y', $birthdate) : '';  // Year (e.g., 1999)
+
+        $pdf->Cell(45, 5, '', 0, 0, 'L');
+        $pdf->Cell(41, 3, $month, 0, 0, 'L'); // Display month
+        $pdf->Cell(35, 3, $day, 0, 0, 'L');   // Display day
+        $pdf->Cell(35, 3, $year, 0, 0, 'L');  // Display year
         $pdf->Cell(35, 3, $row['age'], 0, 1, 'L');
 
         $pdf->Ln(3);
@@ -369,68 +458,43 @@ if ($stud_id > 0) {
         $pdf->Rect($margin, 234, $usable_width, 10);
 
         $pdf->Rect(12, 227, 3, 3);
-        $pdf->Rect(12, 237, 3, 3);
-        $pdf->Rect(12, 247, 3, 3);
-
         $pdf->Rect(59, 227, 3, 3);
-        $pdf->Rect(59, 237, 3, 3);
-        $pdf->Rect(59, 247, 3, 3);
-
         $pdf->Rect(107, 227, 3, 3);
-        $pdf->Rect(107, 237, 3, 3);
-        $pdf->Rect(107, 247, 3, 3);
-
         $pdf->Rect(154, 227, 3, 3);
+        // row 2
+       $pdf->Rect(12, 237, 3, 3);
+        $pdf->Rect(59, 237, 3, 3);
+        $pdf->Rect(107, 237, 3, 3);
         $pdf->Rect(154, 237, 3, 3);
+        // row 3
+        $pdf->Rect(12, 247, 3, 3);
+        $pdf->Rect(59, 247, 3, 3);
+        $pdf->Rect(107, 247, 3, 3);
         $pdf->Rect(154, 247, 3, 3);
 
-        // Draw all squares with optional fill
+        // Fill squares above depending on which attainment_id is fetched via educ_atttain dropdown
+        $attainment_id = isset($row['attainment_id']) ? intval($row['attainment_id']) : null;
 
-
-        $row = $result->fetch_assoc();
-
-        $attain_id = $row['attainment_id'];
-
-        switch ($attain_id) {
-            case 1:
-                $pdf->Rect(12, 227, 3, 3, 'F'); // Fill this square
-                break;
-            case 2:
-                $pdf->Rect(12, 237, 3, 3, 'F');
-                break;
-            case 3:
-                $pdf->Rect(12, 247, 3, 3, 'F');
-                break;
-            case 4:
-                $pdf->Rect(59, 227, 3, 3, 'F');
-                break;
-            case 5:
-                $pdf->Rect(59, 237, 3, 3, 'F');
-                break;
-            case 6:
-                $pdf->Rect(59, 247, 3, 3, 'F');
-                break;
-            case 7:
-                $pdf->Rect(107, 227, 3, 3, 'F');
-                break;
-            case 8:
-                $pdf->Rect(107, 237, 3, 3, 'F');
-                break;
-            case 9:
-                $pdf->Rect(107, 247, 3, 3, 'F');
-                break;
-            case 10:
-                $pdf->Rect(154, 227, 3, 3, 'F');
-                break;
-            case 11:
-                $pdf->Rect(154, 237, 3, 3, 'F');
-                break;
-            case 12:
-                $pdf->Rect(154, 247, 3, 3, 'F');
-                break;
-            default:
-                // Do nothing if attain_id is not in range 1-12
-                break;
+        if ($attainment_id !== null) {
+            switch ($attainment_id) {
+                // row 1
+                case 1: $pdf->Rect(12, 227, 3, 3, 'F'); break;
+                case 2: $pdf->Rect(59, 227, 3, 3, 'F'); break;
+                case 3: $pdf->Rect(107, 227, 3, 3, 'F'); break;
+                case 4: $pdf->Rect(154, 227, 3, 3, 'F'); break;
+                // row 2
+                case 5: $pdf->Rect(12, 237, 3, 3, 'F'); break;
+                case 6: $pdf->Rect(59, 237, 3, 3, 'F'); break;
+                case 7: $pdf->Rect(107, 237, 3, 3, 'F'); break;
+                case 8: $pdf->Rect(154, 237, 3, 3, 'F'); break;
+                // row 3
+                case 9: $pdf->Rect(12, 247, 3, 3, 'F'); break;
+                case 10: $pdf->Rect(59, 247, 3, 3, 'F'); break;
+                case 11: $pdf->Rect(107, 247, 3, 3, 'F'); break;
+                case 12:  $pdf->Rect(154, 247, 3, 3, 'F'); break;
+                
+                default: break;
+            }
         }
         
         $pdf->Ln(3);
@@ -506,10 +570,10 @@ if ($stud_id > 0) {
 
         $pdf->AddPage();
 
-        $pdf->SetLineWidth(0.1);
-        $pdf->SetDash(1,3); //5mm on, 5mm off
-        $pdf->Line(105, 0, 105, 297); // Draws a vertical line down the center of an A4 page
-        $pdf->Line(0, 148.5, 210, 148.5); // Horizontal center line (Y = 148.5)
+        // $pdf->SetLineWidth(0.1);
+        // $pdf->SetDash(1,3); //5mm on, 5mm off
+        // $pdf->Line(105, 0, 105, 297); // Draws a vertical line down the center of an A4 page
+        // $pdf->Line(0, 148.5, 210, 148.5); // Horizontal center line (Y = 148.5)
         
         $pdf->SetDash(); // restores no dash and default to line
         $pdf->SetLineWidth(0); // default line thickness
@@ -560,51 +624,105 @@ if ($stud_id > 0) {
         $pdf->Rect($margin, 17, 126, 57);
         $pdf->Rect($margin, 17, 190, 57);
         
+        // row 1
         $pdf->Rect(12, 19, 3, 3);
-        $pdf->Rect(12, 26, 3, 3);
-        $pdf->Rect(12, 33, 3, 3);
-        $pdf->Rect(12, 40, 3, 3);
-        $pdf->Rect(12, 47, 3, 3);
-        $pdf->Rect(12, 54, 3, 3);
-        $pdf->Rect(12, 61, 3, 3);
-        $pdf->Rect(12, 69, 3, 3);
-
         $pdf->Rect(75, 19, 3, 3);
-        $pdf->Rect(75, 26, 3, 3);
-        $pdf->Rect(75, 33, 3, 3);
-        $pdf->Rect(75, 40, 3, 3);
-        $pdf->Rect(75, 46, 3, 3);
-        $pdf->Rect(75, 54, 3, 3);
-        $pdf->Rect(75, 61, 3, 3);
-        $pdf->Rect(75, 69, 3, 3);
-
         $pdf->Rect(138, 19, 3, 3);
+        // row 2
+        $pdf->Rect(12, 26, 3, 3);
+        $pdf->Rect(75, 26, 3, 3);
         $pdf->Rect(138, 26, 3, 3);
+        // row 3
+        $pdf->Rect(12, 33, 3, 3);
+        $pdf->Rect(75, 33, 3, 3);
         $pdf->Rect(138, 33, 3, 3);
+        // row 4
+        $pdf->Rect(12, 40, 3, 3);
+        $pdf->Rect(75, 40, 3, 3);
         $pdf->Rect(138, 40, 3, 3);
+        // row 5
+        $pdf->Rect(12, 47, 3, 3);
+        $pdf->Rect(75, 47, 3, 3);
         $pdf->Rect(138, 47, 3, 3);
+        // row 6
+        $pdf->Rect(12, 54, 3, 3);
+        $pdf->Rect(75, 54, 3, 3);
         $pdf->Rect(138, 54, 3, 3);
+        // row 7
+        $pdf->Rect(12, 61, 3, 3);
+        $pdf->Rect(75, 61, 3, 3);
         $pdf->Rect(138, 61, 3, 3);
-        $pdf->Rect(138, 69, 3, 3);
-     
+        // row 8
+        $pdf->Rect(12, 68, 3, 3);
+        $pdf->Rect(75, 68, 3, 3);
+        $pdf->Rect(138, 68, 3, 3);
+
+    
+        // Fill squares above depending on which attainment_id is fetched via educ_atttain dropdown
+        // $classification_id = $row['classification_id']; // Adjust this based on your DB field
+
+        $classification_id_fill = isset($row['classification_id']) ? intval($row['classification_id']) : null;
+
+        if ($classification_id_fill !== null) {
+            switch ($classification_id_fill) {
+                // Row 1
+                case 1: $pdf->Rect(12, 19, 3, 3, 'F'); break;
+                case 2: $pdf->Rect(75, 19, 3, 3, 'F'); break;
+                case 3: $pdf->Rect(138, 19, 3, 3, 'F'); break;
+                // Row 2
+                case 4: $pdf->Rect(12, 26, 3, 3, 'F'); break;
+                case 5: $pdf->Rect(75, 26, 3, 3, 'F'); break;
+                case 6: $pdf->Rect(138, 26, 3, 3, 'F'); break;
+                // Row 3
+                case 7: $pdf->Rect(12, 33, 3, 3, 'F'); break;
+                case 8: $pdf->Rect(75, 33, 3, 3, 'F'); break;
+                case 9: $pdf->Rect(138, 33, 3, 3, 'F'); break;
+                // Row 4
+                case 10: $pdf->Rect(12, 40, 3, 3, 'F'); break;
+                case 11: $pdf->Rect(75, 40, 3, 3, 'F'); break;
+                case 12: $pdf->Rect(138, 40, 3, 3, 'F'); break;
+                // Row 5
+                case 13: $pdf->Rect(12, 47, 3, 3, 'F'); break;
+                case 14: $pdf->Rect(75, 47, 3, 3, 'F'); break;
+                case 15: $pdf->Rect(138, 47, 3, 3, 'F'); break;
+                // Row 6
+                case 16: $pdf->Rect(12, 54, 3, 3, 'F'); break;
+                case 17: $pdf->Rect(75, 54, 3, 3, 'F'); break;
+                case 18: $pdf->Rect(138, 54, 3, 3, 'F'); break;
+                // Row 7
+                case 19: $pdf->Rect(12, 61, 3, 3, 'F'); break;
+                case 20: $pdf->Rect(75, 61, 3, 3, 'F'); break;
+                case 21: $pdf->Rect(138, 61, 3, 3, 'F'); break;
+                // Row 8
+                case 22: $pdf->Rect(12, 69, 3, 3, 'F'); break;
+                case 23: $pdf->Rect(75, 69, 3, 3, 'F'); break;
+                case 24: $pdf->Rect(138, 69, 3, 3, 'F'); break;
+    
+                default: // Do nothing if no match break;
+            }
+        }
+
         
+
         $pdf->Ln(2);
 
         $pdf->Cell(5, 5, '', 0, 0, 'L');
         $pdf->SetFont('arial', '', 8);
         $pdf->Cell(63, 5, '4Ps Beneficiary', 0, 0, 'L');
-        $pdf->Cell(64, 5, 'Agarian Reform Beneficiary', 0, 0, 'L');
+        $pdf->Cell(64, 5, 'Agrarian Reform Beneficiary', 0, 0, 'L');
         $pdf->Cell(48, 5, 'Balik Probinsya', 0, 1, 'L');
 
         $pdf->Ln(2);
         $pdf->Cell(5, 5, '', 0, 0, 'L');
         $pdf->Cell(63, 5, 'Displaced Worker', 0, 0, 'L');
         $pdf->Cell(64, 5, 'Drug Dependents Surrenderes/Surrenderer', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 6.5);
         $pdf->Cell(48, 5, 'Family Members of AFP and PNP Killed-In-Action', 0, 1, 'L');
 
         $pdf->Ln(2);
         $pdf->Cell(5, 5, '', 0, 0, 'L');
         $pdf->Cell(63, 5, 'Family Members of AFP and PNP Wounded-In-Action', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 8);
         $pdf->Cell(64, 5, 'Farmers and Fishermen', 0, 0, 'L');
         $pdf->Cell(48, 5, 'Indigenous People & Cultural Communities', 0, 1, 'L');
 
@@ -617,13 +735,19 @@ if ($stud_id > 0) {
         $pdf->Ln(2);
         $pdf->Cell(5, 5, '', 0, 0, 'L');
         $pdf->Cell(63, 5, 'Out-of-School Youth', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 7);
+
         $pdf->Cell(64, 5, 'Overseas Filipino Workers (OFW) Dependents', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 8);
         $pdf->Cell(48, 5, 'RCEF-RESP', 0, 1, 'L');
 
         $pdf->Ln(2);
         $pdf->Cell(5, 5, '', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 7);
         $pdf->Cell(63, 5, 'Rebel Returnees/Decommissioned Combatant', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 6);
         $pdf->Cell(64, 5, 'Returning/Repatriated Overseas Filipino Workers (OFW)', 0, 0, 'L');
+        $pdf->SetFont('arial', '', 8);
         $pdf->Cell(48, 5, 'Student', 0, 1, 'L');
 
         $pdf->Ln(2);
@@ -654,26 +778,45 @@ if ($stud_id > 0) {
         $pdf->Rect($margin, 81, 126, 21);
         $pdf->Rect($margin, 81, 190, 21);
 
-        $pdf->Rect(138, 54, 3, 3);
-        $pdf->Rect(138, 61, 3, 3);
-        $pdf->Rect(138, 69, 3, 3);
-
+        // row 1
         $pdf->Rect(12, 83, 3, 3);
         $pdf->Rect(75, 83, 3, 3);
         $pdf->Rect(138, 83, 3, 3);
-
-        $pdf->Rect(12, 90, 3, 3);
+        // row 2
+        $pdf->Rect(12, 90, 3, 3, );
         $pdf->Rect(75, 90, 3, 3);
         $pdf->Rect(138, 90, 3, 3);
-
+        // row 3
         $pdf->Rect(12, 97, 3, 3);
         $pdf->Rect(75, 97, 3, 3);
         $pdf->Rect(138, 97, 3, 3);
 
+        // $type_disability_id = $row['type_disability_id']; // Adjust this based on your DB field
+
+        $type_disability_id_fill = isset($row['type_disability_id']) ? intval($row['type_disability_id']) : null;
+
+        if ($type_disability_id_fill !== null) {
+            switch ($type_disability_id_fill) {
+                case 2: $pdf->Rect(12, 83, 3, 3, 'F'); break;
+                case 3: $pdf->Rect(75, 83, 3, 3, 'F'); break;
+                case 4: $pdf->Rect(138, 83, 3, 3, 'F'); break;
+                // Row 2
+                case 5: $pdf->Rect(12, 90, 3, 3, 'F'); break;
+                case 6: $pdf->Rect(75, 90, 3, 3, 'F'); break;
+                case 7: $pdf->Rect(138, 90, 3, 3, 'F'); break;
+                // Row 3
+                case 8: $pdf->Rect(12, 97, 3, 3, 'F'); break;
+                case 9: $pdf->Rect(75, 97, 3, 3, 'F'); break;
+                case 10: $pdf->Rect(138, 97, 3, 3, 'F'); break;
+
+                default: // Do nothing if no match break;
+            }
+        }
+
         $pdf->Ln(2);
         $pdf->Cell(5, 5, '', 0, 0, 'L');
         $pdf->SetFont('arial', '', 8);
-        $pdf->Cell(63, 5, '4Ps Beneficiary', 0, 0, 'L');
+        $pdf->Cell(63, 5, 'Mental/Intellectual', 0, 0, 'L');
         $pdf->Cell(64, 5, 'Visual Disability', 0, 0, 'L');
         $pdf->Cell(48, 5, 'Orthopedic (Musculoskeletal) Disability', 0, 1, 'L');
 
@@ -719,6 +862,17 @@ if ($stud_id > 0) {
         $pdf->Rect(75, 111, 3, 3);
         $pdf->Rect(138, 111, 3, 3);
 
+        $cause_disability_id_fill = isset($row['cause_disability_id']) ? intval($row['cause_disability_id']) : null;
+
+        if ($cause_disability_id_fill !== null) {
+            switch ($row['cause_disability_id']) {
+                case 2: $pdf->Rect(12, 111, 3, 3, 'F'); break;
+                case 3: $pdf->Rect(75, 111, 3, 3, 'F'); break;
+                case 4: $pdf->Rect(138, 111, 3, 3, 'F'); break;
+                default: // Do nothing if no match break;
+            }
+        }
+
         $pdf->Ln(2);
         $pdf->Cell(5, 5, '', 0, 0, 'L');
         $pdf->SetFont('arial', '', 8);
@@ -736,9 +890,12 @@ if ($stud_id > 0) {
         $pdf->Rect($margin, 116, $usable_width, 7);
         $pdf->SetFont('arial', 'B', 11);
         $pdf->Cell(63, 5, '7.0 Name of Course/Qualification:', 0, 0, 'L');
-        $pdf->SetFont('arial', 'IU', 9);
-        $pdf->Cell($margin, 5, 'Career Entry Course for Software Developers - Cyber Threat Monitoring LEVEL II', 0, 1, 'L');
+        $pdf->SetFont('arial', 'IU', 11);
+        $pdf->Cell($margin, 5, $row['course_name'], 0, 1, 'L');
 
+            // Add more content to the PDF if needed...
+
+            
         // 7 NAME OF COURSE/QUALIFICATION END
 
 
@@ -753,7 +910,7 @@ if ($stud_id > 0) {
         // STEP - Special Training for Employment Program
         $pdf->Cell(150, 5, '8.0 If Scholar, What Type of Scholarship Package (TWSP, PESFA, STEP, others)?', 0, 0, 'L');
         $pdf->SetFont('arial', 'I', 11);
-        $pdf->Cell(50, 5, 'test', 0, 1, 'L');
+        $pdf->Cell(50, 5, '', 0, 1, 'L');
         
         // Answer Boxes
         $pdf->Rect($margin, 130, $usable_width, 14);
@@ -770,6 +927,17 @@ if ($stud_id > 0) {
         $pdf->Rect(107, 132, 3, 3);
         $pdf->Rect(154, 132, 3, 3);
 
+
+        $scholar_package_id_fill = isset($row['scholar_package_id']) ? intval($row['scholar_package_id']) : null;
+
+        if ($scholar_package_id_fill !== null) {
+            switch ($scholar_package_id_fill) {
+                case 1: $pdf->Rect(12, 132, 3, 3, 'F'); break;
+                case 2: $pdf->Rect(59, 132, 3, 3, 'F'); break;
+                case 3: $pdf->Rect(107, 132, 3, 3, 'F'); break;
+                case 4: $pdf->Rect(154, 132, 3, 3, 'F'); break;
+            }
+        }
         $pdf->Ln(2);
 
         $pdf->Cell(5, 5, '', 0, 0, 'L');
@@ -808,6 +976,18 @@ if ($stud_id > 0) {
         $pdf->Rect(71, 165, 3, 3); // 71.5 for accuracy
         $pdf->Rect(135, 165, 3, 3); // 143 accuracy
 
+        $disclaimer_fill = isset($row['disclaimer']) ? intval($row['disclaimer']) : null;
+
+        // fill boxses depending on radio box
+        if ($disclaimer_fill !== null) {
+            switch ($disclaimer_fill) {
+                case 0: $pdf->Rect(135, 165, 3, 3, 'F'); break;
+                case 1: $pdf->Rect(71, 165, 3, 3, 'F'); break;
+         
+                default: // Do nothing if no match break;
+            }
+        }
+
         $pdf->SetFont('arial', '', 9);
         $pdf->Cell(65, 5, '', 0, 0, 'L');
         $pdf->Cell(64, 5, 'Agree', 0, 0, 'L');
@@ -820,7 +1000,7 @@ if ($stud_id > 0) {
 
         $pdf->Rect($margin, 171, $usable_width, 7);
         $pdf->SetFont('arial', 'B', 11);
-        $pdf->Cell(104, 5, '9.0 Applicant Signature', 0, 0, 'L');
+        $pdf->Cell(104, 5, '10.0 Applicant Signature', 0, 0, 'L');
         $pdf->Cell($margin, 5, '', 0, 1, 'L');
 
         // Answer Box
