@@ -98,7 +98,7 @@
                   <div class="col-md-5 mb-3 mt-4">
                       <form method="GET">
                           <div class="input-group">
-                              <input type="search" class="form-control"
+                              <input disabled type="search" class="form-control"
                                   placeholder="Search for (Student no. or Name)" name="search">
                               <div class="input-group-append">
                                   <button type="submit" name="look" class="btn bg-navy"
@@ -125,7 +125,7 @@
 
                                 ?>
                                 
-                                <input class="form-control" type="text" name="stud_id" value="<?php echo $row['stud_id']; ?>" hidden>
+                                <input disabled class="form-control" type="text" name="stud_id" value="<?php echo $row['stud_id']; ?>" hidden>
                                 
                                         
 
@@ -141,7 +141,7 @@
                                                     <div class="input-group">
                                                         <div class="custom-file">
                                                             <label class="custom-file-label" for="prof_img">Choose file</label>
-                                                            <input type="file" class="custom-file-input" name="prof_img" id="prof_img" onchange="readURL(this);">
+                                                            <input disabled type="file" class="custom-file-input" name="prof_img" id="prof_img" onchange="readURL(this);">
                                                             
                                                         </div>
                                                     </div>
@@ -167,21 +167,21 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Last Name</label>
-                                                <input type="text" name="lastname" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="lastname" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['lastname']; ?>" placeholder="Last Name">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>First Name</label>
-                                                <input type="text" name="firstname" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="firstname" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['firstname']; ?>" placeholder="First name">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Middle Name</label>
-                                                <input type="text" name="middlename" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="middlename" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['middlename']; ?>"
                                                     placeholder="Middle name">
                                             </div>
@@ -195,7 +195,7 @@
                                         <div class="col-md-4">
                                                 <div class="my-3">
                                                 <label>Middle Initial</label>
-                                                    <input type="text" name="middleinitial" class="form-control" autocomplete="off"
+                                                    <input disabled type="text" name="middleinitial" class="form-control" autocomplete="off"
                                                             value="<?php echo $row['middleinitial']; ?>"
                                                         placeholder="Ex. B.">
                                                 </div>
@@ -203,7 +203,7 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Extension Name (e.g. Jr. Sr.)</label>
-                                                <select class="form-control" id="extname" name="extname">                                                
+                                                <select disabled class="form-control" id="extname" name="extname">                                                
                                                     <?php 
                                                     $query_ext_name = mysqli_query($conn, "SELECT * FROM tbl_extension_name");
                                                     while ($row_ext_name = mysqli_fetch_array($query_ext_name)) {
@@ -228,7 +228,7 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Number & Street</label>
-                                                <input type="text" name="numstreet" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="numstreet" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['num_street']; ?>"
                                                     placeholder="Enter your block number and street">
                                             </div>
@@ -236,7 +236,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Barangay</label>
-                                                <input type="text" name="barangay" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="barangay" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['barangay']; ?>"
                                                     placeholder="Ex. Barangay 123">
                                             </div>
@@ -244,7 +244,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Congressional District</label>
-                                                <input type="text" name="district" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="district" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['district']; ?>"
                                                     placeholder="Ex. District IV">
                                             </div>
@@ -256,7 +256,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Municipality/City</label>
-                                                <input type="text" name="addmunicity" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="addmunicity" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['addmunicity']; ?>" placeholder="Ex. Tacloban City">
                                             </div>
                                         </div>
@@ -264,7 +264,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Province</label>
-                                                <input type="text" name="province" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="province" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['province']; ?>"
                                                     placeholder="Ex. Manila">
                                             </div>
@@ -272,7 +272,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Region</label>
-                                                <input type="text" name="region" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="region" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['region']; ?>" placeholder="Ex. NCR">
                                             </div>
                                         </div>                                       
@@ -281,7 +281,7 @@
                                     <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Email Address</label>
-                                                <input type="email" name="email" class="form-control" autocomplete="off"
+                                                <input disabled type="email" name="email" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['email']; ?>"
                                                     placeholder="example@gmail.com">
                                             </div>
@@ -289,7 +289,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Mobile Contact Number</label>
-                                                <input type="text" name="contact" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="contact" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['contact']; ?>"
                                                     placeholder="Contact Number">
                                             </div>
@@ -297,7 +297,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Nationality</label>
-                                                <input type="text" name="nationality" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="nationality" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['nationality']; ?>"
                                                     placeholder="Enter Nationality">
                                             </div>
@@ -307,14 +307,14 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                             <label>Facebook</label>
-                                            <input type="text" name="fb_account" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
+                                            <input disabled type="text" name="fb_account" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
                                                 value="<?php echo $row['fb_account']; ?>">
                                             </div>
                                         </div>   
                                         <div class="col-md-4">
                                             <div class="my-3">
                                             <label>FB Messenger</label>                                       
-                                            <input type="text" name="fb_mess" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
+                                            <input disabled type="text" name="fb_mess" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
                                             value="<?php echo $row['fb_mess']; ?>" >                                             
                                             </div>
                                         </div>
@@ -331,7 +331,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Gender/Sex</label>                                       
-                                                <select class="form-control" id="gender" name="gender" placeholder="Select Gender">                                            
+                                                <select disabled class="form-control" id="gender" name="gender" placeholder="Select Gender">                                            
                                                     <?php 
                                                     $query1 = mysqli_query($conn, "SELECT * FROM tbl_genders");
                                                     while ($row_gender = mysqli_fetch_array($query1)) {
@@ -347,7 +347,7 @@
                                             <div class="my-3">
                                                 <label>Civil Status</label>
                                                 
-                                                <select class="form-control" id="civilstatus" name="civilstatus" placeholder="Select your answer">                                            
+                                                <select disabled class="form-control" id="civilstatus" name="civilstatus" placeholder="Select your answer">                                            
                                                 <?php 
                                                 $query_ext_name = mysqli_query($conn, "SELECT * FROM tbl_civil_status");
                                                 while ($row_ext_name = mysqli_fetch_array($query_ext_name)) {
@@ -361,7 +361,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Employment Status</label>
-                                                <select class="form-control" id="employment" name="employment" placeholder="Select your answer">                                            
+                                                <select disabled class="form-control" id="employment" name="employment" placeholder="Select your answer">                                            
                                                     <?php 
                                                     $query_employment = mysqli_query($conn, "SELECT * FROM tbl_employment");
                                                     while ($row_employment = mysqli_fetch_array($query_employment)) {
@@ -384,7 +384,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Year of birth</label>
-                                                <input type="date" name="birthdate" class="form-control" autocomplete="off"
+                                                <input disabled type="date" name="birthdate" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['birthdate']; ?>"
                                                     placeholder="Enter your birthdate">
                                             </div>
@@ -393,7 +393,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Age</label>
-                                                <input type="text" name="age" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="age" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['age']; ?>"
                                                     placeholder="Enter Age Number">
                                             </div>
@@ -410,7 +410,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Birth Place (Province)</label>
-                                                <input type="text" name="bpprovince" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="bpprovince" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['bpprovince']; ?>"
                                                     placeholder="Ex. Metro Manila">
                                             </div>
@@ -418,7 +418,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Birth Place (Municipality/City)</label>
-                                                <input type="text" name="bpmunicity" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="bpmunicity" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['bpmunicity']; ?>"
                                                     placeholder="Ex. Manila">
                                             </div>
@@ -426,7 +426,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Birth Place (Region)</label>
-                                                <input type="text" name="bpregion" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="bpregion" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['bpregion']; ?>"
                                                     placeholder="Ex. Manila">
                                             </div>
@@ -443,7 +443,7 @@
                                         <div class="col-md-5 mx-auto">
                                             <div class="my-3">
                                                 <label>Educational Attainment Before The Training (Trainee)</label>
-                                                <select class="form-control" id="attainment" name="attainment" placeholder="Select your answer">                                            
+                                                <select disabled class="form-control" id="attainment" name="attainment" placeholder="Select your answer">                                            
                                                 <?php 
                                                 $query_attainment = mysqli_query($conn, "SELECT * FROM tbl_attainment");
                                                 while ($row_attainment = mysqli_fetch_array($query_attainment)) {
@@ -467,7 +467,7 @@
                                         <div class="col-md-6">
                                             <div class="my-3">
                                                 <label>Full Name</label>
-                                                <input type="text" name="cfullname" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="cfullname" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['cfullname']; ?>" placeholder="Ex. Juanita Dela Cruz">
                                             </div>
                                         </div>
@@ -477,14 +477,14 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Cell No.</label>
-                                                <input type="text" name="ccell_no" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="ccell_no" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['ccell_no']; ?>" placeholder="09123456789">
                                             </div>
                                         </div> 
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Birthdate</label>
-                                                <input type="date" name="cbirthdate" class="form-control" autocomplete="off"
+                                                <input disabled type="date" name="cbirthdate" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['cbirthdate']; ?>" placeholder="First name">
                                             </div>
                                         </div>                                        
@@ -494,7 +494,7 @@
                                         <div class="col-md-9">
                                             <div class="my-3">
                                                 <label>Parent/Guardian's Complete Mailing Address</label>
-                                                <input type="text" name="caddress" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="caddress" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['caddress']; ?>"
                                                     placeholder="Enter your Address">
                                             </div>
@@ -504,7 +504,7 @@
                                         <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Relationship to the scholar</label>
-                                                <input type="text" name="relationship" class="form-control" autocomplete="off"
+                                                <input disabled type="text" name="relationship" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['relationship']; ?>"
                                                     placeholder="Ex. Mother/Father">
                                             </div>
@@ -524,7 +524,7 @@
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Choose Which one fits you the best:</label>                                       
-                                                <select class="form-control" id="classification" name="classification" placeholder="Select your classification">                                            
+                                                <select disabled class="form-control" id="classification" name="classification" placeholder="Select your classification">                                            
                                                     <?php 
                                                     $query1 = mysqli_query($conn, "SELECT * FROM tbl_classifications");
                                                     while ($row_classification = mysqli_fetch_array($query1)) {
@@ -548,7 +548,7 @@
                                             <div class="my-3">
                                                 <label>Type of Disability (For Persons With Disability [PWDs] only)</label>
 
-                                                <select class="form-control" id="type_disability" name="type_disability" placeholder="Select your answer">                                            
+                                                <select disabled class="form-control" id="type_disability" name="type_disability" placeholder="Select your answer">                                            
                                                 <?php 
                                                 $query_type_disability = mysqli_query($conn, "SELECT * FROM tbl_type_disability");
                                                 while ($row_type_disability = mysqli_fetch_array($query_type_disability)) {
@@ -566,7 +566,7 @@
                                             <div class="my-3">
                                                 <label>Cause of Disability (For Persons With Disability [PWDs] only)</label>
 
-                                                <select class="form-control" id="cause_disability" name="cause_disability" placeholder="Select your answer">                                            
+                                                <select disabled class="form-control" id="cause_disability" name="cause_disability" placeholder="Select your answer">                                            
                                                 <?php 
                                                 $query_cause_disability = mysqli_query($conn, "SELECT * FROM tbl_cause_disability");
                                                 while ($row_cause_disability = mysqli_fetch_array($query_cause_disability)) {
@@ -584,7 +584,7 @@
                                             <div class="my-3">
                                                 <label>Name of Course/Qualification:</label>
 
-                                                <select class="form-control" id="courses" name="courses" placeholder="Select your answer">                                            
+                                                <select disabled class="form-control" id="courses" name="courses" placeholder="Select your answer">                                            
                                                 <?php 
                                                 $query_courses = mysqli_query($conn, "SELECT * FROM tbl_courses");
                                                 while ($row_courses = mysqli_fetch_array($query_courses)) {
@@ -602,7 +602,7 @@
                                             <div class="my-3">
                                                 <label>Type of Scholarship Package:</label>
 
-                                                <select class="form-control" id="scholar_package" name="scholar_package" placeholder="Select your answer">                                            
+                                                <select disabled class="form-control" id="scholar_package" name="scholar_package" placeholder="Select your answer">                                            
                                                 <?php 
                                                 $query_scholar_package = mysqli_query($conn, "SELECT * FROM tbl_scholar_package");
                                                 while ($row_scholar_package = mysqli_fetch_array($query_scholar_package)) {
@@ -636,10 +636,10 @@
                                                     $checked_disagree = (isset($_POST['disclaimer']) && $_POST['disclaimer'] == 0) || ($row['disclaimer'] == 0) ? 'checked' : '';
                                                 ?>
                                                 <label>
-                                                    <input type="radio" name="disclaimer" value="1" <?php echo $checked_agree; ?>> I Agree
+                                                    <input disabled type="radio" name="disclaimer" value="1" <?php echo $checked_agree; ?>> I Agree
                                                 </label>
                                                 <label class="mx-3">
-                                                    <input type="radio" name="disclaimer" value="0" <?php echo $checked_disagree; ?>> I Disagree
+                                                    <input disabled type="radio" name="disclaimer" value="0" <?php echo $checked_disagree; ?>> I Disagree
                                                 </label>
                                             </div>
                                         </div>                                                                                                                                                           
@@ -651,7 +651,7 @@
                                         <div class="col-md-5 mx-auto">
                                             <div class="my-3">
                                                 <label>Learners ID/ULI No. (For those who have already taken up any TESDA Course before)</label>
-                                                <input type="text" name="learneriduli" class="form-control" 
+                                                <input disabled type="text" name="learneriduli" class="form-control" 
                                                 autocomplete="off"  value="learner_iduli'" placeholder="Skip this section if first time taking a tesda course">
                                             </div>
                                         </div>                                
@@ -671,7 +671,13 @@
                                     <div class="col-md-4"></div>
                                         <div class="col-md-4">
                                             <div class="input-group input-group-outline my-3 justify-content-end">
-                                                <button class="btn btn-danger" type="submit" name="submit">Submit</button>
+                                                <?php
+                                                    if ($_SESSION['role'] !== "Student") {
+                                                    echo '<button class="btn btn-danger" type="submit" name="submit">Submit</button>';
+                                                    }  
+                                                ?>
+                                            
+                                                
                                             </div>
                                         </div>
                                     </div>

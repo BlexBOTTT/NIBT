@@ -694,9 +694,9 @@ if ($stud_id > 0) {
                 case 20: $pdf->Rect(75, 61, 3, 3, 'F'); break;
                 case 21: $pdf->Rect(138, 61, 3, 3, 'F'); break;
                 // Row 8
-                case 22: $pdf->Rect(12, 69, 3, 3, 'F'); break;
-                case 23: $pdf->Rect(75, 69, 3, 3, 'F'); break;
-                case 24: $pdf->Rect(138, 69, 3, 3, 'F'); break;
+                case 22: $pdf->Rect(12, 68, 3, 3, 'F'); break;
+                case 23: $pdf->Rect(75, 68, 3, 3, 'F'); break;
+                case 24: $pdf->Rect(138, 68, 3, 3, 'F'); break;
     
                 default: // Do nothing if no match break;
             }
@@ -866,9 +866,9 @@ if ($stud_id > 0) {
 
         if ($cause_disability_id_fill !== null) {
             switch ($row['cause_disability_id']) {
-                case 2: $pdf->Rect(12, 111, 3, 3, 'F'); break;
-                case 3: $pdf->Rect(75, 111, 3, 3, 'F'); break;
-                case 4: $pdf->Rect(138, 111, 3, 3, 'F'); break;
+                case 1: $pdf->Rect(12, 111, 3, 3, 'F'); break;
+                case 2: $pdf->Rect(75, 111, 3, 3, 'F'); break;
+                case 3: $pdf->Rect(138, 111, 3, 3, 'F'); break;
                 default: // Do nothing if no match break;
             }
         }
@@ -891,7 +891,14 @@ if ($stud_id > 0) {
         $pdf->SetFont('arial', 'B', 11);
         $pdf->Cell(63, 5, '7.0 Name of Course/Qualification:', 0, 0, 'L');
         $pdf->SetFont('arial', 'IU', 11);
+
+        // if case where tbl_student's course_id is equal to 0 or not.
+        if ($row['course_id'] != 0) {
         $pdf->Cell($margin, 5, $row['course_name'], 0, 1, 'L');
+        } else {
+            // Optionally, print a blank cell or just skip
+            $pdf->Cell($margin, 5, '', 0, 1, 'L');
+        }
 
             // Add more content to the PDF if needed...
 

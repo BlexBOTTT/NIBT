@@ -27,7 +27,15 @@
 
         </div>
         <div class="info">
-          <a href="../user/user-profile.php" class="d-block"><?php echo $user_fullname; ?></a>
+          <?php 
+            if ($_SESSION['role'] == "Student") {  
+                echo '<a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="d-block">' . $user_fullname . '</a>';  
+            } else {
+              echo '<a href="" class="d-block">' . $user_fullname . '</a>';
+            }
+          ?>
+
+          
         </div>
       </div>
 
@@ -55,39 +63,14 @@
                         <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
-                      </li>
-
-                      <li class="nav-header">Main Functions</li>
-
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <p>
-                            Training Registration
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                          <a href="" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar Table</p>
-                            </a>
-                          </li>                   
-                          <li class="nav-item">
-                            <a href="" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                              <p>Add Scholar</p>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>                     
+                      </li>                          
 
                       <li class="nav-header">Admins config</li>
 
                       <li class="nav-item">
                         <a href="#" class="nav-link">
                           <p>
-                            Administrators
+                            Admin Options:
                             <i class="fas fa-angle-left right"></i>
                           </p>
                         </a>
@@ -109,16 +92,8 @@
 
 
                       <li class="nav-header">Scholars config</li>
-
+    
                       <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <p>
-                            Scholars
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
                             <a href="../scholar/list-scholar.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                               <p>Scholar/Student List</p>
@@ -130,8 +105,6 @@
                               <p>Scholar/Student Add</p>
                             </a>
                           </li>
-                        </ul>
-                      </li>         
                       
                       <li class="nav-header">Other Functions</li>
 
@@ -170,44 +143,11 @@
                         <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
-                      </li>
-
-                      <li class="nav-header">Main Functions</li>
-
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <p>
-                            Training Registration
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                          <a href="" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar Table</p>
-                            </a>
-                          </li>                   
-                          <li class="nav-item">
-                            <a href="" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                              <p>Add Scholar</p>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>                     
+                      </li>                          
 
                       <li class="nav-header">Scholars config</li>
-
+    
                       <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <p>
-                            Scholars
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
                             <a href="../scholar/list-scholar.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                               <p>Scholar/Student List</p>
@@ -219,8 +159,6 @@
                               <p>Scholar/Student Add</p>
                             </a>
                           </li>
-                        </ul>
-                      </li>         
                       
                       <li class="nav-header">Other Functions</li>
 
@@ -253,66 +191,21 @@
                     ';
                   } elseif ($_SESSION['role'] == "Student") { 
                     echo '
-                    
-                      <li class="nav-item">
-                        <a href="../dashboard/index.php" class="nav-link">
-                          <p>Home</p>
-                        </a>
-                      </li>
-                      
-
-                      <li class="nav-header">Admins config</li>
-
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <p>
-                            Administrators
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                          <a href="../admin/list-admin.php" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Admin List</p>
+                        <li class="nav-item">
+                            <a href="../dashboard/index.php" class="nav-link">
+                                <p>Home</p>
                             </a>
-                          </li>                   
-                          <li class="nav-item">
-                            <a href="../admin/add-admin.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                              <p>Admin Add</p>
+                        </li>                          
+                
+                        <li class="nav-header">Scholar:</li>
+                        
+                        <li class="nav-item">
+                            <a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                                <p>View Profile</p>
                             </a>
-                          </li>
-                        </ul>
-                      </li>
-
-
-                      <li class="nav-header">Scholars config</li>
-
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <p>
-                            Scholars
-                            <i class="fas fa-angle-left right"></i>
-                          </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="../scholar/list-scholar.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar/Student List</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="../scholar/add-scholar.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar/Student Add</p>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
+                        </li>  
                     ';
-                  } else {
+                } else {
                     echo '
                       <li class="nav-item">
                         <a href="../dashboard/index.php" class="nav-link">
