@@ -336,7 +336,7 @@
                                                     $query1 = mysqli_query($conn, "SELECT * FROM tbl_genders");
                                                     while ($row_gender = mysqli_fetch_array($query1)) {
                                                         $selected = ($row['gender_id'] == $row_gender['gender_id']) ? 'selected' : '';
-                                                        echo '<option value="' . $row_gender['gender_id'] . '" ' . $selected . '>' . $row_gender['gender'] . '</option>';
+                                                        echo '<option value="' . $row_gender['gender_id'] . '" ' . $selected . '>' . $row_gender['gender_name'] . '</option>';
                                                     }
                                                     ?>
                                                 </select>                                              

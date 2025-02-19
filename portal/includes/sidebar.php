@@ -94,17 +94,23 @@
                       <li class="nav-header">Scholars config</li>
     
                       <li class="nav-item">
-                            <a href="../scholar/list-scholar.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar/Student List</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="../scholar/add-scholar.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar/Student Add</p>
-                            </a>
-                          </li>
+                        <a href="../scholar/list-scholar.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                          <p>Scholar/Student List</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../scholar/list-req-scholar.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                          <p>Scholar Requirements</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="../scholar/add-scholar.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                          <p>Scholar/Student Add</p>
+                        </a>
+                      </li>
                       
                       <li class="nav-header">Other Functions</li>
 

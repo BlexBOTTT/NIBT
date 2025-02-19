@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Dashboard</title>
 
-  <?php include '../../includes/links.php'; ?>
+  <?php include '../../includes/links.php'; 
+  
+    // fetch student_id
+    
+  ?>
 
   
 </head>
@@ -84,37 +88,91 @@
                           unset($_SESSION['success-del']);
                         }
                       ?>
-            <div class="card card-danger">
+            <div class="card card-secondary">
+
               <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
               </div>
               <!-- /.card-header -->
-              <div class="row justify-content-center">
-                  <div class="col-md-5 mb-3 mt-4">
-                      <form method="GET">
-                          <div class="input-group">
-                              <input type="search" class="form-control"
-                                  placeholder="Search for (Student no. or Name)" name="search">
-                              <div class="input-group-append">
-                                  <button type="submit" name="look" class="btn bg-navy"
-                                      data-toggle="tooltip" data-placement="bottom" title="Search">
-                                      <i class="fa fa-search"></i>
-                                  </button>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-              </div>
+       
               
-              
-              <div class="card-body pad table-responsive">              
-                  <table class="table table-bordered text-center" id="myTable">
+                <div class="card-body pad table-responsive">  
+                
+                    <?php
+                        $get_stud = $conn->query("SELECT * FROM tbl_students WHERE stud_id = '$_GET[stud_id]'");
+                        $res_count = $get_stud->num_rows;
+                        if ($res_count == 0) {
+                            // error code
+                        }
+                        $row = $get_stud->fetch_array();
+
+                    ?>
+                
+                    <input class="form-control" type="text" name="stud_id" value="<?php echo $row['stud_id']; ?>" hidden>
+                    
+                    <div class="row justify-content-center text-center">
+                        
+                        <h3><b>Scholar Requirement Checker</b></h3>
+                        
+                    </div>
+
+                    <div class="container d-flex justify-content-center">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-md-2">
+                                <div class="my-3">
+                                    <label class="form-label">First Name</label>
+                                    <input disabled type="text" name="firstname" class="form-control text-center" autocomplete="off"
+                                        value="<?php echo $row['firstname']; ?>" placeholder="First name">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="my-3">
+                                    <label class="form-label">Middle Name</label>
+                                    <input disabled type="text" name="middlename" class="form-control text-center" autocomplete="off"
+                                        value="<?php echo $row['middlename']; ?>" placeholder="Middle name">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="my-3">
+                                    <label class="form-label">Last Name</label>
+                                    <input disabled type="text" name="lastname" class="form-control text-center" autocomplete="off"
+                                        value="<?php echo $row['lastname']; ?>" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>                      
+                    </div>
+
+                    <div class="row justify-content-around text-center">
+                        <div class="col-md-3">
+                            <div class="my-3">
+                                <label class="form-label">First Name</label>
+                                <input disabled type="text" name="firstname" class="form-control text-center" autocomplete="off"
+                                    value="<?php echo $row['firstname']; ?>" placeholder="First name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="my-3">
+                                <label class="form-label">Middle Name</label>
+                                <input disabled type="text" name="middlename" class="form-control text-center" autocomplete="off"
+                                    value="<?php echo $row['middlename']; ?>" placeholder="Middle name">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="my-3">
+                                <label class="form-label">Last Name</label>
+                                <input disabled type="text" name="lastname" class="form-control text-center" autocomplete="off"
+                                    value="<?php echo $row['lastname']; ?>" placeholder="Last Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered text-center" id="myTable">
                     <thead>
                       <tr>
                         <th>Image</th>
                         <th>Fullname</th>
-                        <th>Email</th>                     
-                        <th>Contact #</th>
+                        <th>Birth Certificate</th>                     
+                        <th>BSRS</th>
                         <th>Facebook & Messenger</th>
                         <th>Username</th>
                         <th>Actions</th>
@@ -122,60 +180,18 @@
                       </tr>  
                     </thead>                                             
                     <tbody>
-                      <?php
-                          if (isset($_GET['look'])) {
-                            $search = mysqli_real_escape_string($conn, $_GET['search']);
-                            $_SESSION['search'] = $search;
-                        
-                            $query = "
-                                SELECT 
-                                    tbl_students.*, 
-                                    CONCAT(tbl_students.lastname, ', ', tbl_students.firstname, ' ', tbl_students.middlename) AS fullname,
-                                    tbl_enroll_status.enroll_status_name
-                                FROM tbl_students
-                                LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_students.gender_id
-                                LEFT JOIN tbl_enroll_status ON tbl_enroll_status.enroll_status_id = tbl_students.enroll_status_id
-                                WHERE (tbl_students.firstname LIKE '%$search%' 
-                                OR tbl_students.middlename LIKE '%$search%'
-                                OR tbl_students.lastname LIKE '%$search%' 
-                                OR tbl_enroll_status.enroll_status_name LIKE '%$search%')
-                                ORDER BY tbl_students.stud_id DESC";
-                        
-                            $get_user = mysqli_query($conn, $query) or die(mysqli_error($conn));
-                        
-                            while ($row = mysqli_fetch_array($get_user)) {
-                                $id = $row['stud_id'];
-                          ?>
+                      
                         
                           <tr>
                               <td><img class="img-fluid"
                                               src="data:image/jpeg;base64, <?php echo base64_encode($row['img']); ?>"
                                               alt="image" style="height: 50px; width: 50px"></td>
                               <td><?php echo $row['lastname'] ?>, <?php echo $row['firstname'] ?>, <?php echo $row['middlename'] . '' ?></td>
-                              <td><?php echo $row['email'] ?></td>
-                              <td><?php echo $row['contact'] ?></td>                          
+                              <td></td>
+                              <td></td>                          
                               <td>Facebook: <b><?php echo $row['fb_account'] ?></b> <br> Messenger: <b><?php echo $row['fb_mess'] ?></b></td>
                               <td><?php echo $row['username'] ?></td>
                               <td>
-                                  <a href="../forms/scholar-profile-a4.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
-                                  <i class="fa fa-print"></i> View Printable Profile
-                                  </a>                                   
-                                  
-                                  <a href="prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">
-                                  <i class="fa fa-address-card"></i> Edit Scholar Profile
-                                  </a>
-                                  <br>
-                                  <br>
-
-                                  <a href="submit-req-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-dark mx-1" target="_blank">
-                                  <i class="fa fa-address-card"></i> Check Scholar Status
-                                  </a>
-                                  
-                                  <br>
-                                  <br>
-                                  <a href="edit-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-info mx-1" target="_blank">
-                                  <i class="fa fa-edit"></i> Update Account
-                                  </a>
                                   
                                   <!-- Button trigger modal -->
                                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>">
@@ -225,14 +241,11 @@
                                 ?>
                               </td>
                           </tr>
-                          <?php }
-                          } ?>
+                          <?php 
+                           ?>
                       </tbody>
                   </table>
                   
-                  <a href="../forms/scholar-online-registration.php" type="button" class="btn btn-primary mx-1" target="_blank">
-                                  <i class="fa fa-print"></i> Online Register Responses
-                                  </a>  
               </div>
               <!-- /.card-body -->
             </div>

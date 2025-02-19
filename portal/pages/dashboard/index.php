@@ -13,9 +13,9 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div> -->
 
   <!-- Navbar -->
   <?php include '../../includes/navbar.php'; ?>
@@ -56,13 +56,13 @@
 
                 <?php 
                   // Query to count the number of students in tbl_students
-                  $sql = "SELECT COUNT(*) AS total_students FROM tbl_students";
-                  $result = $conn->query($sql);
+                  $sql_total = "SELECT COUNT(*) AS total_scholar FROM tbl_students";
+                  $result_total = $conn->query($sql_total);
 
                   // Fetch the result and store the total number of students
-                  if ($result->num_rows > 0) {
-                      $row = $result->fetch_assoc();
-                      $totalStudents = $row['total_students'];
+                  if ($result_total->num_rows > 0) {
+                      $row_total = $result_total->fetch_assoc();
+                      $totalStudents = $row_total['total_scholar'];
                   } else {
                       $totalStudents = 0;
                   }
@@ -81,7 +81,22 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>##<sup style="font-size: 20px">%</sup></h3>
+
+                <?php 
+                  // Query to count students with a specific enroll_status_id (e.g., 1 for approved)
+                  $select_approved = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 1";
+                  $result = $conn->query($select_approved);
+
+                  // Fetch the result and store the total number of approved students
+                  if ($result) {
+                      $row = $result->fetch_assoc();
+                      $total_approved = $row['total_students'];
+                  } else {
+                      $total_approved = 0;
+                  }
+                ?>
+                <h3><?php echo $total_approved; ?></h3>
+
 
                 <p>Approved Scholars</p>
               </div>
@@ -96,7 +111,21 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>##</h3>
+
+                <?php 
+                  // Query to count students with a specific enroll_status_id (e.g., 1 for approved)
+                  $select_approved = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 0";
+                  $result = $conn->query($select_approved);
+
+                  // Fetch the result and store the total number of approved students
+                  if ($result) {
+                      $row = $result->fetch_assoc();
+                      $total_approved = $row['total_students'];
+                  } else {
+                      $total_approved = 0;
+                  }
+                ?>
+                <h3><?php echo $total_approved; ?></h3>
 
                 <p>Pending Scholars</p>
               </div>
