@@ -99,19 +99,7 @@
                           <p>Scholar/Student List</p>
                         </a>
                       </li>
-                      <li class="nav-item">
-                        <a href="../scholar/list-req-scholar.php" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                          <p>Scholar Requirements</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="../scholar/add-scholar.php" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                          <p>Scholar/Student Add</p>
-                        </a>
-                      </li>
-                      
+
                       <li class="nav-header">Other Functions</li>
 
                       <li class="nav-item">
@@ -160,6 +148,12 @@
                             </a>
                           </li>
                           <li class="nav-item">
+                            <a href="../scholar/list-req-scholar.php" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Scholar Requirements</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
                             <a href="../scholar/add-scholar.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                               <p>Scholar/Student Add</p>
@@ -204,10 +198,21 @@
                         </li>                          
                 
                         <li class="nav-header">Scholar:</li>
+                        <li class="nav-item">
+                            <a href="../scholar/prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                                <p>Update Profile</p>
+                            </a>
+                        </li>
                         
                         <li class="nav-item">
                             <a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
                                 <p>View Profile</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="../scholar/submit-req-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                                <p>Submit Requirements</p>
                             </a>
                         </li>  
                     ';

@@ -74,14 +74,6 @@
           <li class="user-body">
             <div class="row">
               <div class="col-6 text-center">
-                <?php 
-                if ($_SESSION['role'] == "Super Admin") {
-                  // Display a default image if logged in as super admin (no image as default)
-                  echo '<img class="img-circle elevation-2" src="../../dist/img/user2-160x160.jpg" alt="User Image">';    
-                  //    <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> 
-
-              }
-                ?>
                 <a href="" class="btn btn-default btn-flat float-left">Profile</a>
               </div>
               <div class="col-6 text-center">

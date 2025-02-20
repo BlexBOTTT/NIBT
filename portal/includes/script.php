@@ -42,6 +42,23 @@
       $('#myTable').DataTable();
     } );
   </script>
+
+<script>
+  $(document).ready(function () {
+    $('#dataTable').DataTable();
+  });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".custom-file-input").forEach((input) => {
+        input.addEventListener("change", function () {
+            let fileName = this.files.length > 0 ? this.files[0].name : "Choose file";
+            this.nextElementSibling.textContent = fileName;
+        });
+    });
+});
+</script>
   
 
 <!-- Script for custom file input label with selected filename -->

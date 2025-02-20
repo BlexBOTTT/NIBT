@@ -109,7 +109,7 @@
                     ?>
                 
                     <input class="form-control" type="text" name="stud_id" value="<?php echo $row['stud_id']; ?>" hidden>
-                    
+                     
                     <div class="row justify-content-center text-center">
                         
                         <h3><b>Scholar Requirement Checker</b></h3>
@@ -142,109 +142,50 @@
                         </div>                      
                     </div>
 
-                    <div class="row justify-content-around text-center">
-                        <div class="col-md-3">
-                            <div class="my-3">
-                                <label class="form-label">First Name</label>
-                                <input disabled type="text" name="firstname" class="form-control text-center" autocomplete="off"
-                                    value="<?php echo $row['firstname']; ?>" placeholder="First name">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="my-3">
-                                <label class="form-label">Middle Name</label>
-                                <input disabled type="text" name="middlename" class="form-control text-center" autocomplete="off"
-                                    value="<?php echo $row['middlename']; ?>" placeholder="Middle name">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="my-3">
-                                <label class="form-label">Last Name</label>
-                                <input disabled type="text" name="lastname" class="form-control text-center" autocomplete="off"
-                                    value="<?php echo $row['lastname']; ?>" placeholder="Last Name">
-                            </div>
-                        </div>
-                    </div>
+                    <form action="user-data/user-submit-req-scholar.php" method="POST" enctype="multipart/form-data">
+                      <!-- Hidden Student ID -->
+                      <input type="hidden" name="stud_id" value="<?php echo htmlspecialchars($row['stud_id']); ?>">
 
-                    <table class="table table-bordered text-center" id="myTable">
-                    <thead>
-                      <tr>
-                        <th>Image</th>
-                        <th>Fullname</th>
-                        <th>Birth Certificate</th>                     
-                        <th>BSRS</th>
-                        <th>Facebook & Messenger</th>
-                        <th>Username</th>
-                        <th>Actions</th>
-                        <th>Enrollment Status</th>
-                      </tr>  
-                    </thead>                                             
-                    <tbody>
-                      
-                        
-                          <tr>
-                              <td><img class="img-fluid"
-                                              src="data:image/jpeg;base64, <?php echo base64_encode($row['img']); ?>"
-                                              alt="image" style="height: 50px; width: 50px"></td>
-                              <td><?php echo $row['lastname'] ?>, <?php echo $row['firstname'] ?>, <?php echo $row['middlename'] . '' ?></td>
-                              <td></td>
-                              <td></td>                          
-                              <td>Facebook: <b><?php echo $row['fb_account'] ?></b> <br> Messenger: <b><?php echo $row['fb_mess'] ?></b></td>
-                              <td><?php echo $row['username'] ?></td>
-                              <td>
-                                  
-                                  <!-- Button trigger modal -->
-                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>">
-                                          <i class="fa fa-trash"></i> Delete Scholar
-                                      </button>
+                      <div class="row justify-content-around">
+                          <!-- Scholar ID (Hidden) -->
+                          <div class="col-md-3">
+                              <div class="my-3">
+                                  <label class="form-label">Scholar ID</label>
+                                  <input type="text" class="form-control" value="<?php echo htmlspecialchars($row['stud_id']); ?>" disabled>
+                              </div>
+                          </div>
 
-                                  <!-- Delete Modal Window -->
-                                  <div class="modal fade" id="deleteModal<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog" role="document">
-                                          <div class="modal-content">
-                                              <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                  <p>Are you sure you want to delete
-                                                      <strong class="font-weight-bold"><?php echo $row['fullname'] ?></strong>?
-                                                  </p>
-                                              </div>
-                                              <div class="modal-footer">
-                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                                  <a class="btn btn-secondary" href="user-data/user-del-scholar.php?stud_id=<?php echo $id; ?>">Delete</a>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> 
-                              </td>
-                              <td>
-                                <?php 
-                                  // Display the enrollment status via enroll_status_id from the database
-                                    switch ($row['enroll_status_id']) {
-                                        case 0:
-                                          echo '<span class="badge badge-warning">PENDING</span>';                                            
-                                          break;
-                                        case 1:
-                                          echo '<span class="badge badge-success">ENROLLED</span>';
-                                          break;
-                                        case 2:
-                                          echo '<span class="badge badge-danger">REJECTED</span>'; // Replace with appropriate status
-                                        break;
-                                        default:
-                                          echo '<span class="badge badge-secondary">UNKNOWN</span>'; // Default case for unexpected values
-                                        break;
-                                    }
-                                ?>
-                              </td>
-                          </tr>
-                          <?php 
-                           ?>
-                      </tbody>
-                  </table>
+                          <!-- Birth Certificate Upload -->
+                          <div class="col-md-3">
+                              <div class="my-3">
+                                  <label class="form-label">PSA Birth Cert. or Marriage Cert. for females</label>
+                                  <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="certificate_img" accept="image/jpeg, image/png, application/pdf">
+                                      <label class="custom-file-label">Choose file</label>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- Diploma or ToR Upload -->
+                          <div class="col-md-3">
+                              <div class="my-3">
+                                  <label class="form-label">Diploma or ToR</label>
+                                  <div class="custom-file">
+                                      <input type="file" class="custom-file-input" name="diploma_tor_img" accept="image/jpeg, image/png, application/pdf">
+                                      <label class="custom-file-label">Choose file</label>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row justify-content-center">
+                          <div class="col-md-3">
+                              <div class="my-3 text-center">
+                                  <button class="btn btn-danger" type="submit" name="submit">Upload</button>
+                              </div>
+                          </div>
+                      </div>
+                    </form>
                   
               </div>
               <!-- /.card-body -->
@@ -283,11 +224,9 @@
 
 <?php include '../../includes/script.php'; ?> 
 
-<script>
-  $(document).ready(function () {
-    $('#dataTable').DataTable();
-  });
-</script>
+
+
+
 
 </body>
 </html>

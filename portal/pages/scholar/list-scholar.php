@@ -108,17 +108,17 @@
               
               
               <div class="card-body pad table-responsive">              
-                  <table class="table table-bordered text-center" id="myTable">
+                  <table class="table table-bordered text-center" id="myTable" style="width:100%">
                     <thead>
                       <tr>
-                        <th>Image</th>
+                        <th >Image</th>
                         <th>Fullname</th>
                         <th>Email</th>                     
                         <th>Contact #</th>
                         <th>Facebook & Messenger</th>
                         <th>Username</th>
-                        <th>Actions</th>
-                        <th>Enrollment Status</th>
+                        <th style="width:20%">Actions</th>
+                        <th>Status</th>
                       </tr>  
                     </thead>                                             
                     <tbody>
@@ -164,15 +164,14 @@
                                   <a href="prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">
                                   <i class="fa fa-address-card"></i> Edit Scholar Profile
                                   </a>
-                                  <br>
-                                  <br>
+                                
+                                  
 
                                   <a href="submit-req-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-dark mx-1" target="_blank">
                                   <i class="fa fa-address-card"></i> Check Scholar Status
                                   </a>
                                   
-                                  <br>
-                                  <br>
+                                  
                                   <a href="edit-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-info mx-1" target="_blank">
                                   <i class="fa fa-edit"></i> Update Account
                                   </a>
