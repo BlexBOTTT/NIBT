@@ -127,7 +127,13 @@
                                 
                                 <input class="form-control" type="text" name="stud_id" value="<?php echo $row['stud_id']; ?>" hidden>
                                 
-                                        
+                                <div class="row mx-auto justify-content-center text-center">
+                                    <div class="col-md-4 my-4">
+                                        <a href="view-prof-scholar.php<?php echo '?stud_id=' . $stud_id; ?>" type="button" class="btn btn-danger mx-1">
+                                        <i class="fa fa-address-card"></i> Go back to View Profile
+                                        </a>
+                                    </div>
+                                </div>        
 
                                 <div class="row mx-auto justify-content-center">
                                     <div class="col-md-4 my-4">
@@ -345,17 +351,18 @@
 
                                         <div class="col-md-3">
                                             <div class="my-3">
-                                                <label>Civil Status</label>
-                                                
-                                                <select class="form-control" id="civilstatus" name="civilstatus" placeholder="Select your answer">                                            
-                                                <?php 
-                                                $query_ext_name = mysqli_query($conn, "SELECT * FROM tbl_civil_status");
-                                                while ($row_ext_name = mysqli_fetch_array($query_ext_name)) {
-                                                    $selected_ext_name = ($row['civil_status_id'] == $row_ext_name['civil_status_id']) ? 'selected' : '';
-                                                    echo '<option value="' . $row_ext_name['civil_status_id'] . '" ' . $selected_marital . '>' . $row_ext_name['civil_status'] . '</option>';
-                                                }
-                                                ?>
-                                                </select>
+                                                <label>Civil Status</label>      
+
+                                                <select class="form-control" id="civilstatus" name="civilstatus" placeholder="Select civilstatus">                                            
+                                                    <?php 
+                                                    $query_civil_status = mysqli_query($conn, "SELECT * FROM tbl_civil_status");
+                                                    while ($row_civil_status = mysqli_fetch_array($query_civil_status)) {
+                                                        $selected = ($row['civil_status_id'] == $row_civil_status['civil_status_id']) ? 'selected' : '';
+                                                        echo '<option value="' . $row_civil_status['civil_status_id'] . '" ' . $selected . '>' . $row_civil_status['civil_status_name'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>  
+
                                             </div> 
                                         </div>
                                         <div class="col-md-3">
@@ -521,7 +528,7 @@
                                     </div>
 
                                     <div class="row mx-auto justify-content-around">               
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="my-3">
                                                 <label>Choose Which one fits you the best:</label>                                       
                                                 <select class="form-control" id="classification" name="classification" placeholder="Select your classification">                                            

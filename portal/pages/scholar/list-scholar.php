@@ -148,9 +148,11 @@
                           ?>
                         
                           <tr>
-                              <td><img class="img-fluid"
-                                              src="data:image/jpeg;base64, <?php echo base64_encode($row['img']); ?>"
-                                              alt="image" style="height: 50px; width: 50px"></td>
+                              <td><?php if (!empty($row['img'])): ?>
+                                        <img class="img-fluid" src="data:image/jpeg;base64,<?php echo base64_encode($row['img']); ?>" alt="image" style="height: 50px; width: 50px">
+                                    <?php else: ?>
+                                        <span class="badge badge-secondary">No Image</span>
+                                    <?php endif; ?></td>
                               <td><?php echo $row['lastname'] ?>, <?php echo $row['firstname'] ?>, <?php echo $row['middlename'] . '' ?></td>
                               <td><?php echo $row['email'] ?></td>
                               <td><?php echo $row['contact'] ?></td>                          
@@ -161,11 +163,9 @@
                                   <i class="fa fa-print"></i> View Printable Profile
                                   </a>                                   
                                   
-                                  <a href="prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">
-                                  <i class="fa fa-address-card"></i> Edit Scholar Profile
-                                  </a>
-                                
-                                  
+                                  <a href="view-prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">
+                                  <i class="fa fa-address-card"></i> Scholar Profile
+                                  </a>                                            
 
                                   <a href="submit-req-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-dark mx-1" target="_blank">
                                   <i class="fa fa-address-card"></i> Check Scholar Status

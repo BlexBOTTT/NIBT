@@ -95,63 +95,66 @@
               <!-- /.card-header -->
                 <!-- CARD BODY -->
                 <div class="card-body pad table-responsive">
-                    <table class="table table-bordered text-center">
-                    <tr>
-                        <th>Image</th>
-                        <th>Fullname</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>Actions</th>    
-                    </tr>
-                    
-                    <?php
-                        $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_admins.lastname, ', ', tbl_admins.firstname) AS fullname FROM tbl_admins");
-                        while ($row = mysqli_fetch_array($get_user)) {
-                            $id = $row['admin_id'];
-                    ?>
-                    <tbody>
+                    <table class="table table-bordered text-center" id="myTable">
+                      <thead>
                         <tr>
-                            <td><img class="img-fluid img-circle" src="data:image/jpeg;base64, <?php echo base64_encode($row['admin_image']); ?>" alt="image" style="height: 100px; width: 100px"></td>
-                            <td><?php echo $row['fullname'] ?></td>
-                            <td><?php echo $row['email'] ?></td>
-                            <td><?php echo $row['username'] ?></td>
-                            <td>
-                                <a href="edit-admin.php<?php echo '?admin_id=' . $id; ?>" type="button" class="btn btn-info mx-1">
-                                    <i class="fa fa-edit"></i> Update
-                                </a>
+                          <th>Image</th>
+                          <th>Fullname</th>
+                          <th>Email</th>
+                          <th>Username</th>
+                          <th>Actions</th>    
+                      </tr>
+                    </thead>
+                      
+                      
+                      <?php
+                          $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_admins.lastname, ', ', tbl_admins.firstname) AS fullname FROM tbl_admins");
+                          while ($row = mysqli_fetch_array($get_user)) {
+                              $id = $row['admin_id'];
+                      ?>
+                      <tbody>
+                          <tr>
+                              <td><img class="img-fluid img-circle" src="data:image/jpeg;base64, <?php echo base64_encode($row['admin_image']); ?>" alt="image" style="height: 100px; width: 100px"></td>
+                              <td><?php echo $row['fullname'] ?></td>
+                              <td><?php echo $row['email'] ?></td>
+                              <td><?php echo $row['username'] ?></td>
+                              <td>
+                                  <a href="edit-admin.php<?php echo '?admin_id=' . $id; ?>" type="button" class="btn btn-info mx-1">
+                                      <i class="fa fa-edit"></i> Update
+                                  </a>
 
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>">
-                                    <i class="fa fa-trash"></i> Delete
-                                </button>
+                                  <!-- Button trigger modal -->
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>">
+                                      <i class="fa fa-trash"></i> Delete
+                                  </button>
 
-                                <!-- Delete Modal Window -->
-                                <div class="modal fade" id="deleteModal<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete
-                                                    <strong class="font-weight-bold"><?php echo $row['fullname'] ?></strong>?
-                                                </p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-secondary" href="user-data/user-del-admin.php?admin_id=<?php echo $id; ?>">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php
-                        }
-                    ?>
+                                  <!-- Delete Modal Window -->
+                                  <div class="modal fade" id="deleteModal<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <p>Are you sure you want to delete
+                                                      <strong class="font-weight-bold"><?php echo $row['fullname'] ?></strong>?
+                                                  </p>
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                  <a class="btn btn-secondary" href="user-data/user-del-admin.php?admin_id=<?php echo $id; ?>">Delete</a>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                          </tr>
+                      <?php
+                          }
+                      ?>
                     </table>
                     </div>
                 <!-- /.card-body -->

@@ -96,7 +96,7 @@
               <!-- /.card-header -->
        
               
-              <div class="card-body pad table-responsive">  
+            <div class="card-body pad table-responsive">  
                 
                 <?php
                     $get_stud = $conn->query("
@@ -153,7 +153,7 @@
                                         <br>
                                         <span class="badge badge-success">Uploaded</span>
                                     <?php else: ?>
-                                        <span class="badge badge-danger">Unavailable</span>
+                                        <span class="badge badge-danger">No Upload</span>
                                     <?php endif; ?>
             
                                     <div class="modal fade" id="modal-cert-<?php echo $row['stud_id']; ?>">
@@ -186,7 +186,7 @@
                                         <br>
                                         <span class="badge badge-success">Uploaded</span>
                                     <?php else: ?>
-                                        <span class="badge badge-danger">Unavailable</span>
+                                        <span class="badge badge-danger">No Upload</span>
                                     <?php endif; ?>
             
                                     <div class="modal fade" id="modal-diploma-<?php echo $row['stud_id']; ?>">
@@ -210,70 +210,118 @@
                                     </div>
                                 </td>
             
-                                <!-- Scholar Profile Status -->
+                                <!-- Scholar Profile Status -->    
                                 <td>
-                                  <?php 
-                                      // Define required fields (must not be empty)
-                                      $required_fields = ['lastname','firstname', 'middlename', 'middleinitial', 'num_street', 'barangay', 'district', 'addmunicity', 'province', 'region', 'email', 'contact', 'nationality', 'age', 'bpmunicity', 'bpprovince', 'bpregion', 'cfullname', 'ccell_no', 'caddress', 'relationship', 'username', 'password']; 
+                                    <?php 
+                                        // Define required fields (must not be empty)
+                                        $required_fields = [
+                                            'lastname' => 'Last Name',
+                                            'firstname' => 'First Name',
+                                            'middlename' => 'Middle Name',
+                                            'middleinitial' => 'Middle Initial',
+                                            'num_street' => 'Street Number',
+                                            'barangay' => 'Barangay',
+                                            'district' => 'District',
+                                            'addmunicity' => 'City/Municipality',
+                                            'province' => 'Province',
+                                            'region' => 'Region',
+                                            'email' => 'Email Address',
+                                            'contact' => 'Contact Number',
+                                            'nationality' => 'Nationality',
+                                            'age' => 'Age',
+                                            'bpmunicity' => 'Birthplace (City)',
+                                            'bpprovince' => 'Birthplace (Province)',
+                                            'bpregion' => 'Birthplace (Region)',
+                                            'cfullname' => 'Emergency Contact Name',
+                                            'ccell_no' => 'Emergency Contact Number',
+                                            'caddress' => 'Emergency Contact Address',
+                                            'relationship' => 'Emergency Contact Relationship',
+                                            'username' => 'Username',
+                                            'password' => 'Password'
+                                        ]; 
 
-                                      // Define fields that should not be '0' (meaning they must be updated)
-                                      $non_zero_fields = ['gender_id', 'civilstatus', 'employment_id', 'attainment_id', 'classification_id', 'course_id', 'scholar_package_id', 'disclaimer']; 
+                                        // Define fields that should not be '0' (must be updated)
+                                        $non_zero_fields = [
+                                            'gender_id' => 'Gender',
+                                            'civilstatus' => 'Civil Status',
+                                            'employment_id' => 'Employment Status',
+                                            'attainment_id' => 'Educational Attainment',
+                                            'classification_id' => 'Classification',
+                                            'course_id' => 'Course',
+                                            'scholar_package_id' => 'Scholarship Package',
+                                            'disclaimer' => 'Disclaimer'
+                                        ]; 
 
-                                      // Define required image fields
-                                      $image_fields = ['img']; 
-                                      
-                                      // Define fields where '0' is acceptable
-                                      $zero_allowed_fields = ['type_disability_id', 'cause_disability_id']; 
+                                        // Define required image fields
+                                        $image_fields = ['img' => 'Profile Picture']; 
 
-                                      // Check if required fields are empty
-                                      $profile_complete = true; 
-                                      foreach ($required_fields as $field) {
-                                          if (empty($row[$field])) {
-                                              $profile_complete = false;
-                                              break;
-                                          }
-                                      }
+                                        // Define fields where '0' is acceptable
+                                        $zero_allowed_fields = ['type_disability_id', 'cause_disability_id']; 
 
-                                      // Check if fields that should not be '0' are still '0'
-                                      if ($profile_complete) { 
-                                          foreach ($non_zero_fields as $field) {
-                                              if (isset($row[$field]) && $row[$field] == 0) {
-                                                  $profile_complete = false;
-                                                  break;
-                                              }
-                                          }
-                                      }
+                                        // Store missing fields
+                                        $missing_fields = [];
 
-                                      // Check if birthdates are NULL, empty, or '0000-00-00'
-                                      if ($profile_complete) {
-                                          $invalid_birthdates = ['0000-00-00', '', null];
-                                          if (in_array($row['birthdate'], $invalid_birthdates) || in_array($row['cbirthdate'], $invalid_birthdates)) {
-                                              $profile_complete = false;
-                                          }
-                                      }
+                                        // Check if required fields are empty
+                                        foreach ($required_fields as $field => $label) {
+                                            if (empty($row[$field])) {
+                                                $missing_fields[] = $label;
+                                            }
+                                        }
 
-                                      // Check if required images are empty
-                                      if ($profile_complete) {
-                                          foreach ($image_fields as $field) {
-                                              if (empty($row[$field])) {
-                                                  $profile_complete = false;
-                                                  break;
-                                              }
-                                          }
-                                      }
+                                        // Check if fields that should not be '0' are still '0'
+                                        foreach ($non_zero_fields as $field => $label) {
+                                            if (isset($row[$field]) && $row[$field] == 0) {
+                                                $missing_fields[] = $label;
+                                            }
+                                        }
 
-                                      // Output result
-                                      echo $profile_complete ? '<span class="badge badge-success">YES</span>' : '<span class="badge badge-danger">NO</span>';
-                                  ?>
-                              </td>
+                                        // Check if birthdates are NULL, empty, or '0000-00-00'
+                                        $invalid_birthdates = ['0000-00-00', '', null];
+                                        if (in_array($row['birthdate'], $invalid_birthdates)) {
+                                            $missing_fields[] = 'Birthdate';
+                                        }
+                                        if (in_array($row['cbirthdate'], $invalid_birthdates)) {
+                                            $missing_fields[] = 'Emergency Contact Birthdate';
+                                        }
 
-            
+                                        // Check if required images are empty
+                                        foreach ($image_fields as $field => $label) {
+                                            if (empty($row[$field])) {
+                                                $missing_fields[] = $label;
+                                            }
+                                        }
+
+                                        // Generate a unique ID for each row (important for multiple rows in a table)
+                                        $unique_id = uniqid('missing_');
+
+                                        // Output result
+                                        if (empty($missing_fields)) {
+                                            echo '<span class="badge badge-success" style="cursor:pointer;" data-toggle="collapse" data-target="#'.$unique_id.'">YES</span>';
+                                            echo '<div id="'.$unique_id.'" class="collapse mt-2">';
+                                            echo '<small><strong>Completed All Fields</strong></small>';
+                                            echo '</div>';
+                                        } else {
+                                            echo '<span class="badge badge-danger" style="cursor:pointer;" data-toggle="collapse" data-target="#'.$unique_id.'">No, Click me for more info</span>';
+                                            echo '<div id="'.$unique_id.'" class="collapse mt-2">';
+                                            echo '<small><strong>Missing Fields:</strong> ' . implode(", ", $missing_fields) . '</small>';
+                                            echo '</div>';
+                                        }
+                                    ?>
+                                </td>
+
+                                <!-- Enrollment Status -->
+                                <!-- Enrollment Status -->
                                 <!-- Enrollment Status -->
                                 <td>
                                     <?php 
                                         switch ($row['enroll_status_id']) {
                                             case 0:
-                                                echo '<span class="badge badge-warning">PENDING</span>';                                            
+                                                echo '<span class="badge badge-warning">PENDING</span>';
+                                                
+                                                // Show the enroll button only if everything is completed
+                                                if (empty($missing_fields) && !empty($row['birth_cert_img']) && !empty($row['diploma_tor_img'])) {
+                                                    echo '<br><button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#confirmEnroll-'.$row['stud_id'].'">Mark as Enrolled</button>';
+                                                }
                                                 break;
                                             case 1:
                                                 echo '<span class="badge badge-success">ENROLLED</span>';
@@ -287,6 +335,31 @@
                                         }
                                     ?>
                                 </td>
+
+                                <!-- Modal for Confirmation -->
+                                <div class="modal fade" id="confirmEnroll-<?php echo $row['stud_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirm Enrollment</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to enroll <b><?php echo "{$row['firstname']} {$row['lastname']}"; ?></b>?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form method="POST" action="user-data/user-list-req-scholar.php">
+                                            <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
+                                            <button type="submit" class="btn btn-primary">Yes, Enroll</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>           
+
                             </tr>
                         <?php endwhile; ?>
                     </tbody>
@@ -328,11 +401,34 @@
 
 <?php include '../../includes/script.php'; ?> 
 
-<script>
-  $(document).ready(function () {
-    $('#dataTable').DataTable();
-  });
-</script>
 
+<!-- for Mark as enrolled when all necesary requirements are filled -->
+<script>
+    $(document).ready(function() {
+    $(".enroll-btn").click(function() {
+        var stud_id = $(this).data("id");
+
+        if (confirm("Are you sure you want to mark this student as enrolled?")) {
+            $.ajax({
+                url: "user-data/user-list-req-scholar.php", // Create this file for handling the update
+                type: "POST",
+                data: { stud_id: stud_id },
+                success: function(response) {
+                    if (response === "success") {
+                        alert("Student successfully enrolled!");
+                        location.reload(); // Refresh the page to update the UI
+                    } else {
+                        alert("Error updating enrollment status.");
+                    }
+                },
+                error: function() {
+                    alert("Failed to connect to the server.");
+                }
+            });
+        }
+    });
+});
+
+</script>
 </body>
 </html>

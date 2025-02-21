@@ -147,10 +147,10 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         bpmunicity = '$bpmunicity',
         birthdate = '$birthdate',
         gender_id = '$gender',
-        civilstatus = '$civilstatus',
+        -- civilstatus = '$civilstatus',
 
         course_id = '$courses',
-        
+        civil_status_id = '$civilstatus',
         province = '$province',
         age = '$age',
         bpregion = '$bpregion',

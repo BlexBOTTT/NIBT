@@ -45,127 +45,87 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
+    <?php
 
-                <?php 
-                  // Query to count the number of students in tbl_students
-                  $sql_total = "SELECT COUNT(*) AS total_scholar FROM tbl_students";
-                  $result_total = $conn->query($sql_total);
 
-                  // Fetch the result and store the total number of students
-                  if ($result_total->num_rows > 0) {
-                      $row_total = $result_total->fetch_assoc();
-                      $totalStudents = $row_total['total_scholar'];
-                  } else {
-                      $totalStudents = 0;
-                  }
-                ?>
-                <h3><?php echo $totalStudents; ?> Scholars</h3>
-                <p>Scholars Count</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="../scholar/list-scholar.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    // Query to count the number of students
+    $sql_total = "SELECT COUNT(*) AS total_scholar FROM tbl_students";
+    $result_total = $conn->query($sql_total);
+    $totalStudents = ($result_total->num_rows > 0) ? $result_total->fetch_assoc()['total_scholar'] : 0;
+
+    // Query to count approved students
+    $sql_approved = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 1";
+    $result_approved = $conn->query($sql_approved);
+    $totalApproved = ($result_approved) ? $result_approved->fetch_assoc()['total_students'] : 0;
+
+    // Query to count pending students
+    $sql_pending = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 0";
+    $result_pending = $conn->query($sql_pending);
+    $totalPending = ($result_pending) ? $result_pending->fetch_assoc()['total_students'] : 0;
+
+    // Define role-based content
+    if ($_SESSION['role'] == "Super Admin" || $_SESSION['role'] == "Administrator") {
+        ?>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Scholars Count -->
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3><?php echo $totalStudents; ?> Scholars</h3>
+                                <p>Scholars Count</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="../scholar/list-scholar.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Approved Scholars -->
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3><?php echo $totalApproved; ?></h3>
+                                <p>Approved Scholars</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Scholars -->
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3><?php echo $totalPending; ?></h3>
+                                <p>Pending Scholars</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person-add"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dropped Scholars (Placeholder) -->
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>##?</h3>
+                                <p>Dropped Scholars</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
+        </section>
 
-                <?php 
-                  // Query to count students with a specific enroll_status_id (e.g., 1 for approved)
-                  $select_approved = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 1";
-                  $result = $conn->query($select_approved);
-
-                  // Fetch the result and store the total number of approved students
-                  if ($result) {
-                      $row = $result->fetch_assoc();
-                      $total_approved = $row['total_students'];
-                  } else {
-                      $total_approved = 0;
-                  }
-                ?>
-                <h3><?php echo $total_approved; ?></h3>
-
-
-                <p>Approved Scholars</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-
-                <?php 
-                  // Query to count students with a specific enroll_status_id (e.g., 1 for approved)
-                  $select_approved = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 0";
-                  $result = $conn->query($select_approved);
-
-                  // Fetch the result and store the total number of approved students
-                  if ($result) {
-                      $row = $result->fetch_assoc();
-                      $total_approved = $row['total_students'];
-                  } else {
-                      $total_approved = 0;
-                  }
-                ?>
-                <h3><?php echo $total_approved; ?></h3>
-
-                <p>Pending Scholars</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>##?</h3>
-
-                <p>Dropped Scholars</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-12">
-            <!-- Custom tabs (Charts with tabs)-->
-            
-            <!-- /.card -->
-
-            <!-- DIRECT CHAT -->
-
-            <!--/.direct-chat -->
-
-            <!-- TO DO List -->
+        <section class="col-lg-12">
             <div class="card card-danger">
               <div class="card-header">
                 <h3 class="card-title">NIBT - LAS PINAS Quick Links:</h3>
@@ -204,66 +164,31 @@
                     </td>
                   </tr> 
                 </table>
-                  <!-- <div class="row">
-                    <div class="col-2">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <button type="button" class="btn btn-block btn-primary">Default</button>
-                    </div>
-                    <div class="col-4">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="text" class="form-control" placeholder=".col-4">
-                      <button type="button" class="btn btn-block btn-primary">Default</button>
-                    </div>
-                    <div class="col-5">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="text" class="form-control" placeholder=".col-5">
-                      <button type="button" class="btn btn-block btn-primary">Default</button>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                    <button type="button" class="btn btn-block btn-primary">Default</button>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
-                  </div> -->
-                  <!-- <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div>
-                </div> -->
-                <!-- /.card-body -->
+        </section>
+ 
 
-                <!-- <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div> -->
-              </form>
-            <!-- /.card -->
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <?php
+    } elseif ($_SESSION['role'] == "Student") {
+        ?>
 
-   
-          </section>
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
+        <section class="col-lg-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Navigation</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <div class="card-body pad table-responsive">
+                  <div>
+                      
+                  </div>
+              </div>
+            </div>
+        </section>
+        <?php
+    }
+    ?>
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

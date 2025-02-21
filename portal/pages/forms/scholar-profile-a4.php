@@ -329,7 +329,7 @@ if ($stud_id > 0) {
         $pdf->Rect(85, 170, 3, 3);
         $pdf->Rect(85, 175, 3, 3);
 
-        $civilstatus_fill = isset($row['civilstatus']) ? intval($row['civilstatus']) : null;
+        $civilstatus_fill = isset($row['civil_status_id']) ? intval($row['civil_status_id']) : null;
 
         if ($civilstatus_fill !== null) {
             switch ($civilstatus_fill) {
