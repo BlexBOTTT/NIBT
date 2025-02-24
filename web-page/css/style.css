@@ -50,9 +50,12 @@
 
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Roboto:300,400,500,700');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap');
+
 
  body {
 	font-family: 'Roboto', sans-serif;
+    font-family: 'Jost' sans-serif;
 	font-weight: 400;
 	font-style: normal;
     -webkit-font-smoothing: antialiased;
@@ -119,11 +122,13 @@ ul,ol {
 }
 
 p {
-	font-size: 16px;
+	font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
 	line-height: 28px;
-	color: #505050;
+	color: #76080B;
 	margin: 0px;
+    text-align: justify;
 }
 
 .bg_cover{
@@ -204,7 +209,7 @@ p {
 	z-index: 9999;
 }
 .preloader .color-1{
-    background-color: #ffc600 !important;
+    background-color: #ffc600!important;
 }
 .rubix-cube {
 	/* border: 1px solid #FFF; */
@@ -221,7 +226,7 @@ p {
 	width:14px;
 	height:14px;
 	background-color:#76080B;
-	border:1px solid #FFF;
+	border:1px solid #ffffff;
 	position:absolute;
 	
 }
@@ -408,8 +413,7 @@ p {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.header-contact{}
-.header-contact ul{}
+
 .header-contact ul li{
     display: inline-block;
     margin-right: 45px;
@@ -420,7 +424,6 @@ p {
     margin-right: 0;
 }
 
-.header-contact ul li img{}
 .header-contact ul li span {
 	color: #dee2e6;
 	font-size: 15px;
@@ -428,7 +431,6 @@ p {
 	margin-left: 10px;
 }
 
-.header-opening-time{}
 .header-opening-time p {
 	color: #dee2e6;
 	font-size: 15px;
@@ -441,7 +443,6 @@ p {
     border-bottom: 1px solid #cecece;
 }
 
-.support-button{}
 .support-button .support {
 	display: -moz-flex;
 	display: -ms-flex;
@@ -454,7 +455,7 @@ p {
 	align-items: flex-start;
 	margin-top: 7px;
 }
-.support-button .support .icon{}
+
 .support-button .support .cont{
     margin-left: 15px;
     margin-top: -2px;
@@ -476,8 +477,6 @@ p {
 }
 
 /*===== Header Menu =====*/
-
-.navigation{}
 
 .navigation.sticky {
 	position: fixed;
@@ -519,7 +518,6 @@ p {
     padding: 0;
 }
 
-.navigation .navbar .navbar-nav{}
 .navigation .navbar .navbar-nav li{
     margin-right: 40px;
     position: relative;
@@ -625,7 +623,6 @@ p {
     top: -7px;
 }
 
-.right-icon{}
 .right-icon ul li{
     display: inline-block;
     margin-right: 17px;
@@ -816,7 +813,7 @@ p {
     font-weight: 600;
     padding-bottom: 50px;
 }
-.slider-cont ul {}
+
 .slider-cont ul li{
     display: inline-block;
     margin-right: 15px;
@@ -950,7 +947,7 @@ p {
 }
 
 
-.slider-feature{}
+
 .singel-slider-feature{
     display: -moz-flex;
     display: -ms-flex;
@@ -962,7 +959,7 @@ p {
     -ms-flex-align: start; 
     align-items: flex-start;
 }
-.singel-slider-feature .icon{}
+
 .singel-slider-feature .cont{
     padding-left: 30px;
 }
@@ -1000,8 +997,6 @@ p {
     z-index: 5;
 }
 
-.category-text{
-}
 .category-text h2{
     font-size: 36px;
     color: #fff;
@@ -1027,7 +1022,6 @@ p {
     font-weight: 700;
 }
 
-.category-slied{}
 .category-slied a{
     display: block;
 }
@@ -1289,7 +1283,6 @@ p {
 
 .singel-course .course-teacher .admin{
     display: inline-block;
-    float: right;
     overflow: hidden;
 }
 .singel-course .course-teacher .admin ul {
@@ -1316,7 +1309,6 @@ p {
     margin-left: 3px;
 }
 
-.course-slied{}
 .course-slied .slick-arrow {
 	position: absolute;
 	top: -125px;
@@ -1332,17 +1324,17 @@ p {
     line-height: 36px;
     border-radius: 5px;
     color: #000;
-    border: 2px solid #aaaaaa;
+    border: 2px solid #d3d3d3;
     font-size: 18px;
     text-align: center;
     cursor: pointer;
-    -webkit-transition: all 0.4s linear;
-    transition: all 0.4s linear;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 
 .course-slied .slick-arrow:hover i{
-    border-color: #ffc600;
-    background-color: #ffc600;
+    color: #fff;
+    background-color: #76080B;
 }
 
 
@@ -1363,7 +1355,7 @@ p {
 }
 
 .video{
-    padding-left: 80px;
+    padding-left: auto;
 }
 .video i{
     width: 120px;
@@ -1388,7 +1380,7 @@ p {
     position: relative;
     z-index: 5;
 }
-.feature .feature-title{}
+
 .feature .feature-title h3{
     font-size: 36px;
     color: #fff;
@@ -1400,7 +1392,6 @@ p {
     overflow: hidden;
 }
 .feature ul li .singel-feature .icon{
-    float: left;
     overflow: hidden;
     display: inline-block;
     padding-right: 30px;
@@ -1424,7 +1415,6 @@ p {
     9. TEACHERS css 
 ======================================================*/
 
-.teachers-cont{}
 .teachers-cont p{
     padding-top: 30px;
 }
@@ -1579,7 +1569,6 @@ p {
     11. TEASTIMONIAL css 
 ======================================================*/
 
-#testimonial{}
 #testimonial .section-title{
     position: relative;
     z-index: 5;
@@ -1669,13 +1658,11 @@ p {
     12. NEWS css 
 ======================================================*/
 
-.singel-news{}
-.singel-news .news-thum{}
 .singel-news .news-thum img{
     width: 100%;
     border-radius: 5px;
 }
-.singel-news .news-cont{}
+
 .singel-news .news-cont ul li{
     display: inline-block;
     margin-right: 25px;
@@ -1820,16 +1807,17 @@ p {
     top: 5px;
 }
 .footer-address ul li .cont{
-    padding-left: 35px;
+    padding-left: 30px;
 }
 .footer-address ul li .cont p{
     color: #fff;
 }
 
 .footer-copyright{
-    background-color: #021d3a;
+    background-color: #250305;
 }
 .footer-copyright .copyright p{
+    font-size: 13px;
     color: #fff;
 }
 .footer-copyright .copyright p span{
@@ -1847,17 +1835,17 @@ p {
     line-height: 35px;
     background-color: #76080B;
     color: #fff;
-    font-size: 28px;
+    font-size: 25px;
     border-radius: 5px;
     z-index: 99;
     text-align: center;
-    -webkit-transition: all 0.4s linear;
-    transition: all 0.4s linear;
+    -webkit-transition: all 0.6s linear;
+    transition: all 0.6s linear;
     display: none;
 }
 .back-to-top:hover{
-    color: #ffc600;
-    background-color: #ffffff;
+    color: #76080B;
+    background-color: #ffc600;
 }
 
 
@@ -1865,7 +1853,6 @@ p {
     14. CATEGORY 2 css 
 ======================================================*/
 
-.category-2-items{}
 .category-2-items .singel-items{
     position: relative;
 }
@@ -1961,7 +1948,6 @@ p {
     15. COURSE 2 css 
 ======================================================*/
 
-.singel-course-2{}
 .singel-course-2 > .thum{
     position: relative;
 }
@@ -2031,7 +2017,6 @@ p {
     font-size: 12px;
     color: #ffc600;
 }
-.singel-course-2 > .thum .course-teacher .review ul li{}
 
 .singel-course-2 .cont{
     padding-top: 25px;
@@ -2071,7 +2056,6 @@ p {
 
 /*===== Index-3 =====*/
 
-.counter-3{}
 .counter-3 p{
     color: #07294d;
     font-weight: 600;
@@ -2082,7 +2066,6 @@ p {
     17. TEACHERS 2 css 
 ======================================================*/
 
-.teachers-2{}
 .teachers-2 .teachers-2-singel{
     background-color: #fff;
     display: -moz-flex;
@@ -2096,14 +2079,14 @@ p {
     align-items: center;
     padding: 40px 15px;
 }
-.teachers-2 .teachers-2-singel .thum{}
+
 .teachers-2 .teachers-2-singel .thum img{
     border-radius: 50%;
 }
 .teachers-2 .teachers-2-singel .cont{
     padding-left: 20px;
 }
-.teachers-2 .teachers-2-singel .cont a{}
+
 .teachers-2 .teachers-2-singel .cont a h5{
     font-size: 18px;
     color: #000;
@@ -2147,7 +2130,7 @@ p {
     border-radius: 5px;
     position: relative;
 }
-.happy-student .happy-title{}
+
 .happy-student .happy-title h3{
     font-size: 36px;
     color: #fff;
@@ -2355,6 +2338,12 @@ p {
     ======================================================*/
 
     /* Centered and Subtle Logo */
+
+    #about-page {
+        background-color: #eee; /* Light gray background, change as needed */
+        padding: 60px 0; /* Adds top and bottom spacing */
+    }
+
     .logo-container {
         margin-bottom: 30px; /* Space below the logo */
     }
@@ -2373,7 +2362,6 @@ p {
         border-radius: 5px;
     }
 
-    .about-singel-items{}
     .about-singel-items span{
         font-size: 60px;
         color: #dbdbdb;
@@ -2409,8 +2397,6 @@ p {
 /*=====================================================
     22. COURSES PAGE css 
 ======================================================*/
-
-.tab-content{}
 .tab-content .singel-course .course-teacher .name {
     bottom: 0;
 }
@@ -2470,8 +2456,6 @@ p {
 	top: 30px;
 }
 
-.courses-pagination{}
-.courses-pagination .pagination{}
 .courses-pagination .pagination .page-item{
     margin: 0 5px;
 }
@@ -2503,7 +2487,6 @@ p {
     background-color: #fff;
 }
 
-.corses-singel-left .title{}
 .corses-singel-left .title h3{
     font-size: 30px;
     color: #000;
@@ -2511,7 +2494,6 @@ p {
     padding-bottom: 25px;
 }
 
-.corses-singel-left .course-terms{}
 .corses-singel-left .course-terms > ul > li{
     display: inline-block;
     margin-right: 60px;
@@ -2553,7 +2535,6 @@ p {
     font-weight: 700;
 }
 
-.corses-singel-left .course-terms ul li .review{}
 .corses-singel-left .course-terms ul li .review ul li {
     display: inline-block;
 }
@@ -2568,7 +2549,6 @@ p {
     margin-left: 13px;
 }
 
-.corses-singel-image{}
 .corses-singel-image img{
     width: 100%;
 }
@@ -2578,8 +2558,6 @@ p {
     border-radius: 5px;
 }
 
-.corses-tab .nav{}
-.corses-tab .nav .nav-item{}
 .corses-tab .nav .nav-item a {
 	font-size: 16px;
 	color: #76080B;
@@ -2596,7 +2574,7 @@ p {
 .overview-description{
     padding: 0px 30px 25px;
 }
-.overview-description .singel-description{}
+
 .overview-description .singel-description h6{
     font-size: 18px;
     font-family: 'Poppins', sans-serif;
@@ -2695,7 +2673,6 @@ p {
 .curriculam-cont .accordion .card .card-header a ul li > .time i{
     margin-right: 5px;
 }
-.curriculam-cont .accordion .card .card-header a ul li > .time span{}
 
 .curriculam-cont .accordion .card .card-body {
 	background-color: #edf0f2;
@@ -2800,7 +2777,6 @@ p {
     font-family: 'Poppins', sans-serif;
 }
 
-.reviews-cont ul li .singel-reviews .reviews-description{}
 .reviews-cont ul li .singel-reviews .reviews-description p{
     padding-bottom: 17px;
 }
@@ -2888,7 +2864,7 @@ p {
     color: #76080B;
     padding-bottom: 15px;
 }
-.course-features ul{}
+
 .course-features ul li{
     font-size: 15px;
     color: #8a8a8a;
@@ -3051,7 +3027,7 @@ p {
     background-color: #fff;
     padding: 45px 50px;
 }
-.events-left{}
+
 .events-left h3{
     padding-top: 5px;
 	padding-bottom: 10px;
@@ -3077,7 +3053,6 @@ p {
     padding-top: 31px;
 }
 
-.events-right{}
 .events-coundwon {
     padding: 25px 30px 30px;
     border-radius: 5px;
@@ -3088,7 +3063,7 @@ p {
     position: relative;
     z-index: 5;
 }
-.events-coundwon .count-down-time .singel-count{}
+
 .events-coundwon .count-down-time .singel-count .number {
 	font-size: 24px;
 	color: #ffc600;
@@ -3097,7 +3072,6 @@ p {
     font-size: 13px;
 }
 
-.events-coundwon .events-coundwon-btn{}
 .events-coundwon .events-coundwon-btn .main-btn{
     width: 100%;
 }
@@ -3198,8 +3172,7 @@ p {
     border-radius: 5px;
     overflow: hidden;
 }
-.teachers-right .nav{}
-.teachers-right .nav .nav-item{}
+
 .teachers-right .nav .nav-item a{
     padding: 20px 0;
     background-color: #315377;
@@ -3221,7 +3194,7 @@ p {
     padding: 0px 50px 35px;
     background-color: #fff;
 }
-.teachers-right .tab-content .dashboard-cont{}
+
 .teachers-right .tab-content .dashboard-cont .singel-dashboard h5{
     font-size: 18px;
     color: #000;
@@ -3232,9 +3205,6 @@ p {
 .teachers-right .tab-content .reviews-cont{
     padding: 45px 0 15px;
 }
-
-.teachers-right .tab-content{}
-
 
 /*=====================================================
     27. BLOG PAGE css 
@@ -3372,9 +3342,6 @@ p {
     text-decoration: underline;
 }
 
-
-
-.saidbar{}
 .saidbar .saidbar-search{
     padding: 35px;
     background-color: #fff;
@@ -3457,7 +3424,7 @@ p {
     border-radius: 5px;
 }
 
-.saidbar .saidbar-post ul li a .singel-post .cont{}
+
 .saidbar .saidbar-post ul li a .singel-post .cont h6{
     font-weight: 600;
     font-size: 18px;
@@ -3523,7 +3490,7 @@ p {
     display: inline-block;
     margin-right: 10px;
 }
-.blog-details .cont .share li a{}
+
 .blog-details .cont .share li a i{
     width: 35px;
     line-height: 35px;
@@ -3650,7 +3617,6 @@ p {
 }
 .shop-top-search .shop-select {
 	display: inline-block;
-    float: right;
     margin-top: -3px;
 }
 
@@ -3731,7 +3697,6 @@ p {
     border-radius: 3px;
 }
 
-.shop-right{}
 .shop-right h6{
     font-size: 18px;
     padding-bottom: 5px;
@@ -3784,7 +3749,6 @@ p {
     line-height: 46px;
 }
 
-.shop-reviews .nav .nav-item{}
 .shop-reviews .nav .nav-item:first-child a{
     border-top-left-radius: 5px;
 }
@@ -3818,7 +3782,6 @@ p {
     padding: 0;
 }
 
-.releted-item{}
 .releted-item .title h3{
     font-size: 30px;
     color: #07294d;
@@ -3835,7 +3798,7 @@ p {
     padding: 50px;
     border-radius: 5px;
 }
-.contact-from .main-form{}
+
 .contact-from .main-form .singel-form{
     margin-top: 20px;
 }
@@ -3908,9 +3871,7 @@ p.form-message.error {
 .contact-address ul li .singel-address .cont{
     padding-left: 20px;
 }
-.contact-address ul li .singel-address .cont p{}
 
-.map{}
 .map #contact-map{
     width: 100%;
     height: 225px;
@@ -3965,43 +3926,293 @@ a:hover {
     background-color: transparent;
 }
 
-/* Styling for the banner section */
-.lpBnr {
-    position: relative;
+.lpBnr-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #76080B;
+    max-width: 50%;
+    margin: 0 auto;
+    text-align: justify;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-indent: 50px;
+}
+
+.about-title {
+    text-align: center;
+    font-size: 40px;
+    color: #76080B;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+
+video {
+    height: 100%;
     width: 100%;
-    min-height: 400px;
+    display: block;
+    margin: auto;
+    position: relative;
+    top: -100%;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.design-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    min-height: 50px;
+    padding: 110px 0;
+    font-family: Jost;
+    margin: 0 auto;
+  }
+
+h2 {
+    font-size: 40px;
+    color: #76080B;
+  }
+
+
+  .ttl__0 h2 {
+    text-align: center;
+    font-size: 40px;
+    color: #76080B;
+    font-weight: bold;
+    margin-top: -80px;
+}
+  
+  .design {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    color: white;
-    padding: 0 auto 20px;
-}
+  }
 
-.imgWrap .col-lg-10 {
-    position: relative;
-    z-index: 2;
-}
-
-/* Heading styles */
-.about-title {
-    font-size: 50px;
-    color: #76080B;
+.timeline-component h4 {
     font-weight: bold;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    background: #76080B;
+    display: inline-block;
+    padding: 4px 10px;
+    line-height: 1;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    position: center;
+    
+}
+  
+  .timeline {
+    width: 80%;
+    height: auto;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+.timeline__year span {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    background: #76080B;
+    display: inline-block;
+    padding: 4px 10px;
+    line-height: 1;
+    border-radius: 10px;
 }
 
-/* Paragraphs Style */
-.lead {
-    font-size: 26px;
-    color: #76080B;
+  .timeline-content {
+    padding: 20px;
+    background: #ffffff;
+    -webkit-box-shadow: 6px 6px 11px #afafaf, -6px -6px 10px #afafaf;
+            box-shadow: 6px 6px 11px #afafaf, -6px -6px 10px #afafaf;
+    border-radius: 5px;
+    color: white;
+    padding: 1.30rem;
+    transition: 0.4s ease;
+    overflow-wrap: break-word !important;
+    margin: 1rem;
+    margin-bottom: 20px;
+    border-radius: 7px;
+  }
+  
+  .timeline-component {
+    margin: 0px 20px 20px 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr 3px 1fr;
+    }
+    .timeline-middle {
+      position: relative;
+      background-image: linear-gradient(45deg, #f17d34, #ff475f, #500b0d);
+      width: 3px;
+      height: 100%;
+    }
+    .main-middle {
+      opacity: 0;
+    }
+    .timeline-circle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #76080B;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+    }
+  }
+
+/* Admission Section */
+
+#admission-section .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 25px;
+    padding: 30px;
+}
+
+/* Styles only apply to h2 inside #admission-section */
+#admission-section h2 {
+    color: #8B0000; /* Dark red */
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+}
+
+/* Optional: Styling for Admission Paragraph */
+#admission-section p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+
+/* Admission Requirements section */
+#requirement-section {
+    background-color: #f7f7f7;
+    padding: 30px;
+}
+
+.requirement-container {
     max-width: 900px;
     margin: 0 auto;
-    justify-content: center;
+    text-align: center;
 }
 
+/* Scoped h1 to this section only */
+#requirement-section h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #76080B;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
 
+.req-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.req-column {
+    width: 48%;
+    background: white;
+    padding: 20px;
+    border-radius: 9px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Scoped h2 to this section only */
+#requirement-section h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+#requirement-section ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+#requirement-section ul li {
+    font-size: 15px;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 25px; /* Adjust spacing to align with text */
+}
+
+/* Add "+" before each list item */
+#requirement-section ul li::before {
+    content: "➤";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: #8B0000; /* Dark red color to match heading */
+    font-size: 11px;
+    top: 0; /* Adjust alignment to match text */
+}
+
+#vmc-section {
+    background-color: transparent;
+}
+
+#vmc-section .vmcbanner img {
+    size-adjust: 90%;
+    width: 100px; 
+    height: auto; 
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.g-horizontalmenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centers menu items */
+    gap: 20px; /* Space between menu items */
+    background-color: #eee;
+    padding: 40px 0;
+}
+
+.g-horizontalmenu li {
+    display: inline;
+}
+
+.g-horizontalmenu a {
+    font-family: 'Monsterrat', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    color: #76080B;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 9px;
+    transition: background 0.7s ease;
+}
+
+.g-horizontalmenu a:hover {
+    color: #fff;
+    background-color: #76080B; /* Slightly lighter shade on hover */
+}
 
 
 
