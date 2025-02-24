@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Dashboard</title>
 
-  <?php include '../../includes/links.php'; 
-  
-    // fetch student_id
-    
-  ?>
+<?php
+  include '../../includes/links.php'; 
+
+  // Fetch student_id safely
+  $stud_id = isset($_GET['stud_id']) ? intval($_GET['stud_id']) : 0;
+?>
 
   
 </head>
@@ -91,22 +92,31 @@
             <div class="card card-secondary">
 
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">?</h3>
               </div>
               <!-- /.card-header -->
        
               
                 <div class="card-body pad table-responsive">  
                 
-                    <?php
-                        $get_stud = $conn->query("SELECT * FROM tbl_students WHERE stud_id = '$_GET[stud_id]'");
-                        $res_count = $get_stud->num_rows;
-                        if ($res_count == 0) {
-                            // error code
-                        }
-                        $row = $get_stud->fetch_array();
+                <?php 
+                    // Fixed SQL query (removed extra comma)
+                    $sql = "
+                    SELECT 
+                        tbl_students.*, 
+                        tbl_student_requirements.birth_cert_img,
+                        tbl_student_requirements.diploma_tor_img
+                    FROM tbl_students               
+                    LEFT JOIN tbl_student_requirements ON tbl_students.stud_id = tbl_student_requirements.stud_id";
 
-                    ?>
+                    if ($stud_id > 0) {
+                        $sql .= " WHERE tbl_students.stud_id = $stud_id";
+                    }
+
+                    // Execute query
+                    $get_stud = $conn->query($sql);
+                    $row = $get_stud->fetch_array();
+                  ?>
                 
                     <input class="form-control" type="text" name="stud_id" value="<?php echo $row['stud_id']; ?>" hidden>
                      
@@ -144,43 +154,141 @@
 
                     <form action="user-data/user-submit-req-scholar.php" method="POST" enctype="multipart/form-data">
                       <!-- Hidden Student ID -->
-                      <input type="hidden" name="stud_id" value="<?php echo htmlspecialchars($row['stud_id']); ?>">
+                      <input type="text" class="form-control" name="stud_id" value="<?php echo htmlspecialchars($row['stud_id']); ?>" hidden>
 
                       <div class="row justify-content-around">
-                          <!-- Scholar ID (Hidden) -->
-                          <div class="col-md-3">
-                              <div class="my-3">
-                                  <label class="form-label">Scholar ID</label>
-                                  <input type="text" class="form-control" value="<?php echo htmlspecialchars($row['stud_id']); ?>" disabled>
-                              </div>
-                          </div>
-
                           <!-- Birth Certificate Upload -->
                           <div class="col-md-3">
                               <div class="my-3">
-                                  <label class="form-label">PSA Birth Cert. or Marriage Cert. for females</label>
-                                  <div class="custom-file">
+                                  <!-- Document Label -->
+                                  <label class="form-label">
+                                      <?php if (!empty($row['birth_cert_img'])): ?>
+                                          ✅ PSA Birth Cert. or Marriage Cert. (Uploaded)
+                                      <?php else: ?>
+                                          ⚠️ Please upload PSA Birth Cert. or Marriage Cert. (Required)
+                                      <?php endif; ?>
+                                  </label>
+
+                                  <!-- File Upload Input -->
+                                  <div class="custom-file mb-2">
                                       <input type="file" class="custom-file-input" name="certificate_img" accept="image/jpeg, image/png, application/pdf">
                                       <label class="custom-file-label">Choose file</label>
+                                  </div>
+
+                                  <!-- If Uploaded: Show Action Buttons -->
+                                  <?php if (!empty($row['birth_cert_img'])): ?>
+                                      <div class="d-flex align-items-center gap-2">
+                                          <!-- View Button -->
+                                          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-cert-<?php echo $row['stud_id']; ?>">
+                                              <i class="fa fa-eye"></i> View PSA
+                                          </button>
+
+                                          <!-- Delete Button -->
+                                          <form method="POST" style="display:inline;">
+                                              <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
+                                              <input type="hidden" name="file_type" value="birth_cert_img">
+                                              <button type="submit" name="delete" class="btn btn-danger btn-sm">
+                                                  <i class="fa fa-trash"></i> Delete
+                                              </button>
+                                          </form>
+                                      </div>
+
+                                      <!-- Uploaded Badge -->
+                                      <span class="badge badge-success mt-2">Uploaded</span>
+                                  <?php endif; ?>
+                              </div>
+
+                              <!-- Modal for Viewing Uploaded Image -->
+                              <div class="modal fade" id="modal-cert-<?php echo $row['stud_id']; ?>">
+                                  <div class="modal-dialog modal-xl">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h4 class="modal-title">PSA/Marriage Certificate</h4>
+                                              <button type="button" class="close" data-dismiss="modal">
+                                                  <span>&times;</span>
+                                              </button>
+                                          </div>
+                                          <div class="modal-body text-center">
+                                              <?php if (!empty($row['birth_cert_img'])): ?>
+                                                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['birth_cert_img']); ?>" class="img-fluid">
+                                              <?php else: ?>
+                                                  <p>No image uploaded.</p>
+                                              <?php endif; ?>
+                                          </div>
+                                      </div>
                                   </div>
                               </div>
                           </div>
 
                           <!-- Diploma or ToR Upload -->
                           <div class="col-md-3">
-                              <div class="my-3">
-                                  <label class="form-label">Diploma or ToR</label>
-                                  <div class="custom-file">
-                                      <input type="file" class="custom-file-input" name="diploma_tor_img" accept="image/jpeg, image/png, application/pdf">
-                                      <label class="custom-file-label">Choose file</label>
-                                  </div>
-                              </div>
+                            <div class="my-3">
+                                <!-- Document Label -->
+                                <label class="form-label">
+                                    <?php if (!empty($row['diploma_tor_img'])): ?>
+                                        ✅ Diploma/TOR (Uploaded)
+                                    <?php else: ?>
+                                        ⚠️ Please upload Diploma/TOR (Required)
+                                    <?php endif; ?>
+                                </label>
+
+                                <!-- File Upload Input -->
+                                <div class="custom-file mb-2">
+                                    <input type="file" class="custom-file-input" name="diploma_tor_img" accept="image/jpeg, image/png, application/pdf">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+
+                                <!-- If Uploaded: Show Action Buttons -->
+                                <?php if (!empty($row['diploma_tor_img'])): ?>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <!-- View Button -->
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-diploma-<?php echo $row['stud_id']; ?>">
+                                            <i class="fa fa-eye"></i> View Diploma/TOR
+                                        </button>
+
+                                        <!-- Delete Button -->
+                                        <form method="POST" style="display:inline;">
+                                            <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
+                                            <input type="hidden" name="file_type" value="diploma_tor_img">
+                                            <button type="submit" name="delete" class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <!-- Uploaded Badge -->
+                                    <span class="badge badge-success mt-2">Uploaded</span>
+                                <?php endif; ?>
+                            </div>
+
+                            <!-- Modal for Viewing Uploaded Image -->
+                            <div class="modal fade" id="modal-diploma-<?php echo $row['stud_id']; ?>">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Diploma/TOR</h4>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <?php if (!empty($row['diploma_tor_img'])): ?>
+                                                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['diploma_tor_img']); ?>" class="img-fluid">
+                                            <?php else: ?>
+                                                <p>No image uploaded.</p>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
+
                       </div>
 
                       <div class="row justify-content-center">
                           <div class="col-md-3">
                               <div class="my-3 text-center">
+
                                   <button class="btn btn-danger" type="submit" name="submit">Upload</button>
                               </div>
                           </div>

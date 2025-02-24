@@ -67,7 +67,7 @@
     $pdf->SetFont('Arial', '', 8);
 
     // nibt database Query to fetch student data
-    $query = "SELECT create_datetime, stud_id, lastname, firstname, middleinitial, email, contact, fb_account, fb_mess, num_street, barangay, district, addmunicity FROM tbl_students";
+    $query = "SELECT create_datetime, stud_id, lastname, firstname, middleinitial, email, contact, fb_account, fb_mess, num_street, barangay, district, addmunicity FROM tbl_students WHERE enroll_status_id = '1'";
     $result = mysqli_query($conn, $query);
                             
     // Check if the query was successful and if there are results
@@ -76,10 +76,7 @@
         $cellWidth = 8;
         $cellHeight = 4;
 
-        for ($i = 1; $i <= 10; $i++) {
-            $pdf->Cell($cellWidth, $cellHeight, $i, 1, 0, 'C');
-            $pdf->Ln();
-        }
+ 
 
         while ($row = mysqli_fetch_assoc($result)) {
             
@@ -100,12 +97,6 @@
             // Increment the counter
             $counter++;
         }
-
-        for ($i = 1; $i <= 10; $i++) {
-            $pdf->Cell($cellWidth, $cellHeight, $i, 1, 0, 'C');
-            $pdf->Ln();
-        }
-
 
         
     } 

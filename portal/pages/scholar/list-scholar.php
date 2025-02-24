@@ -167,7 +167,7 @@
                                   <i class="fa fa-address-card"></i> Scholar Profile
                                   </a>                                            
 
-                                  <a href="submit-req-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-dark mx-1" target="_blank">
+                                  <a href="list-req-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-dark mx-1" target="_blank">
                                   <i class="fa fa-address-card"></i> Check Scholar Status
                                   </a>
                                   

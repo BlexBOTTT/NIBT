@@ -99,7 +99,11 @@
             <div class="card-body pad table-responsive">  
                 
                 <?php
-                    $get_stud = $conn->query("
+
+                    $stud_id = isset($_GET['stud_id']) ? intval($_GET['stud_id']) : 0;
+
+                    // Prepare the query
+                    $sql = "
                     SELECT 
                         tbl_students.*, 
                         tbl_genders.gender_name, 
@@ -108,16 +112,48 @@
                     FROM tbl_students
                     LEFT JOIN tbl_genders ON tbl_students.gender_id = tbl_genders.gender_id
                     LEFT JOIN tbl_student_requirements ON tbl_students.stud_id = tbl_student_requirements.stud_id
-                    ");
-            
+                    ";
+
+                    // If a specific student ID is provided, filter the query
+                        if ($stud_id > 0) {
+                        $sql .= " WHERE tbl_students.stud_id = $stud_id";
+                        }
+
+                    // Execute the query
+                    $get_stud = $conn->query($sql);
+
+                    // Check if query executed successfully
+                    if (!$get_stud) {
+                    die("Query Error: " . $conn->error);
+                    }
+
+                    // Display message if no records found
                     if ($get_stud->num_rows == 0) {
-                        echo "<p class='text-center text-danger'>No records found.</p>";
+                    echo "<p class='text-center text-danger'>No records found.</p>";
                     }
                 ?>
             
                 <div class="row justify-content-center text-center">                    
                     <h3><b>Scholar Requirement Checker</b></h3>                       
                 </div>
+                
+                <?php
+                // Check if stud_id is set in the URL
+                $showBackButton = isset($_GET['stud_id']);
+                ?>
+
+            
+
+
+                <!-- Show the 'See all students' button only when a specific student is selected -->
+                <?php if ($showBackButton): ?>
+                    <div class="row justify-content-center text-center">
+                        <a href="list-req-scholar.php" type="button" class="btn btn-primary mx-1">
+                            Click Me to see all students
+                        </a>
+                    </div>
+                <?php endif; ?>
+                
             
                 <table class="table table-bordered text-center" id="myTable">
                     <thead>
