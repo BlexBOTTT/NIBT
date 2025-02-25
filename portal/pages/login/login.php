@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+
+  <!-- Preloader -->
+  <?php include '../../includes/preloader.php'; ?>
+
+
 <div class="login-box">
   <div class="login-logo">
     <a href="../../index2.html"><b>NIBT</b>PORTAL</a>

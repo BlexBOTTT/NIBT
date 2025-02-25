@@ -112,7 +112,7 @@
                             <div class="col-md-4 my-4">
                                 <div class="custom-file">
                                     <div class="text-center mb-4">
-                                        <img class="img-fluid img-circle" id="profile-img" src="data:image/jpeg;base64, <?php echo base64_encode($row['img'] ?? ''); ?>" alt="User profile picture">
+                                        <img class="img-fluid img-circle" id="prof-img" src="data:image/jpeg;base64, <?php echo base64_encode($row['admin_image'] ?? ''); ?>" alt="User profile picture">
                                     </div>
                                     <div class="row justify-content-center">
                                         <div class="form-group col-md-12">
@@ -225,41 +225,6 @@
 <!-- jQuery -->
 <?php include '../../includes/script.php'; ?>
 
-<script>
-    const fileInput = document.getElementById('prof_img');
-    const fileLabel = document.querySelector('label.custom-file-label');
-    const profileImg = document.getElementById('profile-img');  // Reference to the image element
-    const MAX_FILENAME_LENGTH = 20;
-
-    fileInput.addEventListener('change', function() {
-        if (this.files.length > 0) {
-            let fileName = this.files[0].name;
-            const fileExtension = fileName.split('.').pop();
-            const fileNameWithoutExtension = fileName.substring(0, fileName.length - fileExtension.length - 1);
-
-            if (fileNameWithoutExtension.length > MAX_FILENAME_LENGTH) {
-                const truncatedStart = fileNameWithoutExtension.substring(0, Math.floor(MAX_FILENAME_LENGTH / 2) - 2);
-                const truncatedEnd = fileNameWithoutExtension.substring(fileNameWithoutExtension.length - 5);
-                fileName = truncatedStart + '...' + truncatedEnd + '.' + fileExtension;
-            }
-
-            fileLabel.textContent = fileName;
-
-            // Update the profile picture preview
-            const file = this.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                profileImg.src = e.target.result; // Set the image source to the selected file
-            };
-
-            reader.readAsDataURL(file);
-        } else {
-            fileLabel.textContent = 'Choose file';
-            profileImg.src = "data:image/jpeg;base64, <?php echo base64_encode($row['admin_image'] ?? $row['student_image'] ?? ''); ?>"; // Reset to default image
-        }
-    });
-</script>
 
 </body>
 </html>
