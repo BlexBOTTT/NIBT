@@ -110,7 +110,7 @@
                             <div class="col-md-4 my-4">
                                 <div class="custom-file">
                                     <div class="text-center mb-4">
-                                        <img class="img-fluid img-circle" id="profile-img" src="data:image/jpeg;base64, <?php echo base64_encode($row['img'] ?? ''); ?>" alt="User profile picture">
+                                        <img class="img-fluid img-circle" id="profile-img" src="data:image/jpeg;base64, <?php echo base64_encode($row['img'] ?? ''); ?>" alt="User profile picture" style="width: 150px; height: 150px;">
                                     </div>
                                     <div class="row justify-content-center">
                                         <div class="form-group col-md-12">

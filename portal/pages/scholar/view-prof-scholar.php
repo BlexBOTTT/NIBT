@@ -87,9 +87,9 @@
                         }
                     ?>
 
-            <div class="card card-danger">
+            <div class="card card-secondary">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">View Scholar Profile</h3>
               </div>
               <!-- /.card-header -->
               <!-- <div class="row justify-content-center">
@@ -142,7 +142,7 @@
                                                     alt="User profile picture" style="width: 100px; height: 100px;">
                                             </div>
                                             <div class="row justify-content-center">
-                                                <div class="form-group col-md-8">
+                                                <div class="form-group col-md-6">
                                                     <div class="input-group">
                                                         <div class="custom-file">
                                                             <label class="custom-file-label" for="prof_img">Choose file</label>
@@ -158,32 +158,36 @@
 
                                 <!-- Personal Data-->
                                 <div> 
-                                    <br>
-                                    <h2 class="text-center"><b>1.1 Learner/Manpower Profile</b></h2> 
-
-                                    <br>
+                                    
+                                    
+                                    <div class="row mx-auto">
+                                        <div class="col">
+                                        <h2 class="text-center"><b>1.1 Learner/Manpower Profile</b></h2> 
+                                        </div>
+                                    </div>
+                                    
                                     <div class="row mx-auto">
                                         <div class="col">
                                             <h4><b>Name</h4>
                                         </div>
                                     </div>
 
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-2">
                                             <div class="my-3">
                                                 <label>Last Name</label>
                                                 <input disabled type="text" name="lastname" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['lastname']; ?>" placeholder="Last Name">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <div class="my-3">
                                                 <label>First Name</label>
                                                 <input disabled type="text" name="firstname" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['firstname']; ?>" placeholder="First name">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <div class="my-3">
                                                 <label>Middle Name</label>
                                                 <input disabled type="text" name="middlename" class="form-control" autocomplete="off"
@@ -197,7 +201,7 @@
                                 
 
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                                 <div class="my-3">
                                                 <label>Middle Initial</label>
                                                     <input disabled type="text" name="middleinitial" class="form-control" autocomplete="off"
@@ -205,7 +209,7 @@
                                                         placeholder="Ex. B.">
                                                 </div>
                                             </div>           
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <div class="my-3">
                                                 <label>Extension Name (e.g. Jr. Sr.)</label>
                                                 <select disabled class="form-control" id="extname" name="extname">                                                
@@ -230,7 +234,7 @@
                                     
                                     
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Number & Street</label>
                                                 <input disabled type="text" name="numstreet" class="form-control" autocomplete="off"
@@ -256,8 +260,6 @@
                                         </div>                                     
                                     </div>
                                     <div class="row mx-auto justify-content-around">
-                                        
-                                        
                                         <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Municipality/City</label>
@@ -309,14 +311,14 @@
                                         </div>
                                     </div>
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                             <label>Facebook</label>
                                             <input disabled type="text" name="fb_account" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
                                                 value="<?php echo $row['fb_account']; ?>">
                                             </div>
                                         </div>   
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                             <label>FB Messenger</label>                                       
                                             <input disabled type="text" name="fb_mess" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
@@ -328,7 +330,7 @@
                                                                           
                                     <div class="row mx-auto">
                                         <div class="col">
-                                            <h4><b>Personal Information</b></h4>
+                                        <h2 class="text-center"><b>Personal Information</b></h2> 
                                         </div>                                 
                                     </div>
                                                      

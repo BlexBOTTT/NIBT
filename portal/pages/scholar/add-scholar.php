@@ -88,7 +88,7 @@
             <!--/.direct-chat -->
 
              <!-- CARD HEADER  -->
-            <div class="card card-danger">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Add new NIBT-LP Scholar</h3>
               </div>

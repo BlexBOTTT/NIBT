@@ -33,11 +33,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">List of Scholars</h1>
+            <h1 class="m-0">Shcholar Config</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Scholar Config</li>
               <li class="breadcrumb-item active">Dashboard v1</li>
             </ol>
           </div><!-- /.col -->
@@ -86,10 +87,9 @@
                           unset($_SESSION['success-del']);
                         }
                       ?>
-            <div class="card card-secondary">
-
+            <div class="card card-primary   ">
               <div class="card-header">
-                <h3 class="card-title">?</h3>
+                <h3 class="card-title">Scholar Requirement Checker</h3>
               </div>
               <!-- /.card-header -->
        
@@ -131,9 +131,9 @@
                     }
                 ?>
             
-                <div class="row justify-content-center text-center">                    
+                <!-- <div class="row justify-content-center text-center">                    
                     <h3><b>Scholar Requirement Checker</b></h3>                       
-                </div>
+                </div> -->
                 
                 <?php
                 // Check if stud_id is set in the URL
@@ -374,7 +374,7 @@
                                 <div class="modal fade" id="confirmEnroll-<?php echo $row['stud_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                    <div class="modal-header">
+                                    <div class="modal-header btn-success">
                                         <h5 class="modal-title" id="exampleModalLabel">Confirm Enrollment</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>

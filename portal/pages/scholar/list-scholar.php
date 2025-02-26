@@ -29,12 +29,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">List of Scholars</h1>
+            <h1 class="m-0">Scholar Config</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item">Home</a></li>
+              <li class="breadcrumb-item">Scholar Config</li>
+              <li class="breadcrumb-item">Dashboard v1</li>
             </ol>
           </div><!-- /.col -->
           
@@ -82,9 +83,9 @@
                           unset($_SESSION['success-del']);
                         }
                       ?>
-            <div class="card card-danger">
+            <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">Scholar Lists</h3>
               </div>
               <!-- /.card-header -->
               <div class="row justify-content-center">
@@ -113,9 +114,9 @@
                         <th>Fullname</th>
                         <th>Email</th>                     
                         <th>Contact #</th>
-                        <th>Facebook & Messenger</th>
+                        <th style="width: 20%">Facebook & Messenger</th>
                         <th>Username</th>
-                        <th style="width:20%">Actions</th>
+                        <th>Actions</th>
                         <th>Status</th>
                       </tr>  
                     </thead>                                             
@@ -157,26 +158,27 @@
                               <td>Facebook: <b><?php echo $row['fb_account'] ?></b> <br> Messenger: <b><?php echo $row['fb_mess'] ?></b></td>
                               <td><?php echo $row['username'] ?></td>
                               <td>
-                                  <a href="../forms/scholar-profile-a4.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-primary mx-1" target="_blank">
-                                  <i class="fa fa-print"></i> View Printable Profile
-                                  </a>                                   
-                                  
-                                  <a href="view-prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank">
-                                  <i class="fa fa-address-card"></i> Scholar Profile
+                                                                
+                                  <a href="view-prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank" 
+                                  title="View Scholar Profile">
+                                  <i class="fa fa-eye"></i> <i class="fa fa-user"></i> 
                                   </a>                                            
 
-                                  <a href="list-req-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-dark mx-1" target="_blank">
-                                  <i class="fa fa-address-card"></i> Check Scholar Status
+                                  <a href="list-req-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank" 
+                                  title="Scholar Requirement Status">
+                                  <i class="fa fa-address-card"></i> <i class="fa fa-question"></i>
                                   </a>
                                   
                                   
-                                  <a href="edit-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-info mx-1" target="_blank">
-                                  <i class="fa fa-edit"></i> Update Account
+                                  <a href="edit-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-info mx-1" target="_blank"
+                                  title="Edit Scholar Account">
+                                  <i class="fa fa-edit"></i>
                                   </a>
                                   
                                   <!-- Button trigger modal -->
-                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>">
-                                          <i class="fa fa-trash"></i> Delete Scholar
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>"
+                                  title="Delete Scolar Account">
+                                          <i class="fa fa-trash"></i> 
                                       </button>
 
                                   <!-- Delete Modal Window -->
@@ -209,8 +211,13 @@
                                         case 0:
                                           echo '<span class="badge badge-warning">PENDING</span>';                                            
                                           break;
-                                        case 1:
-                                          echo '<span class="badge badge-success">ENROLLED</span>';
+                                         case 1:
+                                            echo '<span class="badge badge-success">ENROLLED</span> <br>
+                                                  <a href="../forms/scholar-profile-a4.php?stud_id=' . $id . '" type="button" class="btn btn-primary mx-1" target="_blank" title="View Printable Scholar Profile">
+                                                      <i class="fa fa-print"></i> 
+                                                  </a>';
+                                          break;
+                                        
                                           break;
                                         case 2:
                                           echo '<span class="badge badge-danger">REJECTED</span>'; // Replace with appropriate status
@@ -227,8 +234,8 @@
                       </tbody>
                   </table>
                   
-                  <a href="../forms/scholar-online-registration.php" type="button" class="btn btn-primary mx-1" target="_blank">
-                                  <i class="fa fa-print"></i> Online Register Responses
+                  <a href="../forms/scholar-online-registration.php" type="button" class="btn btn-success mx-1" target="_blank">
+                                  <i class="fa fa-print"></i> Enrolled List
                                   </a>  
               </div>
               <!-- /.card-body -->
