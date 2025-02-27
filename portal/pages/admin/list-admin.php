@@ -106,31 +106,39 @@
                       
                       
                       <?php
-                          $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_admins.lastname, ', ', tbl_admins.firstname) AS fullname FROM tbl_admins");
+                          $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_admins.firstname, ' ', tbl_admins.lastname) AS fullname FROM tbl_admins");
                           while ($row = mysqli_fetch_array($get_user)) {
                               $id = $row['admin_id'];
                       ?>
                       <tbody>
                           <tr>
-                              <td><img class="img-fluid img-circle" src="data:image/jpeg;base64, <?php echo base64_encode($row['admin_image']); ?>" alt="image" style="height: 100px; width: 100px"></td>
+                              <td>
+                                <?php if (!empty($row['admin_img'])): ?>
+                                  <img class="img-fluid img-circle" src="data:image/jpeg;base64, <?php echo base64_encode($row['admin_image']); ?>" alt="image" style="height: 50px; width: 50px">
+                                  
+                                <?php else: ?>                            
+                                  <span class="badge badge-secondary">No Image</span>
+                                  
+                                <?php endif; ?>
+                              </td>
                               <td><?php echo $row['fullname'] ?></td>
                               <td><?php echo $row['email'] ?></td>
                               <td><?php echo $row['username'] ?></td>
                               <td>
-                                  <a href="edit-admin.php<?php echo '?admin_id=' . $id; ?>" type="button" class="btn btn-info mx-1">
-                                      <i class="fa fa-edit"></i> Update
+                                  <a href="edit-admin.php<?php echo '?admin_id=' . $id; ?>" type="button" class="btn btn-info mx-1" title="Update Admin Account">
+                                      <i class="fa fa-edit"></i> 
                                   </a>
 
                                   <!-- Button trigger modal -->
-                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>">
-                                      <i class="fa fa-trash"></i> Delete
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?php echo $id; ?>" title="Delete Admin Account">
+                                      <i class="fa fa-trash"></i>
                                   </button>
 
                                   <!-- Delete Modal Window -->
                                   <div class="modal fade" id="deleteModal<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
                                           <div class="modal-content">
-                                              <div class="modal-header">
+                                              <div class="modal-header btn-danger">
                                                   <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                   <span aria-hidden="true">&times;</span>

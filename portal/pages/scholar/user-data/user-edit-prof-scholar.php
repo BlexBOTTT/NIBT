@@ -69,74 +69,14 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
     $disclaimer = isset($_POST['disclaimer']) ? $_POST['disclaimer'] : 0;
 
-    
-
-    // CHECKBOX COURSES/QUALI START
-     // Get selected courses from the form (array of course IDs)
-    // if (isset($_POST['courses']) && is_array($_POST['courses'])) {
-    //     $selected_courses = $_POST['courses'];
-        
-    //     // First, remove any previously selected courses for this student
-    //     $delete_query_courses = "DELETE FROM tbl_student_courses WHERE stud_id = '$student_id'";
-    //     $delete_result_courses = mysqli_query($conn, $delete_query_courses);
-        
-    //     if (!$delete_result_courses) {
-    //         $_SESSION['errors'] = true;
-    //         echo "Failed to delete old courses: " . mysqli_error($conn);
-    //         exit();
-    //     }
-        
-    //     // Now, insert the newly selected courses
-    //     foreach ($selected_courses as $course_id) {
-    //         $course_id = mysqli_real_escape_string($conn, $course_id);
-    //         $insert_query_courses = "INSERT INTO tbl_student_courses (stud_id, course_id) VALUES ('$student_id', '$course_id')";
-    //         $insert_result_courses = mysqli_query($conn, $insert_query_courses);
-            
-    //         if (!$insert_result_courses) {
-    //             $_SESSION['errors'] = true;
-    //             echo "Failed to update courses: " . mysqli_error($conn);
-    //             exit();
-    //         }
-    //     }
-    // }
-    // CHECKBOX QUALI END
-
-    
-    // CHECKBOX REQUIREMENTS START
-     // Get selected courses from the form (array of course IDs)
-    //  if (isset($_POST['requirements']) && is_array($_POST['requirements'])) {
-    //     $selected_requirements = $_POST['requirements'];
-        
-    //     // First, remove any previously selected courses for this student
-    //     $delete_query_requirements = "DELETE FROM tbl_student_requirements WHERE stud_id = '$student_id'";
-    //     $delete_result_requirements = mysqli_query($conn, $delete_query_requirements);
-        
-    //     if (!$delete_result_requirements) {
-    //         $_SESSION['errors'] = true;
-    //         echo "Failed to delete old requirements: " . mysqli_error($conn);
-    //         exit();
-    //     }
-        
-    //     // Now, insert the newly selected courses
-    //     foreach ($selected_requirements as $requirement_id) {
-    //         $requirement_id = mysqli_real_escape_string($conn, $requirement_id);
-    //         $insert_query_requirements = "INSERT INTO tbl_student_requirements (stud_id, requirement_id) VALUES ('$student_id', '$requirement_id')";
-    //         $insert_result_requirements = mysqli_query($conn, $insert_query_requirements);
-            
-    //         if (!$insert_result_requirements) {
-    //             $_SESSION['errors'] = true;
-    //             echo "Failed to update requirements: " . mysqli_error($conn);
-    //             exit();
-    //         }
-    //     }
-    // }
-    // CHECKBOX QUALI END END
 
     // Update section
+    $image = (!empty($_FILES['prof_img']['tmp_name'])) ? addslashes(file_get_contents($_FILES['prof_img']['tmp_name'])) : null;
+
     $query = "UPDATE tbl_students SET 
 
         /* Personal Info */
-
+        img = '$image',
         lastname = '$lastname',
         firstname = '$firstname',
         middlename = '$middlename',
@@ -197,7 +137,8 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION['errors'] = true;
         echo "Failed to update data: " . mysqli_error($conn);
     } else {
+        
         $_SESSION['success-edit'] = true;
-        header('location: ../prof-scholar.php?stud_id=' . $student_id);
+        header('location: ../edit-prof-scholar.php?stud_id=' . $student_id);
     }
 }

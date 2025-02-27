@@ -93,7 +93,7 @@
               </div>
               <!-- /.card-header -->
               <!-- <div class="row justify-content-center">
-                  <div class="col-md-5 mb-3 mt-4">
+                  <div class="col-md-3 mb-3 mt-4">
                       <form method="GET">
                           <div class="input-group">
                               <input type="search" class="form-control"
@@ -126,7 +126,7 @@
                                 <input class="form-control" type="text" name="stud_id" value="<?php echo $row['stud_id']; ?>" hidden>
                                 
                                 <div class="row mx-auto justify-content-center text-center">
-                                    <div class="col-md-4 my-4">
+                                    <div class="col-md-3 my-4">
                                         <a href="view-prof-scholar.php<?php echo '?stud_id=' . $stud_id; ?>" type="button" class="btn btn-danger mx-1">
                                         <i class="fa fa-address-card"></i> Go back to View Profile
                                         </a>
@@ -137,16 +137,14 @@
                                     <div class="col-md-4 my-4">
                                         <div class="custom-file">
                                             <div class="text-center mb-4">
-                                                <img id="profile-picture" class="img-fluid img-circle" src="data:image/jpeg;base64, <?php echo base64_encode($row['img']); ?>"
-                                                    alt="User profile picture" style="width: 100px; height: 100px;">
+                                                <img class="img-fluid img-circle" id="profile-img" src="data:image/jpeg;base64, <?php echo base64_encode($row['img'] ?? ''); ?>" alt="User profile picture" style="width: 150px; height: 150px;">
                                             </div>
                                             <div class="row justify-content-center">
-                                                <div class="form-group col-md-8">
+                                                <div class="form-group col-md-12">
                                                     <div class="input-group">
                                                         <div class="custom-file">
-                                                            <label class="custom-file-label" for="prof_img">Choose file</label>
-                                                            <input type="file" class="custom-file-input" name="prof_img" id="prof_img" onchange="readURL(this);">
-                                                            
+                                                            <input type="file" class="form-control" name="prof_img" id="prof_img" required>
+                                                            <label for="prof_img" class="custom-file-label">Choose file</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -157,32 +155,34 @@
 
                                 <!-- Personal Data-->
                                 <div> 
-                                    <br>
-                                    <h2 class="text-center"><b>1.1 Learner/Manpower Profile</b></h2> 
-
-                                    <br>
+                                    <div class="row mx-auto">
+                                        <div class="col">
+                                            <h2 class="text-center"><b>Learner/Manpower Profile</b></h2> 
+                                        </div>
+                                    </div>
+   
                                     <div class="row mx-auto">
                                         <div class="col">
                                             <h4><b>Name</h4>
                                         </div>
                                     </div>
 
-                                    <div class="row mx-auto">
-                                        <div class="col-md-4">
+                                    <div class="row mx-auto justify-content-around">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Last Name</label>
                                                 <input type="text" name="lastname" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['lastname']; ?>" placeholder="Last Name">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>First Name</label>
                                                 <input type="text" name="firstname" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['firstname']; ?>" placeholder="First name">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Middle Name</label>
                                                 <input type="text" name="middlename" class="form-control" autocomplete="off"
@@ -196,7 +196,7 @@
                                 
 
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                                 <div class="my-3">
                                                 <label>Middle Initial</label>
                                                     <input type="text" name="middleinitial" class="form-control" autocomplete="off"
@@ -204,7 +204,7 @@
                                                         placeholder="Ex. B.">
                                                 </div>
                                             </div>           
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Extension Name (e.g. Jr. Sr.)</label>
                                                 <select class="form-control" id="extname" name="extname">                                                
@@ -229,7 +229,7 @@
                                     
                                     
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Number & Street</label>
                                                 <input type="text" name="numstreet" class="form-control" autocomplete="off"
@@ -308,14 +308,14 @@
                                         </div>
                                     </div>
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                             <label>Facebook</label>
                                             <input type="text" name="fb_account" class="form-control" autocomplete="off" placeholder="Ex. FB: Juan Dela Cruz"
                                                 value="<?php echo $row['fb_account']; ?>">
                                             </div>
                                         </div>   
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                             <label>FB Messenger</label>                                       
                                             <input type="text" name="fb_mess" class="form-control" autocomplete="off" placeholder="Ex. FBM: Juan Dela Cruz"
@@ -445,7 +445,7 @@
                                     </div>
                                     
                                     <div class="row mx-auto">
-                                        <div class="col-md-5 mx-auto">
+                                        <div class="col-md-3 mx-auto">
                                             <div class="my-3">
                                                 <label>Educational Attainment Before The Training (Trainee)</label>
                                                 <select class="form-control" id="attainment" name="attainment" placeholder="Select your answer">                                            
@@ -469,7 +469,7 @@
 
 
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Full Name</label>
                                                 <input type="text" name="cfullname" class="form-control" autocomplete="off"
@@ -479,14 +479,14 @@
                                     </div>
 
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Cell No.</label>
                                                 <input type="text" name="ccell_no" class="form-control" autocomplete="off"
                                                         value="<?php echo $row['ccell_no']; ?>" placeholder="09123456789">
                                             </div>
                                         </div> 
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Birthdate</label>
                                                 <input type="date" name="cbirthdate" class="form-control" autocomplete="off"
@@ -496,7 +496,7 @@
                                     </div>
                                     
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-9">
+                                        <div class="col-md-6">
                                             <div class="my-3">
                                                 <label>Parent/Guardian's Complete Mailing Address</label>
                                                 <input type="text" name="caddress" class="form-control" autocomplete="off"
@@ -506,7 +506,7 @@
                                         </div>
                                     </div>
                                     <div class="row mx-auto justify-content-around">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Relationship to the scholar</label>
                                                 <input type="text" name="relationship" class="form-control" autocomplete="off"
@@ -526,7 +526,7 @@
                                     </div>
 
                                     <div class="row mx-auto justify-content-around">               
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <div class="my-3">
                                                 <label>Choose Which one fits you the best:</label>                                       
                                                 <select class="form-control" id="classification" name="classification" placeholder="Select your classification">                                            
@@ -549,7 +549,7 @@
                                     </div>
 
                                     <div class="row mx-auto">                                       
-                                        <div class="col-md-5 mx-auto">
+                                        <div class="col-md-3 mx-auto">
                                             <div class="my-3">
                                                 <label>Type of Disability (For Persons With Disability [PWDs] only)</label>
 
@@ -567,7 +567,7 @@
                                     </div>
 
                                     <div class="row mx-auto">                                       
-                                        <div class="col-md-5 mx-auto">
+                                        <div class="col-md-3 mx-auto">
                                             <div class="my-3">
                                                 <label>Cause of Disability (For Persons With Disability [PWDs] only)</label>
 
@@ -585,7 +585,7 @@
                                     </div>
 
                                     <div class="row mx-auto">
-                                        <div class="col-md-5 mx-auto">
+                                        <div class="col-md-3 mx-auto">
                                             <div class="my-3">
                                                 <label>Name of Course/Qualification:</label>
 
@@ -603,7 +603,7 @@
                                     </div>
                                     
                                     <div class="row mx-auto">
-                                        <div class="col-md-5 mx-auto">
+                                        <div class="col-md-3 mx-auto">
                                             <div class="my-3">
                                                 <label>Type of Scholarship Package:</label>
 
@@ -653,7 +653,7 @@
 
 
                                      <!-- <div class="row mx-auto">                                  
-                                        <div class="col-md-5 mx-auto">
+                                        <div class="col-md-3 mx-auto">
                                             <div class="my-3">
                                                 <label>Learners ID/ULI No. (For those who have already taken up any TESDA Course before)</label>
                                                 <input type="text" name="learneriduli" class="form-control" 
@@ -662,26 +662,24 @@
                                         </div>                                
                                     </div> -->
                                     <div class="row mx-auto">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="input-group input-group-outline my-3">                                          
-                                            <?php 
-                                                if ($_SESSION['role'] == "Administrator") {
-                                                    echo '<a class="btn btn-secondary" href="list.students.php">Go Back</a>';
-                                                } elseif ($_SESSION['role'] == "Student") {
-                                                    echo '<a class="btn btn-secondary" href="../dashboard/index.php">Go Back</a>';
-                                                }  
-                                            ?>                                                                                              
+                                                <?php 
+                                                    if ($_SESSION['role'] == "Administrator") {
+                                                        echo '<a class="btn btn-secondary" href="list.students.php">Go Back</a>';
+                                                    } elseif ($_SESSION['role'] == "Student") {
+                                                        echo '<a class="btn btn-secondary" href="../dashboard/index.php">Go Back</a>';
+                                                    }  
+                                                ?>                                                                                                                         
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4"></div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="input-group input-group-outline my-3 justify-content-end">
                                                 <button class="btn btn-danger" type="submit" name="submit">Submit</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                    
+                                                            
                             </div>   
                                 <!-- End -->
                                                                                                   
@@ -732,6 +730,42 @@
   $(document).ready(function () {
     $('#dataTable').DataTable();
   });
+</script>
+
+<script>
+    const fileInput = document.getElementById('prof_img');
+    const fileLabel = document.querySelector('label.custom-file-label');
+    const profileImg = document.getElementById('profile-img');  // Reference to the image element
+    const MAX_FILENAME_LENGTH = 20;
+
+    fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            let fileName = this.files[0].name;
+            const fileExtension = fileName.split('.').pop();
+            const fileNameWithoutExtension = fileName.substring(0, fileName.length - fileExtension.length - 1);
+
+            if (fileNameWithoutExtension.length > MAX_FILENAME_LENGTH) {
+                const truncatedStart = fileNameWithoutExtension.substring(0, Math.floor(MAX_FILENAME_LENGTH / 2) - 2);
+                const truncatedEnd = fileNameWithoutExtension.substring(fileNameWithoutExtension.length - 5);
+                fileName = truncatedStart + '...' + truncatedEnd + '.' + fileExtension;
+            }
+
+            fileLabel.textContent = fileName;
+
+            // Update the profile picture preview
+            const file = this.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                profileImg.src = e.target.result; // Set the image source to the selected file
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            fileLabel.textContent = 'Choose file';
+            profileImg.src = "data:image/jpeg;base64, <?php echo base64_encode($row['admin_image'] ?? $row['img'] ?? ''); ?>"; // Reset to default image
+        }
+    });
 </script>
 
 </body>

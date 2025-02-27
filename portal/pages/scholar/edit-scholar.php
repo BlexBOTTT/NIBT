@@ -88,7 +88,7 @@
              <!-- CARD HEADER  -->
             <div class="card card-danger">
               <div class="card-header">
-                <h3 class="card-title">NIBT - LAS PINAS Admin List:</h3>
+                <h3 class="card-title">Update Scholar Account</h3>
               </div>
               <!-- /.card-header -->
                 <!-- CARD BODY -->
@@ -160,14 +160,14 @@
                                 <div class="my-3">
                                     <label class="form-label">Password</label>
                                     <input type="password" name="password" class="form-control" autocomplete="off" 
-                                        required>
+                                        >
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="my-3">
                                     <label class="form-label">Confirm Password</label>
                                     <input type="password" name="password2" class="form-control" autocomplete="off"
-                                        required>
+                                        >
                                 </div>
                             </div>
                         </div>

@@ -67,14 +67,24 @@
 
             <p>
             <?php echo $user_fullname; ?>
-              <small><?php echo $_SESSION['role'];?></small>
+              <small><i><?php echo $_SESSION['role'];?></i></small>
             </p>
           </li>
           <!-- Menu Body -->
           <li class="user-body">
             <div class="row">
               <div class="col-6 text-center">
-                <a href="" class="btn btn-default btn-flat float-left">Profile</a>
+              <?php if ($_SESSION['role'] == "Super Admin") { ?>
+
+              <?php } elseif ($_SESSION['role'] == "Administrator") {?>
+                <a href="../admin/edit-admin.php?admin_id=<?php echo $_SESSION['admin_id'] ?>" class="btn btn-default btn-flat float-left">Profile</a>
+
+              <?php } elseif ($_SESSION['role'] == "Student") { ?>
+                <a href="../scholar/view-prof-scholar.php?stud_id=<?php echo $_SESSION['stud_id'] ?>" class="btn btn-default btn-flat float-left">Profile</a>
+
+              <?php } else {
+                
+              } ?>
               </div>
               <div class="col-6 text-center">
                 <a href="../login/user-data/user-logout.php" class="btn btn-default btn-flat float-right">Sign out</a>

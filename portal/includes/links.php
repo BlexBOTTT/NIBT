@@ -1,5 +1,10 @@
   <!-- connect to DB -->
   <?php include 'session.php'; ?>  
+
+  <!--====== Title ======-->
+  <title>NIBT - MIS</title>
+    <!--====== Favicon Icon ======-->
+  <link rel="shortcut icon" href="../../assets/img/nibt-white.png" type="image/png">
   
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">

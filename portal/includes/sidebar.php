@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../dashboard/index.php" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="../../assets/img/nibt-white.png" alt="NIBT Logo" class="brand-image img-circle" style="opacity: .8">
       <span class="brand-text font-weight-light">NIBT</span>
     </a>
 
@@ -29,16 +29,19 @@
         <div class="info">
           <?php 
             if ($_SESSION['role'] == "Student") {  
-                echo '<a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="d-block">' . $user_fullname . '</a>';  
+                echo '
+                <a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="d-block">' . $user_fullname . ' - <i>' . $_SESSION['role'] . '</i></a>
+                
+                ';
+
             } else {
               echo '<a href="" class="d-block">' . $user_fullname . '</a>';
             }
           ?>
 
           
-        </div>
+        </div> 
       </div>
-
       <!-- SidebarSearch Form -->
       <!-- <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -198,8 +201,9 @@
                         </li>                          
                 
                         <li class="nav-header">Scholar:</li>
+
                         <li class="nav-item">
-                            <a href="../scholar/prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                            <a href="../scholar/edit-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
                                 <p>Update Profile</p>
                             </a>
                         </li>
@@ -207,6 +211,12 @@
                         <li class="nav-item">
                             <a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
                                 <p>View Profile</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="../scholar/edit-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                                <p>Update Account</p>
                             </a>
                         </li>
 

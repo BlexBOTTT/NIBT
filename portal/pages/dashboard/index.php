@@ -168,20 +168,53 @@
     } elseif ($_SESSION['role'] == "Student") {
         ?>
 
-        <section class="col-lg-12">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Navigation</h3>
+          <div class="row justify-content-around">
+            <section class="col-lg-5">
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Navigation</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card-body pad table-responsive">
+                    <div>
+                        
+                    </div>
+                </div>
               </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <div class="card-body pad table-responsive">
-                  <div>
-                      
+            </section>
+            <section class="col-lg-3">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Navigation</h3>
                   </div>
-              </div>
-            </div>
-        </section>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+                  <div class="card-body pad table-responsive">
+                      <div>
+                          
+                      </div>
+                  </div>
+                </div>
+            </section>
+            <section class="col-lg-3">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Navigation</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+                  <div class="card-body pad table-responsive">
+                      <div>
+                          
+                      </div>
+                  </div>
+                </div>
+            </section>
+          </div>
+        
+
+        
         <?php
     }
     ?>
