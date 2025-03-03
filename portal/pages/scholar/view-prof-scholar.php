@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+
 
   <?php include '../../includes/links.php'; 
 
@@ -36,8 +36,10 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item active">Home</li>
+              <li class="breadcrumb-item active">Scholar Config</li>
+              <li class="breadcrumb-item active">Scholar Lists</li>
+              <li class="breadcrumb-item active">View Scholar Profile: <b><?php echo $user_fullname;?></b></li>
             </ol>
           </div><!-- /.col -->
           
@@ -128,7 +130,7 @@
                                         
                                 <div class="row mx-auto justify-content-center text-center">
                                     <div class="col-md-4 my-4">
-                                        <a href="prof-scholar.php<?php echo '?stud_id=' . $stud_id; ?>" type="button" class="btn btn-secondary mx-1">
+                                        <a href="edit-prof-scholar.php<?php echo '?stud_id=' . $stud_id; ?>" type="button" class="btn btn-secondary mx-1">
                                         <i class="fa fa-address-card"></i> Edit Scholar Profile
                                         </a>
                                     </div>
@@ -144,7 +146,7 @@
                                                 <div class="form-group col-md-12">
                                                     <div class="input-group">
                                                         <div class="custom-file">
-                                                            <input type="file" class="form-control" name="prof_img" id="prof_img" required>
+                                                            <input type="file" class="form-control" name="prof_img" id="prof_img" disabled>
                                                             <label for="prof_img" class="custom-file-label">Choose file</label>
                                                         </div>
                                                     </div>
@@ -665,25 +667,12 @@
                                         <div class="col-md-4">
                                             <div class="input-group input-group-outline my-3">                                          
                                             <?php 
-                                                if ($_SESSION['role'] == "Administrator") {
-                                                    echo '<a class="btn btn-secondary" href="list.students.php">Go Back</a>';
+                                                if ($_SESSION['role'] == "Administrator" || $_SESSION['role'] == "Super Admin") {
+                                                    echo '<a class="btn btn-secondary" href="list-scholar.php">Go Back</a>';
                                                 } elseif ($_SESSION['role'] == "Student") {
                                                     echo '<a class="btn btn-secondary" href="../dashboard/index.php">Go Back</a>';
                                                 }  
                                             ?>                                                                                              
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4"></div>
-                                        <div class="col-md-4">
-                                            <div class="input-group input-group-outline my-3 justify-content-end">
-                                                <?php
-                                                    if ($_SESSION['role'] !== "Student") {
-                                                    echo '<button class="btn btn-danger" type="submit" name="submit">Submit</button>';
-                                                    }  
-                                                ?>
-                                            
-                                                
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

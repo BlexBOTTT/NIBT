@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+
+  <title>NIBT-MIS | Log in</title>
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  
 </head>
 <body class="hold-transition login-page">
 
@@ -17,7 +20,7 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>NIBT</b>PORTAL</a>
+    <a href="../../index2.html"><b>NIBT</b> - MIS</a>
   </div>
   <div class="card">
     <div class="card-body login-card-body">
@@ -34,7 +37,7 @@
           <input type="text" name="username" class="form-control" placeholder="username" required>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
@@ -57,7 +60,7 @@
             </div>
           </div>
           <div class="col-4">
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" name="submit" class="btn btn-danger btn-block">Sign In</button>
           </div>
         </div>
       </form>

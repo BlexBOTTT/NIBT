@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
 
   <?php include '../../includes/links.php'; ?>
   
@@ -60,9 +59,11 @@
     $result_pending = $conn->query($sql_pending);
     $totalPending = ($result_pending) ? $result_pending->fetch_assoc()['total_students'] : 0;
 
-    // Define role-based content
-    if ($_SESSION['role'] == "Super Admin" || $_SESSION['role'] == "Administrator") {
-        ?>
+    ?>
+
+    <!-- Define role-based content -->
+    <?php if ($_SESSION['role'] == "Super Admin" || $_SESSION['role'] == "Administrator") { ?>
+        
         <section class="content">
             <div class="container-fluid">
                 <div class="row">

@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
 
   <?php include '../../includes/links.php'; ?>
 
@@ -33,9 +32,9 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">Home</a></li>
-              <li class="breadcrumb-item">Scholar Config</li>
-              <li class="breadcrumb-item">Dashboard v1</li>
+              <li class="breadcrumb-item active">Home</li>
+              <li class="breadcrumb-item active">Scholar Config</li>
+              <li class="breadcrumb-item active">List of Scholars</li>
             </ol>
           </div><!-- /.col -->
           
@@ -114,7 +113,7 @@
                         <th>Fullname</th>
                         <th>Email</th>                     
                         <th>Contact #</th>
-                        <th style="width: 20%">Facebook & Messenger</th>
+                        <th>Facebook & Messenger</th>
                         <th>Username</th>
                         <th>Actions</th>
                         <th>Status</th>
@@ -147,18 +146,20 @@
                           ?>
                         
                           <tr>
-                              <td><?php if (!empty($row['img'])): ?>
+                              <td>
+                                <?php if (!empty($row['img'])): ?>
                                         <img class="img-fluid" src="data:image/jpeg;base64,<?php echo base64_encode($row['img']); ?>" alt="image" style="height: 50px; width: 50px">
                                     <?php else: ?>
                                         <span class="badge badge-secondary">No Image</span>
-                                    <?php endif; ?></td>
+                                    <?php endif; ?>
+                              </td>
                               <td><?php echo $row['lastname'] ?>, <?php echo $row['firstname'] ?>, <?php echo $row['middlename'] . '' ?></td>
                               <td><?php echo $row['email'] ?></td>
                               <td><?php echo $row['contact'] ?></td>                          
                               <td>Facebook: <b><?php echo $row['fb_account'] ?></b> <br> Messenger: <b><?php echo $row['fb_mess'] ?></b></td>
                               <td><?php echo $row['username'] ?></td>
                               <td>
-                                                                
+                                <?php if ($_SESSION['role'] == "Administrator") { ?>
                                   <a href="view-prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank" 
                                   title="View Scholar Profile">
                                   <i class="fa fa-eye"></i> <i class="fa fa-user"></i> 
@@ -203,6 +204,14 @@
                                           </div>
                                       </div>
                                   </div> 
+                                <?php } else { ?>
+                                  <a href="view-prof-scholar.php<?php echo '?stud_id=' . $id; ?>" type="button" class="btn btn-secondary mx-1" target="_blank" 
+                                  title="View Scholar Profile">
+                                  <i class="fa fa-eye"></i> <i class="fa fa-user"></i> 
+                                  </a>                                            
+
+                                <?php }?>  
+                                  
                               </td>
                               <td>
                                 <?php 

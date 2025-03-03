@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="../dashboard/index.php" class="brand-link">
       <img src="../../assets/img/nibt-white.png" alt="NIBT Logo" class="brand-image img-circle" style="opacity: .8">
-      <span class="brand-text font-weight-light">NIBT</span>
+      <span class="brand-text font-weight-light">NIBT - MIS</span>
     </a>
 
     <!-- Sidebar -->
@@ -131,6 +131,26 @@
                           </li>
                         </ul>
                       </li>
+
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <p>
+                            Update
+                            <i class="fas fa-angle-left right"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">                    
+                            <a href="../google-sheets/update.php" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                              <p>
+                                Update Scholar Tables
+                              </p>
+                            </a>
+                          </li>                        
+                        </ul>
+                      </li>
+
 
                     ';
                   } elseif ($_SESSION['role'] == "Administrator") {

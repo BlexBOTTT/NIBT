@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
 
   <?php include '../../includes/links.php'; ?>
   
@@ -35,8 +34,25 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Admin List</li>
+              <li class="breadcrumb-item active">Home</li>
+              <li class="breadcrumb-item active">Admin Config</li>
+              <?php
+                    $admin_id = isset($_GET['admin_id']) ? intval($_GET['admin_id']) : 0;
+
+                    if ($admin_id > 0) {
+                        // Fetch admin's name
+                        $query = "SELECT firstname, lastname FROM tbl_admins WHERE admin_id = $admin_id LIMIT 1";
+                        $result = $conn->query($query);
+                        if ($result && $row = $result->fetch_assoc()) {
+                            $admin_name = "{$row['firstname']} {$row['lastname']}";
+                        } else {
+                            $admin_name = "Unknown admin"; // Fallback in case of error
+                        }
+                    } else {
+                        $admin_name = "All";
+                    }
+                ?>
+                <li class="breadcrumb-item active">Edit Admin Account: <b><?php echo $admin_name; ?></b></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -88,7 +104,7 @@
             ?>
 
              <!-- CARD HEADER  -->
-            <div class="card card-danger">
+            <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">NIBT - LAS PINAS Admin List:</h3>
               </div>
@@ -112,7 +128,7 @@
                             <div class="col-md-4 my-4">
                                 <div class="custom-file">
                                     <div class="text-center mb-4">
-                                        <img class="img-fluid img-circle" id="prof-img" src="data:image/jpeg;base64, <?php echo base64_encode($row['admin_image'] ?? ''); ?>" alt="User profile picture">
+                                        <img class="img-fluid img-circle" id="prof-img" src="data:image/jpeg;base64, <?php echo base64_encode($row['admin_image'] ?? ''); ?>" alt="User profile picture" style="width: 150px; height: 150px;">
                                     </div>
                                     <div class="row justify-content-center">
                                         <div class="form-group col-md-12">
@@ -176,7 +192,7 @@
 
                         <div class="row mx-auto">
                             <div class="col-md-4">
-                                <a class="btn btn-secondary" href="list.admin.php">Go Back</a>
+                                <a class="btn btn-secondary" href="list-admin.php">Go Back</a>
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4 ">

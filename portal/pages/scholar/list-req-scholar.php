@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+
 
   <?php include '../../includes/links.php'; 
   
@@ -15,6 +15,11 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
+
+    <?php
+        // Check if stud_id is set in the URL
+        $showBackButton = isset($_GET['stud_id']);
+    ?>
 
   <!-- Preloader -->
   <?php include '../../includes/preloader.php'; ?>
@@ -33,13 +38,30 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Shcholar Config</h1>
+            <h1 class="m-0">Scholar Config</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Scholar Config</li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+                <li class="breadcrumb-item active">Home</li>
+                <li class="breadcrumb-item active">Scholar Config</li>
+
+                <?php
+                    $stud_id = isset($_GET['stud_id']) ? intval($_GET['stud_id']) : 0;
+
+                    if ($stud_id > 0) {
+                        // Fetch student's name
+                        $query = "SELECT firstname, lastname FROM tbl_students WHERE stud_id = $stud_id LIMIT 1";
+                        $result = $conn->query($query);
+                        if ($result && $row = $result->fetch_assoc()) {
+                            $student_name = "{$row['firstname']} {$row['lastname']}";
+                        } else {
+                            $student_name = "Unknown Student"; // Fallback in case of error
+                        }
+                    } else {
+                        $student_name = "All";
+                    }
+                ?>
+                <li class="breadcrumb-item active">Check Scholar Requirement(s): <b><?php echo $student_name; ?></b></li>
             </ol>
           </div><!-- /.col -->
           
@@ -96,12 +118,11 @@
               
             <div class="card-body pad table-responsive">  
                 
-                <?php
+            <?php
+                $stud_id = isset($_GET['stud_id']) ? intval($_GET['stud_id']) : 0;
 
-                    $stud_id = isset($_GET['stud_id']) ? intval($_GET['stud_id']) : 0;
-
-                    // Prepare the query
-                    $sql = "
+                // Prepare the query
+                $sql = "
                     SELECT 
                         tbl_students.*, 
                         tbl_genders.gender_name, 
@@ -112,46 +133,27 @@
                     LEFT JOIN tbl_student_requirements ON tbl_students.stud_id = tbl_student_requirements.stud_id
                     ";
 
-                    // If a specific student ID is provided, filter the query
-                        if ($stud_id > 0) {
+                    if ($stud_id > 0) {
                         $sql .= " WHERE tbl_students.stud_id = $stud_id";
-                        }
+                    }
 
                     // Execute the query
                     $get_stud = $conn->query($sql);
 
                     // Check if query executed successfully
                     if (!$get_stud) {
-                    die("Query Error: " . $conn->error);
+                        die("Query Error: " . $conn->error);
                     }
 
-                    // Display message if no records found
-                    if ($get_stud->num_rows == 0) {
-                    echo "<p class='text-center text-danger'>No records found.</p>";
+                    // Check if a student is selected to show the back button
+                    if ($stud_id > 0) {
+                        echo '<div class="row justify-content-center text-center">
+                            <a href="list-req-scholar.php" class="btn btn-primary mx-1">
+                                Click Me to See All Students
+                            </a>
+                        </div>';
                     }
-                ?>
-            
-                <!-- <div class="row justify-content-center text-center">                    
-                    <h3><b>Scholar Requirement Checker</b></h3>                       
-                </div> -->
-                
-                <?php
-                // Check if stud_id is set in the URL
-                $showBackButton = isset($_GET['stud_id']);
-                ?>
-
-            
-
-
-                <!-- Show the 'See all students' button only when a specific student is selected -->
-                <?php if ($showBackButton): ?>
-                    <div class="row justify-content-center text-center">
-                        <a href="list-req-scholar.php" type="button" class="btn btn-primary mx-1">
-                            Click Me to see all students
-                        </a>
-                    </div>
-                <?php endif; ?>
-                
+            ?>
             
                 <table class="table table-bordered text-center" id="myTable">
                     <thead>
@@ -160,8 +162,10 @@
                             <th>Fullname</th>
                             <th>Gender</th>    
                             <th>PSA Birth Certificate or Marriage Certificate (for females)</th>                     
-                            <th>Diploma/TOR</th>               
+                            <th>Diploma/TOR</th>     
+                            <th>1x1 Picture</th>          
                             <th>Scholar Profile Filled?</th>
+                            
                             <th>Enrollment Status</th> 
                         </tr>  
                     </thead>                                             
@@ -182,7 +186,12 @@
                                 <td>
                                     <?php if (!empty($row['birth_cert_img'])): ?>
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-cert-<?php echo $row['stud_id']; ?>">
-                                            <i class="fa fa-eye"></i> View PSA
+                                            <i class="fa fa-eye"></i> 
+                                            <?php if ($row['gender_id'] == 2):  { ?>
+                                                View PSA / Marriage Certificate
+                                            <?php } elseif ($row['gender_id'] == 1): {?>                
+                                                View PSA
+                                            <?php } endif ?>
                                         </button>
                                         <br>
                                         <span class="badge badge-success">Uploaded</span>
@@ -235,6 +244,37 @@
                                                 <div class="modal-body text-center">
                                                     <?php if (!empty($row['diploma_tor_img'])): ?>
                                                         <img src="data:image/jpeg;base64,<?php echo base64_encode($row['diploma_tor_img']); ?>" class="img-fluid">
+                                                    <?php else: ?>
+                                                        <p>No image uploaded.</p>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                <?php if (!empty($row['1x1_img'])): ?>
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-1x1-<?php echo $row['stud_id']; ?>">
+                                            <i class="fa fa-eye"></i> View 1x1
+                                        </button>
+                                        <br>
+                                        <span class="badge badge-success">Uploaded</span>
+                                    <?php else: ?>
+                                        <span class="badge badge-danger">No Upload</span>
+                                    <?php endif; ?>
+            
+                                    <div class="modal fade" id="modal-1x1-<?php echo $row['stud_id']; ?>">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">1x1/TOR</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <?php if (!empty($row['1x1_img'])): ?>
+                                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($row['1x1_img']); ?>" class="img-fluid">
                                                     <?php else: ?>
                                                         <p>No image uploaded.</p>
                                                     <?php endif; ?>
@@ -341,8 +381,7 @@
                                             echo '</div>';
                                         }
                                     ?>
-                                </td>
-
+                                </td>                    
                                 <!-- Enrollment Status -->
                                 <!-- Enrollment Status -->
                                 <!-- Enrollment Status -->
@@ -353,7 +392,7 @@
                                                 echo '<span class="badge badge-warning">PENDING</span>';
                                                 
                                                 // Show the enroll button only if everything is completed
-                                                if (empty($missing_fields) && !empty($row['birth_cert_img']) && !empty($row['diploma_tor_img'])) {
+                                                if (empty($missing_fields) && !empty($row['birth_cert_img']) && !empty($row['diploma_tor_img']) && !empty($row['1x1_img'])) {
                                                     echo '<br><button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#confirmEnroll-'.$row['stud_id'].'">Mark as Enrolled</button>';
                                                 }
                                                 break;

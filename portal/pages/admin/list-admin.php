@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+
 
   <?php include '../../includes/links.php'; ?>
   
@@ -33,8 +33,10 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Home</li>
+              <li class="breadcrumb-item active">Admin Config</li>
               <li class="breadcrumb-item active">Admin List</li>
+                
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -86,7 +88,7 @@
             ?>
 
              <!-- CARD HEADER  -->
-            <div class="card card-danger">
+            <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">NIBT - LAS PINAS Admin List:</h3>
               </div>
@@ -113,7 +115,7 @@
                       <tbody>
                           <tr>
                               <td>
-                                <?php if (!empty($row['admin_img'])): ?>
+                                <?php if (!empty($row['admin_image'])): ?>
                                   <img class="img-fluid img-circle" src="data:image/jpeg;base64, <?php echo base64_encode($row['admin_image']); ?>" alt="image" style="height: 50px; width: 50px">
                                   
                                 <?php else: ?>                            

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+
 
   <?php include '../../includes/links.php'; ?>
   
@@ -33,8 +33,26 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Scholar List</li>
+                <li class="breadcrumb-item active">Home</li>
+                <li class="breadcrumb-item active">Scholar Config</li>
+
+                <?php
+                    $stud_id = isset($_GET['stud_id']) ? intval($_GET['stud_id']) : 0;
+
+                    if ($stud_id > 0) {
+                        // Fetch student's name
+                        $query = "SELECT firstname, lastname FROM tbl_students WHERE stud_id = $stud_id LIMIT 1";
+                        $result = $conn->query($query);
+                        if ($result && $row = $result->fetch_assoc()) {
+                            $student_name = "{$row['firstname']} {$row['lastname']}";
+                        } else {
+                            $student_name = "Unknown Student"; // Fallback in case of error
+                        }
+                    } else {
+                        $student_name = "All";
+                    }
+                ?>
+                <li class="breadcrumb-item active">Edit Scholar Account: <b><?php echo $student_name; ?></b></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -86,7 +104,7 @@
             ?>
 
              <!-- CARD HEADER  -->
-            <div class="card card-danger">
+            <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Update Scholar Account</h3>
               </div>
@@ -159,22 +177,22 @@
                             <div class="col-md-4">
                                 <div class="my-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" autocomplete="off" 
-                                        >
+                                    <input type="password" name="password" class="form-control" autocomplete="off" required
+                                    required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="my-3">
                                     <label class="form-label">Confirm Password</label>
                                     <input type="password" name="password2" class="form-control" autocomplete="off"
-                                        >
+                                    required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row mx-auto">
                             <div class="col-md-4">
-                                <a class="btn btn-secondary" href="list.admin.php">Go Back</a>
+                                <a class="btn btn-secondary" href="list-scholar.php">Go Back</a>
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-4 ">

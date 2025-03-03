@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
 
   <?php include '../../includes/links.php'; 
 
@@ -36,8 +35,10 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+            <li class="breadcrumb-item active">Home</li>
+              <li class="breadcrumb-item active">Scholar Config</li>
+              <li class="breadcrumb-item active">List of Scholars</li>
+              <li class="breadcrumb-item active">Edit Scholar Profile: <b><?php echo $user_fullname;?></b></li>
             </ol>
           </div><!-- /.col -->
           
@@ -143,7 +144,7 @@
                                                 <div class="form-group col-md-12">
                                                     <div class="input-group">
                                                         <div class="custom-file">
-                                                            <input type="file" class="form-control" name="prof_img" id="prof_img" required>
+                                                            <input type="file" class="form-control" name="prof_img" id="prof_img">
                                                             <label for="prof_img" class="custom-file-label">Choose file</label>
                                                         </div>
                                                     </div>
