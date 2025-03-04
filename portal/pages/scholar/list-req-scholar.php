@@ -22,7 +22,7 @@
     ?>
 
   <!-- Preloader -->
-  <?php include '../../includes/preloader.php'; ?>
+
 
   <!-- Navbar -->
   <?php include '../../includes/navbar.php'; ?>
@@ -126,8 +126,11 @@
                     SELECT 
                         tbl_students.*, 
                         tbl_genders.gender_name, 
-                        tbl_student_requirements.birth_cert_img, 
-                        tbl_student_requirements.diploma_tor_img 
+                        tbl_student_requirements.birth_cert_img,
+                        tbl_student_requirements.birth_cert_status,
+                        tbl_student_requirements.birth_cert_reject_reason,
+                        tbl_student_requirements.diploma_tor_img,
+                        tbl_student_requirements.1x1_img
                     FROM tbl_students
                     LEFT JOIN tbl_genders ON tbl_students.gender_id = tbl_genders.gender_id
                     LEFT JOIN tbl_student_requirements ON tbl_students.stud_id = tbl_student_requirements.stud_id
@@ -211,6 +214,46 @@
                                                 <div class="modal-body text-center">
                                                     <?php if (!empty($row['birth_cert_img'])): ?>
                                                         <img src="data:image/jpeg;base64,<?php echo base64_encode($row['birth_cert_img']); ?>" class="img-fluid">
+
+                                                        <?php                    
+                                                            $cert_result = mysqli_query($conn, "SELECT * FROM tbl_student_requirements WHERE birth_cert_status = 'pending'");
+
+                                                            while ($row_cert = mysqli_fetch_assoc($cert_result)) {
+                                                            ?>  
+                                                                <div class="card">
+                                                                    <div class="card-body text-center">
+                                                                        <!-- <h5>Student ID: <?php echo $row_cert['stud_id']; ?></h5> -->
+                                                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($row_cert['birth_cert_img']); ?>" class="img-fluid" width="300px">
+                                                                        <form action="process-review.php" method="POST">
+                                                                            <input type="hidden" name="stud_id" value="<?php echo $row_cert['stud_id']; ?>">
+                                                                            <button type="submit" name="approve" class="btn btn-success">Approve</button>
+                                                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rejectModal-<?php echo $row_cert['stud_id']; ?>">Reject</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- Reject Modal -->
+                                                                <div class="modal fade" id="rejectModal-<?php echo $row_cert['stud_id']; ?>">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <form action="process-review.php" method="POST">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title">Reject Image</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <input type="hidden" name="stud_id" value="<?php echo $row_cert['stud_id']; ?>">
+                                                                                    <textarea name="rejection_reason" class="form-control" placeholder="Enter rejection reason" required></textarea>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="submit" name="reject" class="btn btn-danger">Reject</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            <?php } ?>
                                                     <?php else: ?>
                                                         <p>No image uploaded.</p>
                                                     <?php endif; ?>
@@ -218,7 +261,11 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                   
                                 </td>
+
+                                
             
                                 <!-- Diploma/TOR -->
                                 <td>
@@ -252,10 +299,12 @@
                                         </div>
                                     </div>
                                 </td>
+
                                 <td>
-                                <?php if (!empty($row['1x1_img'])): ?>
+                                    <?php if (!empty($row['1x1_img'])): ?>
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-1x1-<?php echo $row['stud_id']; ?>">
-                                            <i class="fa fa-eye"></i> View 1x1
+                                            <i class="fa fa-eye"></i>                                            
+                                                View 1x1 Picture
                                         </button>
                                         <br>
                                         <span class="badge badge-success">Uploaded</span>
@@ -267,7 +316,7 @@
                                         <div class="modal-dialog modal-xl">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">1x1/TOR</h4>
+                                                    <h4 class="modal-title">1x1 Picture</h4>
                                                     <button type="button" class="close" data-dismiss="modal">
                                                         <span>&times;</span>
                                                     </button>
@@ -425,7 +474,7 @@
                                     <div class="modal-footer">
                                         <form method="POST" action="user-data/user-list-req-scholar.php">
                                             <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
-                                            <button type="submit" class="btn btn-primary">Yes, Enroll</button>
+                                            <button type="submit" class="btn btn-success">Yes, Enroll</button>
                                         </form>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                     </div>

@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($stud_id)) die("Error: Student ID is missing!");
 
     $allowed_types = ['image/jpeg', 'image/png', 'application/pdf'];
-    $fields = ['certificate_img' => 'birth_cert_img', 'diploma_tor_img' => 'diploma_tor_img'];
+    $fields = ['certificate_img' => 'birth_cert_img', 'diploma_tor_img' => 'diploma_tor_img', '1x1_img' => '1x1_img'];
     $update_values = [];
 
     foreach ($fields as $input_name => $db_column) {
@@ -20,9 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
 
     if (!empty($update_values)) {
-        $query = "INSERT INTO tbl_student_requirements (stud_id, " . implode(", ", array_keys($update_values)) . ") 
-                  VALUES ('$stud_id', '" . implode("', '", $update_values) . "')
-                  ON DUPLICATE KEY UPDATE " . implode(", ", array_map(fn($col) => "$col = VALUES($col)", array_keys($update_values)));
+        $query = "INSERT INTO tbl_student_requirements (stud_id, " . implode(", ", array_keys($update_values)) . ", approval_status) 
+            VALUES ('$stud_id', '" . implode("', '", $update_values) . "', 'pending')
+            ON DUPLICATE KEY UPDATE " . implode(", ", array_map(fn($col) => "$col = VALUES($col)", array_keys($update_values))) . ", approval_status = 'pending'";
+
 
         if (mysqli_query($conn, $query)) {
             $_SESSION['success-edit'] = true;
@@ -35,6 +36,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         
         header("location: ../submit-req-scholar.php?stud_id=$stud_id");
     }
+}
+
+// FOR APPROVAL-REJECT IMAGE SYSTEM
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
+
+    if (isset($_POST['approve'])) {
+        // Approve Image
+        $query = "UPDATE tbl_student_requirements SET birt_cert_status = 'approved', rejection_reason = NULL WHERE stud_id = '$stud_id'";
+        mysqli_query($conn, $query);
+    } elseif (isset($_POST['reject'])) {
+        // Reject Image with Reason
+        $rejection_reason = mysqli_real_escape_string($conn, $_POST['rejection_reason']);
+        $query = "UPDATE tbl_student_requirements SET birt_cert_status = 'rejected', rejection_reason = '$rejection_reason' WHERE stud_id = '$stud_id'";
+        mysqli_query($conn, $query);
+    }
+
+    header("location: ../submit-req-scholar.php?stud_id=$stud_id");
+    exit();
 }
 
 // DELETE IMAGE
@@ -56,4 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
         die("Database Error: " . mysqli_error($conn));
     }
 }
+
+
 ?>
