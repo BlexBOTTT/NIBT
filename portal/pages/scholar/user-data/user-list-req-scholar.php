@@ -2,6 +2,59 @@
 require '../../../includes/conn.php';
 
 
+// Reject an image
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reject'])) {
+    $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
+    // $reject_file = mysqli_real_escape_string($conn, $_POST['reject_file']);
+    $reject_reason = mysqli_real_escape_string($conn, $_POST['reject_reason']);
+
+    if (empty($stud_id)) {
+        die("Error: Missing parameters.");
+    }
+
+    // Set the file column to NULL (delete the file)
+    $query = "UPDATE tbl_student_requirements 
+    SET 
+    birth_cert_img = NULL, 
+    birth_cert_status = 'rejected',
+    birth_cert_reject_reason = '$reject_reason' 
+    WHERE stud_id = '$stud_id'";
+    
+    if (mysqli_query($conn, $query)) {
+        $_SESSION['success-delete'] = true;
+        header("location: ../list-req-scholar.php?stud_id=$stud_id");
+        exit();
+    } else {
+        die("Database Error: " . mysqli_error($conn));
+    }
+}
+
+// Approve
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['approve'])) {
+    $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
+
+    if (empty($stud_id)) {
+        die("Error: Missing parameters.");
+    }
+
+    // Set the file column to NULL (delete the file)
+    $query = "UPDATE tbl_student_requirements 
+            SET
+            birth_cert_status = 'approved',
+            birth_cert_reject_reason = NULL 
+            WHERE stud_id = '$stud_id'";
+    
+    if (mysqli_query($conn, $query)) {
+        $_SESSION['success-delete'] = true;
+        header("location: ../list-req-scholar.php?stud_id=$stud_id");
+        exit();
+    } else {
+        die("Database Error: " . mysqli_error($conn));
+    }
+}
+
+
+// Mark Pending Scholar as Enrolled Student
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['stud_id'])) {
     $stud_id = $_POST['stud_id'];
 

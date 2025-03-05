@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
 
     if (!empty($update_values)) {
-        $query = "INSERT INTO tbl_student_requirements (stud_id, " . implode(", ", array_keys($update_values)) . ") 
-                  VALUES ('$stud_id', '" . implode("', '", $update_values) . "')
-                  ON DUPLICATE KEY UPDATE " . implode(", ", array_map(fn($col) => "$col = VALUES($col)", array_keys($update_values)));
+        $query = "INSERT INTO tbl_student_requirements (stud_id, " . implode(", ", array_keys($update_values)) . ", birth_cert_status) 
+          VALUES ('$stud_id', '" . implode("', '", $update_values) . "', 'pending')
+          ON DUPLICATE KEY UPDATE " . implode(", ", array_map(fn($col) => "$col = VALUES($col)", array_keys($update_values))) . ", birth_cert_status = 'pending'";
 
 
         if (mysqli_query($conn, $query)) {
@@ -49,7 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     }
 
     // Set the file column to NULL (delete the file)
-    $query = "UPDATE tbl_student_requirements SET $file_type = NULL WHERE stud_id = '$stud_id'";
+    $query = "UPDATE tbl_student_requirements 
+    SET 
+    birth_cert_status = NULL,
+    birth_cert_reject_reason = NULL,
+    $file_type = NULL 
+    WHERE stud_id = '$stud_id'";
     if (mysqli_query($conn, $query)) {
         $_SESSION['success-delete'] = true;
         header("location: ../submit-req-scholar.php?stud_id=$stud_id");
