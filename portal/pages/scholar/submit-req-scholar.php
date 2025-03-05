@@ -162,10 +162,10 @@
                                 <div class="my-3">
                                     <!-- Document Label -->
                                     <label class="form-label">
-                                        <?php if (!empty($row['birth_cert_img'])): ?>   
-                                            ✅ PSA Birth Cert. or Marriage Cert. (Uploaded)
+                                        <?php if (!empty($row['birth_cert_img'])): ?>
+                                            ✅ PSA / Birth Certificate (Uploaded)
                                         <?php else: ?>
-                                            ⚠️ Please upload PSA Birth Cert. or Marriage Cert. (Required)
+                                            ⚠️ Please upload PSA / Birth Certificate (Required)
                                         <?php endif; ?>
                                     </label>
 
@@ -180,8 +180,8 @@
                                         <?php if (!empty($row['birth_cert_img'])): ?>
                                             <div class="d-flex gap-2">
                                                 <!-- View Button -->
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-cert-<?php echo $row['stud_id']; ?>">
-                                                    <i class="fa fa-eye"></i> View PSA
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-birth-cert-<?php echo $row['stud_id']; ?>">
+                                                    <i class="fa fa-eye"></i> View PSA / Marriage
                                                 </button>                                 
                                             </div>
                                             <!-- Uploaded Badge -->
@@ -192,11 +192,11 @@
                                 </div>
 
                               <!-- Modal for Viewing Uploaded Image -->
-                                <div class="modal fade" id="modal-cert-<?php echo $row['stud_id']; ?>">
+                                <div class="modal fade" id="modal-birth-cert-<?php echo $row['stud_id']; ?>">
                                     <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">PSA/Marriage Certificate</h4>
+                                                <h4 class="modal-title">Diploma / ToR Image</h4>
                                                 <button type="button" class="close" data-dismiss="modal">
                                                     <span>&times;</span>
                                                 </button>
@@ -212,6 +212,8 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            
 
                             <!-- Diploma or ToR Upload -->
                             <div class="col-md-3">
@@ -227,7 +229,7 @@
 
                                     <!-- File Upload Input -->
                                     <div class="custom-file mb-2">
-                                        <input type="file" class="custom-file-input" name="certificate_img" accept="image/jpeg, image/png, application/pdf">
+                                        <input type="file" class="custom-file-input" name="diploma_tor_img" accept="image/jpeg, image/png, application/pdf">
                                         <label class="custom-file-label">Choose file</label>
                                     </div>
 

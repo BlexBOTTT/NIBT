@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
 
     if (!empty($update_values)) {
-        $query = "INSERT INTO tbl_student_requirements (stud_id, " . implode(", ", array_keys($update_values)) . ", approval_status) 
-            VALUES ('$stud_id', '" . implode("', '", $update_values) . "', 'pending')
-            ON DUPLICATE KEY UPDATE " . implode(", ", array_map(fn($col) => "$col = VALUES($col)", array_keys($update_values))) . ", approval_status = 'pending'";
+        $query = "INSERT INTO tbl_student_requirements (stud_id, " . implode(", ", array_keys($update_values)) . ") 
+                  VALUES ('$stud_id', '" . implode("', '", $update_values) . "')
+                  ON DUPLICATE KEY UPDATE " . implode(", ", array_map(fn($col) => "$col = VALUES($col)", array_keys($update_values)));
 
 
         if (mysqli_query($conn, $query)) {
@@ -38,24 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
 }
 
-// FOR APPROVAL-REJECT IMAGE SYSTEM
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
-
-    if (isset($_POST['approve'])) {
-        // Approve Image
-        $query = "UPDATE tbl_student_requirements SET birt_cert_status = 'approved', rejection_reason = NULL WHERE stud_id = '$stud_id'";
-        mysqli_query($conn, $query);
-    } elseif (isset($_POST['reject'])) {
-        // Reject Image with Reason
-        $rejection_reason = mysqli_real_escape_string($conn, $_POST['rejection_reason']);
-        $query = "UPDATE tbl_student_requirements SET birt_cert_status = 'rejected', rejection_reason = '$rejection_reason' WHERE stud_id = '$stud_id'";
-        mysqli_query($conn, $query);
-    }
-
-    header("location: ../submit-req-scholar.php?stud_id=$stud_id");
-    exit();
-}
 
 // DELETE IMAGE
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
