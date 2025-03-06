@@ -1,42 +1,48 @@
 <?php
 require '../../../includes/conn.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
-    if (empty($stud_id)) die("Error: Student ID is missing!");
 
-    $allowed_types = ['image/jpeg', 'image/png', 'application/pdf'];
-    $fields = ['certificate_img' => 'birth_cert_img', 'diploma_tor_img' => 'diploma_tor_img', '1x1_img' => '1x1_img'];
-    $update_values = [];
+    // Check if a file was uploaded
+    if (isset($_FILES['certificate_img']) && $_FILES['certificate_img']['error'] == 0) {
+        $file_tmp = $_FILES['certificate_img']['tmp_name'];
+        $file_size = $_FILES['certificate_img']['size'];
+        $file_type = $_FILES['certificate_img']['type'];
 
-    foreach ($fields as $input_name => $db_column) {
-        if (!empty($_FILES[$input_name]['tmp_name']) && is_uploaded_file($_FILES[$input_name]['tmp_name'])) {
-            if (in_array($_FILES[$input_name]['type'], $allowed_types)) {
-                $update_values[$db_column] = addslashes(file_get_contents($_FILES[$input_name]['tmp_name']));
+        // Allowed file types
+        $allowed_types = ['image/jpeg', 'image/png', 'application/pdf'];
+
+        if (in_array($file_type, $allowed_types) && $file_size <= 5 * 1024 * 1024) { // Max size: 5MB
+            $file_content = file_get_contents($file_tmp); // Read file into a variable
+
+            // ✅ Correct way to store image in the database (BLOB)
+            $stmt = $conn->prepare("UPDATE tbl_student_requirements SET birth_cert_img = ?, birth_cert_status = 'pending' WHERE stud_id = ?");
+
+            // Bind parameters
+            $stmt->bind_param("bi", $null, $stud_id);
+            $stmt->send_long_data(0, $file_content); // Store the image securely
+
+            // Execute query
+            if ($stmt->execute()) {
+                echo "File uploaded successfully!";
+                header("location: ../submit-req-scholar.php?stud_id=$stud_id");
+                exit();
             } else {
-                die("Error: Invalid file type for $db_column.");
+                echo "Error updating record: " . $stmt->error;
             }
-        }
-    }
 
-    if (!empty($update_values)) {
-        $query = "INSERT INTO tbl_student_requirements (stud_id, " . implode(", ", array_keys($update_values)) . ", birth_cert_status) 
-          VALUES ('$stud_id', '" . implode("', '", $update_values) . "', 'pending')
-          ON DUPLICATE KEY UPDATE " . implode(", ", array_map(fn($col) => "$col = VALUES($col)", array_keys($update_values))) . ", birth_cert_status = 'pending'";
-
-
-        if (mysqli_query($conn, $query)) {
-            $_SESSION['success-edit'] = true;
-            header("location: ../submit-req-scholar.php?stud_id=$stud_id");
-            exit();
+            $stmt->close();
         } else {
-            die("Database Error: " . mysqli_error($conn));
+            echo "Invalid file type or size exceeded (max 5MB).";
         }
     } else {
-        
-        header("location: ../submit-req-scholar.php?stud_id=$stud_id");
+        echo "No file uploaded.";
     }
+
+    $conn->close();
 }
+
 
 
 // DELETE IMAGE

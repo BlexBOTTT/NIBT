@@ -87,16 +87,6 @@
                           unset($_SESSION['success-del']);
                         }
                       ?>
-            <div class="card card-secondary">
-
-              <div class="card-header">
-                <h3 class="card-title">Scholar Requirement Checker</h3>
-                
-              </div>
-              <!-- /.card-header -->
-       
-              
-                <div class="card-body pad table-responsive">  
                 
                 <?php 
                     // Fixed SQL query (removed extra comma)
@@ -150,316 +140,206 @@
                         </div>                      
                     </div>
 
-                    <form action="user-data/user-submit-req-scholar.php" method="POST" enctype="multipart/form-data">
-                      <!-- Hidden Student ID -->
-                      <input type="text" class="form-control" name="stud_id" value="<?php echo htmlspecialchars($row['stud_id']); ?>" hidden>
 
-                        <div class="row justify-content-around">
-                            <!-- Birth Certificate Upload -->
-                            <div class="col-md-3">
-                                <div class="my-3">
-                                    <!-- Document Label -->
-                                    <label class="form-label">
-                                        <?php if ($row['birth_cert_status'] == 'approved'): ?>
-                                            ✅ Approved PSA B.C./Marriage Cert.
-                                        <?php elseif ($row['birth_cert_status'] == 'pending'): ?>
-                                            ⚠️ Pending PSA B.C./Marriage Cert.
-                                        <?php elseif ($row['birth_cert_status'] == 'rejected'): ?>
-                                            ❌ Rejected PSA B.C./Marriage Cert. (Upload Again)
-                                        <?php else: ?>
-                                            ⚠️ Please upload PSA / Birth Certificate (Required)
-                                        <?php endif; ?>
-                                    </label>
-
-                                    <!-- File Upload Input -->
-                                    <div class="custom-file mb-2">
-
-                                        <?php if ($row['birth_cert_status'] == 'approved'): ?>
-                                            <div class="d-flex gap-2">
-                                                <!-- View Button -->
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-birth-cert-approved-<?php echo $row['stud_id']; ?>">
-                                                    <i class="fa fa-eye"></i> View PSA / Marriage
-                                                </button>                                 
-                                            </div>
-                                            <!-- Uploaded Badge -->
-                                            <span class="badge badge-success mt-2">Success, Validated by an Admin</span>
-
-                                            <!-- Modal for Viewing Uploaded Image -->
-                                            <div class="modal fade" id="modal-birth-cert-approved-<?php echo $row['stud_id']; ?>">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header btn-success">
-                                                            <h4 class="modal-title">Approved Diploma / ToR Image</h4>
-                                                            <button type="button" class="close" data-dismiss="modal">
-                                                                <span>&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body text-center">
-                                                            <?php if (!empty($row['birth_cert_img'])): ?>
-                                                                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['birth_cert_img']); ?>" class="img-fluid">
-                                                            <?php else: ?>
-                                                                <p>No image uploaded.</p>
-                                                            <?php endif; ?>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <p>Approved by: <b>ADMIN NAME</b></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                        <?php elseif ($row['birth_cert_status'] == 'pending'): ?>
-                                            <div class="d-flex gap-2">
-                                                <!-- View Button -->
-                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-birth-cert-warning-<?php echo $row['stud_id']; ?>">
-                                                    <i class="fa fa-eye"></i> View PSA / Marriage
-                                                </button>                                 
-                                            </div>
-                                            <!-- Uploaded Badge -->
-                                            <span class="badge badge-warning mt-2">Uploaded, Waiting Validation from an Admin</span>
-
-                                            <!-- Modal for Viewing Uploaded Image -->
-                                            <div class="modal fade" id="modal-birth-cert-warning-<?php echo $row['stud_id']; ?>">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header btn-warning">
-                                                            <h4 class="modal-title">Approved Diploma / ToR Image</h4>
-                                                            <button type="button" class="close" data-dismiss="modal">
-                                                                <span>&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body text-center">
-                                                            <?php if (!empty($row['birth_cert_img'])): ?>
-                                                                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['birth_cert_img']); ?>" class="img-fluid">
-                                                            <?php else: ?>
-                                                                <p>No image uploaded.</p>
-                                                            <?php endif; ?>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <p>Awaiting validation from any available admin</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php elseif ($row['birth_cert_status'] == 'rejected'): ?>
-                                            <div class="d-flex gap-2">
-                                                <input type="file" class="custom-file-input" name="certificate_img" accept="image/jpeg, image/png, application/pdf">
-                                                <label class="custom-file-label">Choose file</label>
-                                            </div>
-
-                                            <button type="button" class="btn btn-warning mt-2" data-toggle="modal" data-target="#modal-birth-cert-<?php echo $row['stud_id']; ?>">
-                                                <i class="fa fa-eye"></i> View Reason of Rejection
-                                            </button>
-
-                                            <!-- Modal for Viewing Rejection -->
-                                            <div class="modal fade" id="modal-birth-cert-<?php echo $row['stud_id']; ?>">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header btn-warning">
-                                                            <h4 class="modal-title">Reason of Rejection </h4>
-                                                            <button type="button" class="close" data-dismiss="modal">
-                                                                <span>&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body text-center">                                                  
-                                                                <p><?php echo $row['birth_cert_reject_reason']?></p>
-                                                        </div>
-                                                        <div class="modal-footer">                                                  
-                                                                <p>Rejected by admin: <b>ADMIN NAME</b></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php else: ?>
-                                            ⚠️ Please upload PSA / Birth Certificate (Required)
-                                        <?php endif; ?>
-
-                                        <?php if (!empty($row['birth_cert_img'])): ?>
-                                            
-
-                                        <?php elseif ($row['birth_cert_status'] == 'rejected'): ?>
-                                            
-                                            
-                                        <?php else: ?>
-                                            <input type="file" class="custom-file-input" name="certificate_img" accept="image/jpeg, image/png, application/pdf">
-                                            <label class="custom-file-label">Choose file</label>
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <div class="">
-                                        <!-- If Uploaded: Show Action Buttons -->
-                                        <?php if (!empty($row['birth_cert_img'])): ?>
-                                            
-                                        <?php endif; ?>
-                                    </div>
-                                  
-                                </div>
-
-                              
-                            </div>
-                            
-                            
-
-                            <!-- Diploma or ToR Upload -->
-                            <div class="col-md-3">
-                                <div class="my-3">
-                                    <!-- Document Label -->
-                                    <label class="form-label">
-                                        <?php if (!empty($row['diploma_tor_img'])): ?>
-                                            ✅ Diploma or ToR (Uploaded)
-                                        <?php else: ?>
-                                            ⚠️ Please upload Diploma or ToR (Required)
-                                        <?php endif; ?>
-                                    </label>
-
-                                    <!-- File Upload Input -->
-                                    <div class="custom-file mb-2">
-                                        <input type="file" class="custom-file-input" name="diploma_tor_img" accept="image/jpeg, image/png, application/pdf">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
-
-                                    <div class="">
-                                        <!-- If Uploaded: Show Action Buttons -->
-                                        <?php if (!empty($row['diploma_tor_img'])): ?>
-                                            <div class="d-flex gap-2">
-                                                <!-- View Button -->
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-diploma-tor-<?php echo $row['stud_id']; ?>">
-                                                    <i class="fa fa-eye"></i> View Diploma / ToR
-                                                </button>                                 
-                                            </div>
-                                            <!-- Uploaded Badge -->
-                                            <span class="badge badge-success mt-2">Uploaded</span>
-                                        <?php endif; ?>
-                                    </div>
-                                  
-                                </div>
-
-                              <!-- Modal for Viewing Uploaded Image -->
-                                <div class="modal fade" id="modal-diploma-tor-<?php echo $row['stud_id']; ?>">
-                                    <div class="modal-dialog modal-xl">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Diploma / ToR Image</h4>
-                                                <button type="button" class="close" data-dismiss="modal">
-                                                    <span>&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body text-center">
-                                                <?php if (!empty($row['diploma_tor_img'])): ?>
-                                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['diploma_tor_img']); ?>" class="img-fluid">
-                                                <?php else: ?>
-                                                    <p>No image uploaded.</p>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 1x1 Upload -->
-                            <div class="col-md-3">
-                                <div class="my-3">
-                                    <!-- Document Label -->
-                                    <label class="form-label">
-                                        <?php if (!empty($row['1x1_img'])): ?>
-                                            ✅ 1x1 Picture (Uploaded)
-                                        <?php else: ?>
-                                            ⚠️ No 1x1 Picture (Required)
-                                        <?php endif; ?>
-                                    </label>
-
-                                    <!-- File Upload Input -->
-                                    <div class="custom-file mb-2">
-                                        <input type="file" class="custom-file-input" name="1x1_img" accept="image/jpeg, image/png, application/pdf">
-                                        <label class="custom-file-label">Choose file</label>
-                                    </div>
-
-                                    <div class="">
-                                        <!-- If Uploaded: Show Action Buttons -->
-                                        <?php if (!empty($row['1x1_img'])): ?>
-                                            <div class="d-flex gap-2">
-                                                <!-- View Button -->
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-1x1-<?php echo $row['stud_id']; ?>">
-                                                    <i class="fa fa-eye"></i> View 1x1
-                                                </button>                                 
-                                            </div>
-                                            <!-- Uploaded Badge -->
-                                            <span class="badge badge-success mt-2">Uploaded</span>
-                                        <?php endif; ?>
-                                    </div>
-                                  
-                                </div>
-
-                              <!-- Modal for Viewing Uploaded Image -->
-                                <div class="modal fade" id="modal-1x1-<?php echo $row['stud_id']; ?>">
-                                    <div class="modal-dialog modal-xl">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">1x1 Image   </h4>
-                                                <button type="button" class="close" data-dismiss="modal">
-                                                    <span>&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body text-center">
-                                                <?php if (!empty($row['1x1_img'])): ?>
-                                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['1x1_img']); ?>" class="img-fluid">
-                                                <?php else: ?>
-                                                    <p>No image uploaded.</p>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-center">
-                            <div class="col-md-3">
-                                <div class="my-3 text-center">
-                                    <button class="btn btn-danger" type="submit" name="submit">Upload Image(s)</button>
-                                </div>
-                            </div>
-                        </div>                              
-
-                    </form>
-                          
-                    <!-- Delete Buttons-->                                    
                     <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="card">
 
-                        <div class="col-md-3">
-                            <div class="my-3 text-center">
-                                <?php if ($row['birth_cert_status'] == 'approved' || $row['birth_cert_status'] == 'pending'): ?>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#del-cert-modal<?php echo $row['stud_id']; ?>">
-                                    <i class="fa fa-trash"></i> Delete PSA/Live Birth Certificate
-                                    </button>
-                                                     
-                                    <!-- Delete Modal Window -->
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="del-cert-modal<?php echo $row['stud_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-danger">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Birth Certificate</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete Delete PSA/Live Birth Certificate for Scholar <strong><?php echo $user_fullname; ?></strong>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="user-data/user-submit-req-scholar.php" method="POST" enctype="multipart/form-data">
-                                                        <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
-                                                        <input type="hidden" name="file_type" value="birth_cert_img">
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No, Close</button>
-                                                        <button type="submit " class="btn btn-secondary" name="delete">
-                                                            <i class="fa fa-trash"></i> Yes, Delete Image
+                                <!-- Document Label -->
+                                <div class="card-header bg-info">
+                                    <h3 class="card-title">
+                                        <label class="form-label">
+                                            <?php if ($row['birth_cert_status'] == 'approved'): ?>
+                                                ✅ Approved PSA B.C./Marriage Cert.
+                                            <?php elseif ($row['birth_cert_status'] == 'pending'): ?>
+                                                ⚠️ Pending PSA B.C./Marriage Cert.
+                                            <?php elseif ($row['birth_cert_status'] == 'rejected'): ?>
+                                                ❌ Rejected PSA B.C./Marriage Cert. (Upload Again)
+                                            <?php else: ?>
+                                                ⚠️ Please upload PSA / Birth Certificate (Required)
+                                            <?php endif; ?>
+                                        </label>
+                                    </h3>
+                                    <div class="card-tools">
+                                    <!-- Collapse Button -->
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                    </div>
+                                    <!-- /.card-tools -->
+                                </div>
+                            <!-- /.card-header -->
+                                <div class="card-body">
+
+                                    <form action="user-data/user-submit-req-scholar.php" method="POST" enctype="multipart/form-data">
+                                        <!-- Hidden Student ID -->
+                                    <input type="text" class="form-control" name="stud_id" value="<?php echo htmlspecialchars($row['stud_id']); ?>" hidden>
+
+                                                <!-- Birth Certificate Upload -->                                                                       
+                                                   
+                                                        
+                                                        
+
+                                                <!-- File Upload Input -->
+                                                <div class="custom-file mb-2">
+
+                                                    <?php if ($row['birth_cert_status'] == 'approved'): ?>
+                                                        <div class="d-flex gap-2">
+                                                            <!-- View Button -->
+                                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-birth-cert-approved-<?php echo $row['stud_id']; ?>">
+                                                                <i class="fa fa-eye"></i> View PSA / Marriage
+                                                            </button>                                 
+                                                        </div>
+                                                        <!-- Uploaded Badge -->
+                                                        <span class="badge badge-success mt-2">Success, Validated by an Admin</span>
+
+                                                        <!-- Modal for Viewing Uploaded Image -->
+                                                        <div class="modal fade" id="modal-birth-cert-approved-<?php echo $row['stud_id']; ?>">
+                                                            <div class="modal-dialog modal-xl">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header btn-success">
+                                                                        <h4 class="modal-title">Approved Diploma / ToR Image</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal">
+                                                                            <span>&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body text-center">
+                                                                        <?php if (!empty($row['birth_cert_img'])): ?>
+                                                                            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['birth_cert_img']); ?>" class="img-fluid">
+                                                                        <?php else: ?>
+                                                                            <p>No image uploaded.</p>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <p>Approved by: <b>ADMIN NAME</b></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    <?php elseif ($row['birth_cert_status'] == 'pending'): ?>
+                                                        <div class="d-flex gap-2">
+                                                            <!-- View Button -->
+                                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-birth-cert-warning-<?php echo $row['stud_id']; ?>">
+                                                                <i class="fa fa-eye"></i> View PSA / Marriage
+                                                            </button>                                 
+                                                        </div>
+                                                        <!-- Uploaded Badge -->
+                                                        <span class="badge badge-warning mt-2">Uploaded, Waiting Validation from an Admin</span>
+
+                                                        <!-- Modal for Viewing Uploaded Image -->
+                                                        <div class="modal fade" id="modal-birth-cert-warning-<?php echo $row['stud_id']; ?>">
+                                                            <div class="modal-dialog modal-xl">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header btn-warning">
+                                                                        <h4 class="modal-title">Approved Diploma / ToR Image</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal">
+                                                                            <span>&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body text-center">
+                                                                        <?php if (!empty($row['birth_cert_img'])): ?>
+                                                                            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['birth_cert_img']); ?>" class="img-fluid">
+                                                                        <?php else: ?>
+                                                                            <p>No image uploaded.</p>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <p>Awaiting validation from any available admin</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php elseif ($row['birth_cert_status'] == 'rejected'): ?>
+                                                        <div class="d-flex gap-2">
+                                                            <input type="file" class="custom-file-input" name="certificate_img" accept="image/jpeg, image/png, application/pdf">
+                                                            <label class="custom-file-label">Choose file</label>
+                                                        </div>
+
+                                                        <button type="button" class="btn btn-warning mt-2" data-toggle="modal" data-target="#modal-birth-cert-<?php echo $row['stud_id']; ?>">
+                                                            <i class="fa fa-eye"></i> View Reason of Rejection
                                                         </button>
-                                                    </form>
+
+                                                        <!-- Modal for Viewing Rejection -->
+                                                        <div class="modal fade" id="modal-birth-cert-<?php echo $row['stud_id']; ?>">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header btn-warning">
+                                                                        <h4 class="modal-title">Reason of Rejection </h4>
+                                                                        <button type="button" class="close" data-dismiss="modal">
+                                                                            <span>&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body text-center">                                                  
+                                                                            <p><?php echo $row['birth_cert_reject_reason']?></p>
+                                                                    </div>
+                                                                    <div class="modal-footer">                                                  
+                                                                            <p>Rejected by admin: <b>ADMIN NAME</b></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php else: ?>
+                                                        <div class="d-flex gap-2">
+                                                            <input type="file" class="custom-file-input" name="certificate_img" accept="image/jpeg, image/png, application/pdf">
+                                                            <label class="custom-file-label">Choose file</label>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                                             
+                                            
+                                            <!-- button for submission -->
+                                            <?php if ($row['birth_cert_status'] == 'approved'): ?>
+                                            
+                                            <?php elseif ($row['birth_cert_status'] == 'pending'): ?>
+                                                
+                                            <?php else: ?>
+                                                <button class="btn btn-danger" type="submit" name="submit">Upload Image(s)</button>
+                                            <?php endif; ?>
+                                    </form>
+                                        <div class="my-3 text-center">
+                                        <!-- Delete Buttons-->  
+                                        <?php if ($row['birth_cert_status'] == 'approved' || $row['birth_cert_status'] == 'pending'): ?>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#del-cert-modal<?php echo $row['stud_id']; ?>">
+                                        <i class="fa fa-trash"></i> Delete PSA-BC/Marriage Cert.
+                                        </button>
+                                                        
+                                        <!-- Delete Modal Window -->
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="del-cert-modal<?php echo $row['stud_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-danger">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Birth Certificate</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete Delete PSA/Live Birth Certificate for Scholar <strong><?php echo $user_fullname; ?></strong>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form action="user-data/user-submit-req-scholar.php" method="POST" enctype="multipart/form-data">
+                                                            <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
+                                                            <input type="hidden" name="file_type" value="birth_cert_img">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">No, Close</button>
+                                                            <button type="submit " class="btn btn-secondary" name="delete">
+                                                                <i class="fa fa-trash"></i> Yes, Delete Image
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div>     
+                                    
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    
+                                </div>
+                            </div>
+                            <!-- /.card -->
+                        
+
+                            
                                 <?php elseif ($row['birth_cert_status'] == 'pending'): ?>  
                                     
 
@@ -471,91 +351,10 @@
                                         <i class="fa fa-trash"></i> Delete PSA-CERT
                                     </button>
                                 </form> -->
-                            </div>                           
+                            </div>    
                         </div>
-                            
-                        <div class="col-md-3">
-                            <div class="my-3 text-center">
-                                <?php if (!empty($row['diploma_tor_img'])): {?>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#diploma-tor-modal<?php echo $row['stud_id']; ?>">
-                                    <i class="fa fa-trash"></i> Delete Diploma/ToR
-                                    </button>
-                                                     
-                                    <!-- Delete Modal Window -->
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="diploma-tor-modal<?php echo $row['stud_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-danger">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Diploma / ToR</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete Diploma/ToR for Scholar <strong><?php echo $user_fullname; ?></strong>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="user-data/user-submit-req-scholar.php" method="POST" enctype="multipart/form-data">
-                                                        <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
-                                                        <input type="hidden" name="file_type" value="diploma_tor_img">
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-secondary" name="delete">
-                                                            <i class="fa fa-trash"></i> Delete Image
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                             
-                                <?php } endif; ?>  
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="my-3 text-center">
-                                <?php if (!empty($row['1x1_img'])): {?>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#del-1x1-modal<?php echo $row['stud_id']; ?>">
-                                    <i class="fa fa-trash"></i> Delete 1x1 Image
-                                    </button>
-                                                     
-                                    <!-- Delete Modal Window -->
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="del-1x1-modal<?php echo $row['stud_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-danger">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Birth Certificate</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete Delete 1x1 Image for Scholar <strong><?php echo $user_fullname; ?></strong>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form action="user-data/user-submit-req-scholar.php" method="POST" enctype="multipart/form-data">
-                                                        <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
-                                                        <input type="hidden" name="file_type" value="1x1_img">
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                        <button type="submit " class="btn btn-secondary" name="delete">
-                                                            <i class="fa fa-trash"></i> Delete Image
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } endif; ?>                                            
-                            </div>                           
-                        </div>
-                                
-                    </div>            
-                  
-              </div>
-              <!-- /.card-body -->  
-            </div>
-            <!-- /.card -->
+                    </div>
+               
           </div>
           <!-- /.col -->
         </div>
