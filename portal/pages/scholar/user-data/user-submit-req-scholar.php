@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     } else {
         // If not, insert a new row with the correct status column
         $insert_query = "INSERT INTO tbl_student_requirements (stud_id, file_type, $file_type, $status_column) 
-                         VALUES ('$stud_id', '$file_type', '$file_data', 'Pending')";
+                         VALUES ('$stud_id', '$file_type', '$file_data', 'pending')";
 
         if (mysqli_query($conn, $insert_query)) {
             $_SESSION['success-insert'] = true;
@@ -53,20 +53,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
 // DELETE IMAGE
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+
     $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
     $file_type = mysqli_real_escape_string($conn, $_POST['file_type']);
 
+    // Validate input
     if (empty($stud_id) || empty($file_type)) {
         die("Error: Missing parameters.");
     }
 
-    // Set the file column to NULL (delete the file)
+    // Validate that file_type is allowed to prevent SQL injection
+    $allowed_types = ['birth_cert_img', 'diploma_tor_img', '1x1_img'];
+    if (!in_array($file_type, $allowed_types)) {
+        die("Error: Invalid file type.");
+    }
+
+    // Determine the corresponding status and reject reason columns dynamically
+    $status_column = str_replace("_img", "_status", $file_type);
+    $reject_reason_column = str_replace("_img", "_reject_reason", $file_type);
+
+    // Build the dynamic SQL query
     $query = "UPDATE tbl_student_requirements 
-    SET 
-    birth_cert_status = NULL,
-    birth_cert_reject_reason = NULL,
-    $file_type = NULL 
-    WHERE stud_id = '$stud_id'";
+              SET 
+              $file_type = NULL,
+              $status_column = NULL,
+              $reject_reason_column = NULL         
+              WHERE stud_id = '$stud_id'";
+
+    // Execute the query
     if (mysqli_query($conn, $query)) {
         $_SESSION['success-delete'] = true;
         header("location: ../submit-req-scholar.php?stud_id=$stud_id");

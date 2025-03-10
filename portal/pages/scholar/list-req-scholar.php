@@ -211,6 +211,7 @@
                                                     <div class="modal-footer">
                                                         <form action="user-data/user-list-req-scholar.php" method="POST">
                                                             <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
+                                                            <input type="hidden" name="status" value="birth_cert">
 
                                                             <button type="submit" name="approve" class="btn btn-success">Approve</button>
 
@@ -289,8 +290,6 @@
 
                                    
                                 </td>
-
-                                
             
                                 <!-- Diploma/TOR -->
                                 <td>
@@ -319,6 +318,7 @@
                                                     <div class="modal-footer">
                                                         <form action="user-data/user-list-req-scholar.php" method="POST">
                                                             <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
+                                                            <input type="hidden" name="status" value="diploma_tor"> <!-- Change dynamically -->
 
                                                             <button type="submit" name="approve" class="btn btn-success">Approve</button>
 
@@ -396,36 +396,105 @@
 
                                 <!-- 1x1 -->
                                 <td>
-                                    <?php if (!empty($row['1x1_img'])): ?>
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-1x1-<?php echo $row['stud_id']; ?>">
-                                            <i class="fa fa-eye"></i>                                            
-                                                View 1x1 Picture
+                                    <?php if ($row['1x1_status'] == 'pending'): ?>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-1x1-pending-<?php echo $row['stud_id']; ?>">
+                                            <i class="fa fa-eye"></i> 
+                                                View 1x1 Image
                                         </button>
                                         <br>
-                                        <span class="badge badge-success">Uploaded</span>
+                                        <span class="badge badge-warning">Uploaded, Awaiting Validation From An Admin</span>
+
+                                        <!-- Warning Modal for Pending - Admin Validation -->
+                                        <div class="modal fade" id="modal-1x1-pending-<?php echo $row['stud_id']; ?>">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header btn-warning">
+                                                        <h4 class="modal-title">Approval for: 1x1 Image</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span>&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body text-center">
+                                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($row['1x1_img']); ?>" class="img-fluid">
+                                                                
+                                                    <div class="modal-footer">
+                                                        <form action="user-data/user-list-req-scholar.php" method="POST">
+                                                            <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
+                                                            <input type="hidden" name="status" value="1x1"> <!-- Change dynamically -->
+
+                                                            <button type="submit" name="approve" class="btn btn-success">Approve 1x1 Image</button>
+
+                                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-1x1-reject-<?php echo $row['stud_id']; ?>">Reject 1x1 Image</button>
+                                                        </form>
+                                                    </div>    
+
+                                                        <!-- Reject Modal -->
+                                                        <div class="modal fade" id="modal-1x1-reject-<?php echo $row['stud_id']; ?>">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <form action="user-data/user-list-req-scholar.php" method="POST">
+                                                                        <div class="modal-header btn-danger">
+                                                                            <h5 class="modal-title">Reject 1x1 Image</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
+                                                                            <input type="hidden" name="reject_field" value="1x1_reject_reason"> <!-- Change this accordingly -->                                                                     
+                                                                            <textarea name="reject_reason" class="form-control" placeholder="Enter rejection reason" required></textarea>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" name="reject" class="btn btn-danger">Reject 1x1 Image</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>                                         
+                                                        
+                                                    </div>                                      
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php elseif ($row['1x1_status'] == 'approved'): ?>
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-1x1-success-<?php echo $row['stud_id']; ?>">
+                                            <i class="fa fa-eye"></i> 
+                                                View 1x1 Image                                        
+                                        </button>
+                                        <br>
+                                        <span class="badge badge-success">Approved</span>
+                                    <?php elseif ($row['1x1_status'] == 'rejected'): ?>
+                                        <span class="badge badge-danger">No Upload, recent upload rejected by an admin</span>
                                     <?php else: ?>
                                         <span class="badge badge-danger">No Upload</span>
                                     <?php endif; ?>
-            
-                                    <div class="modal fade" id="modal-1x1-<?php echo $row['stud_id']; ?>">
+                                    
+                                    
+
+                                    <!-- Warning Modal for SUCCESS Admin Validation -->
+                                    <div class="modal fade" id="modal-1x1-success-<?php echo $row['stud_id']; ?>">
                                         <div class="modal-dialog modal-xl">
                                             <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">1x1 Picture</h4>
+
+                                                <div class="modal-header btn-success">
+                                                    <h4 class="modal-title">Approved 1x1 Image </h4>
                                                     <button type="button" class="close" data-dismiss="modal">
                                                         <span>&times;</span>
                                                     </button>
                                                 </div>
+
                                                 <div class="modal-body text-center">
-                                                    <?php if (!empty($row['1x1_img'])): ?>
-                                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($row['1x1_img']); ?>" class="img-fluid">
-                                                    <?php else: ?>
-                                                        <p>No image uploaded.</p>
-                                                    <?php endif; ?>
-                                                </div>
+                                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['1x1_img']); ?>" class="img-fluid">
+                                                            
+                                                <div class="modal-footer">
+                                                    <p>Approved by: <b>ADMIN NAME</b></p>
+                                                </div>         
+
                                             </div>
                                         </div>
                                     </div>
+
+                                   
                                 </td>
             
                                 <!-- Scholar Profile Status -->    
@@ -536,8 +605,7 @@
                                                 echo '<span class="badge badge-warning">PENDING</span>';
                                                 
                                                 // Show the enroll button only if all required fields are present
-                                                if (empty($missing_fields) && !empty($row['birth_cert_img']) && !empty($row['diploma_tor_img']) && !empty($row['1x1_img'])) {
-                                                    ?>
+                                                if (empty($missing_fields) && ($row['birth_cert_status'] == 'approved') && ($row['diploma_tor_status'] == 'approved') && ($row['1x1_status'] == 'approved')) { ?>
                                                     <br>
                                                     <button type="button" class="btn btn-success btn-sm mt-2" data-toggle="modal" data-target="#confirmEnroll-<?php echo $row['stud_id']; ?>">
                                                         Mark as Enrolled

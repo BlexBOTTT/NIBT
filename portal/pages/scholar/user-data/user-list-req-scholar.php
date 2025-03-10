@@ -43,17 +43,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reject'])) {
 // Approve
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['approve'])) {
     $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
 
-    if (empty($stud_id)) {
+    if (empty($stud_id) || empty($status)) {
         die("Error: Missing parameters.");
     }
 
-    // Set the file column to NULL (delete the file)
+    // Define valid columns for security
+    $valid_columns = [
+        "birth_cert",
+        "diploma_tor",
+        "1x1"
+    ];
+
+    if (!in_array($status, $valid_columns)) {
+        die("Error: Invalid requirement.");
+    }
+
+    // Dynamic column names
+    $status_column = "{$status}_status";
+    $reason_column = "{$status}_reject_reason";
+
+    // Update the correct columns dynamically
     $query = "UPDATE tbl_student_requirements 
-            SET
-            birth_cert_status = 'approved',
-            birth_cert_reject_reason = NULL 
-            WHERE stud_id = '$stud_id'";
+              SET $status_column = 'approved', 
+                  $reason_column = NULL 
+              WHERE stud_id = '$stud_id'";
     
     if (mysqli_query($conn, $query)) {
         $_SESSION['success-delete'] = true;
