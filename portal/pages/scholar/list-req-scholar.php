@@ -354,7 +354,7 @@
                                         </div>
 
                                     <?php elseif ($row['diploma_tor_status'] == 'approved'): ?>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-cert-success-<?php echo $row['stud_id']; ?>">
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-diploma-tor-success-<?php echo $row['stud_id']; ?>">
                                             <i class="fa fa-eye"></i> 
                                                 View Diploma / ToR                                        
                                         </button>
@@ -369,12 +369,12 @@
                                     
 
                                     <!-- Warning Modal for SUCCESS Admin Validation -->
-                                    <div class="modal fade" id="modal-cert-success-<?php echo $row['stud_id']; ?>">
+                                    <div class="modal fade" id="modal-diploma-tor-success-<?php echo $row['stud_id']; ?>">
                                         <div class="modal-dialog modal-xl">
                                             <div class="modal-content">
 
                                                 <div class="modal-header btn-success">
-                                                    <h4 class="modal-title">PSA/Marriage Certificate</h4>
+                                                    <h4 class="modal-title">View Diploma / ToR</h4>
                                                     <button type="button" class="close" data-dismiss="modal">
                                                         <span>&times;</span>
                                                     </button>
