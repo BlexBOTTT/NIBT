@@ -30,9 +30,7 @@
           <?php 
             if ($_SESSION['role'] == "Student") {  
                 echo '
-                <a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="d-block">' . $user_fullname . ' - <i>' . $_SESSION['role'] . '</i></a>
-                
-                ';
+                <a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="d-block">' . $user_fullname . '</i></a>';
 
             } else {
               echo '<a href="" class="d-block">' . $user_fullname . '</a>';
