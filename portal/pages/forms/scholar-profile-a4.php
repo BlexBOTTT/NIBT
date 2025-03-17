@@ -1060,7 +1060,86 @@ if ($stud_id > 0) {
         $pdf->Cell(95, 2, '(Signature Over Printed Name)', 0, 0, 'C');
 
         $pdf->Cell(125, 5, 'Right Thumbmark', 0, 0, 'C');
-     
+
+
+        // PAGE 3: COMMITMENT OF UNDERTAKING 
+
+        $pdf->AddPage();
+
+
+        $pdf->SetMargins(10, 10, 10);
+        // fully get the all usable 10mm bottom marjin
+        $pdf->SetAutoPageBreak(false); 
+
+        
+
+        // $pdf->SetLineWidth(0.1);
+        // $pdf->SetDash(1,3); //5mm on, 5mm off
+        // $pdf->Line(105, 0, 105, 297); // Draws a vertical line down the center of an A4 page
+        // $pdf->Line(0, 148.5, 210, 148.5); // Horizontal center line (Y = 148.5)
+        
+        // $pdf->SetDash(); // restores no dash and default to line
+        // $pdf->SetLineWidth(0); // default line thickness
+
+
+
+        // Logo(x axis, y axis, height, width)
+        // $pdf->Image('../../img/SFAC-logo1.jpg', 45, 8, 15, 15);
+        // text color
+        $pdf->SetTextColor(0, 0, 0);
+        // font(font type,style,font size)
+        // Dummy cell
+        $pdf->Cell(50);
+
+
+        $pdf->Ln(3);
+        $pdf->SetTextColor(0, 0, 0);
+
+  
+
+        $margin = 10; // 0.5 inch in mm
+        $page_width = 210;
+        $page_height = 297;
+        
+        
+        $usable_width = $page_width - ($margin * 2);
+        $usable_height = $page_height - ($margin * 2);
+        
+        $pdf->Rect($margin, $margin, $usable_width, $usable_height); // Full-height box with 0.5-inch margins
+        
+        // header tesda top divider
+        $pdf->Rect($margin, $margin, $usable_width, 15);
+        //cell(width,height,text,border,end line,[align])
+        
+        $pdf->Rect($margin, $margin, 30, 15);
+        
+
+        $pdf->Cell(63.33, 5, '', 0, 0, 'C');    // tesda logo
+        $pdf->SetFont('times', 'B', 11);
+
+        $pdf->Cell(59.33, 5, '', 0, 0, 'C');
+        $pdf->Cell(58.33, 5, 'Annex K', 0, 1, 'R');
+
+        $pdf->Rect(165, $margin, 35, 15);
+
+        $pdf->Cell(63.33, 5, '', 0, 0, 'C');    // tesda logo
+        $pdf->SetFont('times', '', 11);
+        $pdf->Cell(63.33, 5, '', 0, 0, 'C');
+        $pdf->SetFont('times', 'B', 11);
+        $pdf->Cell(62.33, 5, 'Rev No. 01 s. 2025', 0, 1, 'R');
+
+        $pdf->SetFont('arial', 'BU', 24);
+
+        $pdf->Ln(15);
+
+        $pdf->Cell(190, 5, 'COMMITMENT OF UNDERTAKING', 0, 1, 'C');
+
+        $pdf->Ln(10);
+        
+        
+
+
+
         // tapos na boi
         $pdf->Output();
 

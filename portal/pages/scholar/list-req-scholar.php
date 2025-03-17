@@ -185,11 +185,11 @@
                                     <?php if ($row['birth_cert_status'] == 'pending'): ?>
                                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-cert-pending-<?php echo $row['stud_id']; ?>">
                                             <i class="fa fa-eye"></i> 
-                                            <?php if ($row['gender_id'] == 2):  { ?>
+                                            <?php if ($row['gender_id'] == 2):?>
                                                 View PSA / Marriage Certificate
-                                            <?php } elseif ($row['gender_id'] == 1): {?>                
+                                            <?php elseif ($row['gender_id'] == 1 || $row['gender_id'] == 0): ?>                
                                                 View PSA
-                                            <?php } endif ?>
+                                            <?php endif ?>    
                                         </button>
                                         <br>
                                         <span class="badge badge-warning">Uploaded, Awaiting Validation From An Admin</span>
@@ -249,11 +249,11 @@
                                     <?php elseif ($row['birth_cert_status'] == 'approved'): ?>
                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-cert-success-<?php echo $row['stud_id']; ?>">
                                             <i class="fa fa-eye"></i> 
-                                            <?php if ($row['gender_id'] == 2):  { ?>
+                                            <?php if ($row['gender_id'] == 2):?>
                                                 View PSA / Marriage Certificate
-                                            <?php } elseif ($row['gender_id'] == 1): {?>                
+                                            <?php elseif ($row['gender_id'] == 1 || $row['gender_id'] == 0): ?>                
                                                 View PSA
-                                            <?php } endif ?>
+                                            <?php endif ?> 
                                         </button>
                                         <br>
                                         <span class="badge badge-success">Approved</span>
@@ -615,8 +615,8 @@
                                                     <div class="modal fade" id="confirmEnroll-<?php echo $row['stud_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title text-success" id="exampleModalLabel">Confirm Enrollment</h5>
+                                                                <div class="modal-header bg-primary">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Confirm Enrollment</h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>

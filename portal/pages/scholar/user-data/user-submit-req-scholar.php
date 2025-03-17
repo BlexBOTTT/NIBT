@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         }
     } else {
         // If not, insert a new row with the correct status column
-        $insert_query = "INSERT INTO tbl_student_requirements (stud_id, file_type, $file_type, $status_column) 
-                         VALUES ('$stud_id', '$file_type', '$file_data', 'pending')";
+        $insert_query = "INSERT INTO tbl_student_requirements (stud_id, $file_type, $status_column) 
+                         VALUES ('$stud_id', '$file_type', 'pending')";
 
         if (mysqli_query($conn, $insert_query)) {
             $_SESSION['success-insert'] = true;
