@@ -1108,10 +1108,10 @@ if ($stud_id > 0) {
         $pdf->Rect($margin, $margin, $usable_width, $usable_height); // Full-height box with 0.5-inch margins
         
         // header tesda top divider
-        $pdf->Rect($margin, $margin, $usable_width, 15);
+        // $pdf->Rect($margin, $margin, $usable_width, 15);
         //cell(width,height,text,border,end line,[align])
         
-        $pdf->Rect($margin, $margin, 30, 15);
+        // $pdf->Rect($margin, $margin, 30, 15);
         
 
         $pdf->Cell(63.33, 5, '', 0, 0, 'C');    // tesda logo
@@ -1120,7 +1120,7 @@ if ($stud_id > 0) {
         $pdf->Cell(59.33, 5, '', 0, 0, 'C');
         $pdf->Cell(58.33, 5, 'Annex K', 0, 1, 'R');
 
-        $pdf->Rect(165, $margin, 35, 15);
+        // $pdf->Rect(165, $margin, 35, 15);
 
         $pdf->Cell(63.33, 5, '', 0, 0, 'C');    // tesda logo
         $pdf->SetFont('times', '', 11);
@@ -1130,14 +1130,115 @@ if ($stud_id > 0) {
 
         $pdf->SetFont('arial', 'BU', 24);
 
-        $pdf->Ln(15);
+        $pdf->Ln(8);
 
         $pdf->Cell(190, 5, 'COMMITMENT OF UNDERTAKING', 0, 1, 'C');
 
-        $pdf->Ln(10);
+        $pdf->Ln(8);
         
+        $pdf->SetFont('arial', '', 11);
         
+        // Set the text
 
+        // $pdf->Cell(55, 5, $row['num_street'], 0, 0, 'L');
+        // $pdf->Cell(55, 5, $row['barangay'], 0, 0, 'L');
+        // $pdf->Cell(50, 5, $row['district'], 0, 1, 'L');
+
+        $pdf->SetFont('Arial', '', 11);
+        $pdf->Write(6, "                      I, ");
+        
+        $pdf->SetFont('Arial', 'BU', 11);
+        $pdf->Write(6, $row['firstname'] . " " .  $row['middleinitial'] . " " . $row['lastname']);
+        
+        $pdf->SetFont('Arial', '', 11);
+        $pdf->Write(6, ", Filipino citizen, of legal age, and resident of ");
+
+        $pdf->SetFont('Arial', 'BU', 11);
+        $pdf->Write(6, $row['num_street'] . ", ");
+        $pdf->Write(6, $row['barangay'] . ", " . $row['addmunicity'] . ", " . $row['province']);
+        
+        $pdf->SetFont('Arial', '', 11);
+        $pdf->Write(6, " after having sworn to in accordance with law do hereby commit to: ");
+
+        $pdf->Ln(5);
+
+        $pdf->SetFont('Arial', '', 11);
+        $indent = 30; // Left margin
+        $numWidth = 10; // Width for the numbering
+        $textWidth = 190 - $indent - $numWidth; // Adjust text width
+
+        $list = [
+            "Undergo pre-qualifying process in accordance with the industry pre-hiring requirements, if applicable;",
+            "Create and maintain a single profile in the Biometric-Enabled Scholarship Registration System (BSRS), when applicable;",
+            "Fill up all the items in the Learners Profile correctly and appropriately;",
+            "Participate actively in the Training Induction of Scholars before the conduct of the training program;",
+            "Attend and comply with the required duration of the training program;",
+            "Refrain from attending any other training/class that will coincide within the training program;",
+            "Undergo the mandatory assessment as applicable;",
+            "Attend graduation ceremonies and other Scholar /TVI activities;",
+            "Participate actively in the Job Linkaging of the TVET provider, if applicable;",
+            "Practice good manners and right conduct at all times;",
+            "Be a member of the TESDA's Alumni Association; and",
+            "Provide valid reason/s for dropping out from the training if I would be unable to complete the training program. Non-compliance to this will cause disqualification from participating in any of the TESDA scholarship programs for one (1) year starting from the date I was officially reported as a dropout."
+        ];
+
+        $counter = 1;
+        foreach ($list as $item) {
+            $pdf->SetX($indent); // Apply left indent
+            $pdf->Cell($numWidth, 6, $counter . ".", 0, 0, 'L'); // Print number (no new line)
+            $pdf->MultiCell($textWidth, 6, $item, 0, 'L'); // Print text with word wrap
+            $counter++;
+        }
+
+        $pdf->Ln(5); // Add spacing after the list
+
+        // Indent final statement as well
+        $pdf->SetX($indent + 10);
+        $pdf->MultiCell(0, 5, "I fully understand that my failure to comply with any of the above may result in my disqualification as a beneficiary of the TESDA's scholarship programs.", 0, 'L');
+
+        $pdf->Ln(15); // Add some spacing before the signature area
+
+        // Draw a line for the signature
+        $pdf->SetX(105); // Adjust to align to the right
+        $pdf->Cell(80, 5, "___________________________________", 0, 1, 'L');
+
+        // Signature label
+        $pdf->SetX(105);
+        $pdf->Cell(80, 5, "(Signature over printed name)", 0, 1, 'C');
+
+        // Contact information
+        $pdf->SetX(105);
+        $pdf->Cell(28, 5, "Tel/Mobile No.: ", 0, 0, 'L'); // Normal text
+
+        $pdf->SetFont('Arial', 'BU', 12); // Bold + Underline
+        $pdf->Cell(35, 5, $row['contact'], 0, 1, 'L'); // Bold + Underlined value
+
+        $pdf->SetFont('Arial', '', 12); // Reset to normal text
+
+        $pdf->SetX(105);
+        $pdf->Cell(30, 5, "Email Address: ", 0, 0, 'L'); // Normal text
+
+        $pdf->SetFont('Arial', 'BU', 12); // Bold + Underline
+        $pdf->Cell(35, 5, $row['email'], 0, 1, 'L'); // Bold + Underlined value
+
+        $pdf->SetFont('Arial', '', 12); // Reset to normal text
+
+
+        $pdf->Ln(10); // Add spacing before the next section
+
+        // Subscription text
+        $pdf->MultiCell(0, 7, "     SUBSCRIBED AND SWORN to me before this ___ day of _______ 20___, at _____________.");
+
+        // Space before Administering Officer
+        $pdf->Ln(15);
+
+        // Draw a line for the Administering Officer's signature
+        $pdf->SetX(105);
+        $pdf->Cell(80, 5, "___________________________________", 0, 1, 'C');
+
+        // Administering Officer label
+        $pdf->SetX(105);
+        $pdf->Cell(80, 5, "Administering Officer", 0, 1, 'C');
 
 
         // tapos na boi
