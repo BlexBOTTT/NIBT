@@ -20,7 +20,7 @@
 
             } else {
                 // Display the image if the role has image
-                echo '<img class="user-image  img-circle elevation-2" src="data:image/jpeg;base64,' . base64_encode($user_img) . '" alt="User Image">';
+                echo '<img class="user-image img-circle elevation-2" src="data:image/jpeg;base64,' . base64_encode($user_img) . '" alt="User Image" style="width: 40px; height:   px; object-fit: cover;">';
                 // Base code reference: 
             }
           ?>
@@ -158,28 +158,37 @@
                         <a href="../dashboard/index.php" class="nav-link">
                           <p>Home</p>
                         </a>
-                      </li>                          
+                      </li>
+
+                      <li class="nav-header">Courses Configuration</li>
+    
+                        <li class="nav-item">
+                          <a href="../course/assign-course.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                            <p>Assign Course/Batches</p>
+                          </a>
+                        </li>                          
 
                       <li class="nav-header">Scholars config</li>
     
-                      <li class="nav-item">
-                            <a href="../scholar/list-scholar.php" class="nav-link">
+                        <li class="nav-item">
+                          <a href="../scholar/list-scholar.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                            <p>Scholar/Student List</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="../scholar/list-req-scholar.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar/Student List</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="../scholar/list-req-scholar.php" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar Requirements</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="../scholar/add-scholar.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                              <p>Scholar/Student Add</p>
-                            </a>
-                          </li>
+                            <p>Scholar Requirements</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="../scholar/add-scholar.php" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                            <p>Scholar/Student Add</p>
+                          </a>
+                        </li>
                       
                       <li class="nav-header">Other Functions</li>
 

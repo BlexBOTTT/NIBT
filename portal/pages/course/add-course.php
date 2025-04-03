@@ -33,8 +33,8 @@
                 <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item active">Home</li>
-                        <li class="breadcrumb-item active">Scholar Config</li>
-                        <li class="breadcrumb-item active">Add New Scholar</li>
+                        <li class="breadcrumb-item active">Course Config</li>
+                        <li class="breadcrumb-item active">Add New Course-Batch</li>
 
                     </ol>
                 </div><!-- /.col -->
@@ -89,36 +89,13 @@
                     <!-- CARD HEADER  -->
                     <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Add new NIBT-LP Scholar</h3>
+                        <h3 class="card-title">Add new Course-Batch</h3>
                     </div>
                     <!-- /.card-header -->
                         <!-- CARD BODY -->
                         <div class="card-body pad table-responsive">
 
-                            <form action="user-data/user-add-scholar.php" method="POST" enctype="multipart/form-data">
-
-                                <div class="row mx-auto justify-content-center">
-                                    <div class="col-md-4 my-4">
-                                        <div class="custom-file">
-                                            <div class="text-center mb-4">
-                                                <!-- <img class="img-fluid img-circle" src="../../../portal/docs/assets/img/AdminLTELogo.png"
-                                                    alt="User profile picture" style="width: 100px; height: 100px;"> -->
-                                                    <img class="img-fluid img-circle" id="profile-img" src="../../../portal/docs/assets/img/AdminLTELogo.png" alt="User profile picture" style="width: 100px; height: 100px;">
-
-                                            </div>
-                                            <div class="row justify-content-center">
-                                                <div class="form-group col-md-12">                                                                  
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                        <input type="file" class="form-control" name="prof_img" id="prof_img" required>
-                                                        <label for="prof_img" class="custom-file-label">Choose file</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <form action="user-data/user-add-course.php" method="POST" enctype="multipart/form-data">
 
                                 <div class="row mx-auto">
                                     <div class="col-md-4">

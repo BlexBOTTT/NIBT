@@ -3,7 +3,7 @@
 
   <!--====== Title ======-->
   <title>NIBT - MIS</title>
-    <!--====== Favicon Icon ======-->
+  <!--====== Favicon Icon ======-->
   <link rel="shortcut icon" href="../../assets/img/nibt-white.png" type="image/png">
   
   <!-- Google Font: Source Sans Pro -->
