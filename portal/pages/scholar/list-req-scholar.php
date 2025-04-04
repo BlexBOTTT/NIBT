@@ -168,7 +168,10 @@
                         </tr>  
                     </thead>                                             
                     <tbody>
-                        <?php while ($row = $get_stud->fetch_array()): ?>
+                        <?php 
+                            while ($row = $get_stud->fetch_array()):
+                            $id = $row['stud_id']; 
+                        ?>
                             <tr>
                                 <td>
                                     <?php if (!empty($row['img'])): ?>
@@ -534,7 +537,7 @@
                                             'employment_id' => 'Employment Status',
                                             'attainment_id' => 'Educational Attainment',
                                             'classification_id' => 'Classification',
-                                            'course_id' => 'Course',
+                                            'course_name_id' => 'Course Name',
                                             'scholar_package_id' => 'Scholarship Package',
                                             'disclaimer' => 'Disclaimer'
                                         ]; 
@@ -639,7 +642,10 @@
                                                 break;
 
                                             case 1:
-                                                echo '<span class="badge badge-success">ENROLLED</span>';
+                                                echo '<span class="badge badge-success">ENROLLED</span> <br>
+                                                <a href="../forms/scholar-profile-a4.php?stud_id=' . $id . '" type="button" class="btn btn-primary mx-1" target="_blank" title="View Printable Scholar Profile">
+                                                      <i class="fa fa-print"></i> 
+                                                  </a>';
                                                 break;
 
                                             case 2:

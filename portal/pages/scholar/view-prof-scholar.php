@@ -591,12 +591,12 @@
                                             <div class="my-3">
                                                 <label>Name of Course/Qualification:</label>
 
-                                                <select disabled class="form-control" id="courses" name="courses" placeholder="Select your answer">                                            
+                                                <select disabled class="form-control" id="course_name" name="course_name" placeholder="Select your answer">                                            
                                                 <?php 
-                                                $query_courses = mysqli_query($conn, "SELECT * FROM tbl_courses");
-                                                while ($row_courses = mysqli_fetch_array($query_courses)) {
-                                                    $selected_courses = ($row['course_id'] == $row_courses['course_id']) ? 'selected' : '';
-                                                    echo '<option value="' . $row_courses['course_id'] . '" ' . $selected_courses . '>' . $row_courses['course_name'] . '</option>';
+                                                $query_course_name = mysqli_query($conn, "SELECT * FROM tbl_course_name");
+                                                while ($row_course_name = mysqli_fetch_array($query_course_name)) {
+                                                    $selected_course_name = ($row['course_name_id'] == $row_course_name['course_name_id']) ? 'selected' : '';
+                                                    echo '<option value="' . $row_course_name['course_name_id'] . '" ' . $selected_course_name . '>' . $row_course_name['course_name'] . '</option>';
                                                 }
                                                 ?>
                                                 </select> 

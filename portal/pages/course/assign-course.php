@@ -12,7 +12,7 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <?php include '../../includes/preloader.php'; ?>
+
 
   <!-- Navbar -->
   <?php include '../../includes/navbar.php'; ?>
@@ -92,38 +92,22 @@
               <div class="card-body pad table-responsive">  
                 
                 <?php
-                    $stud_id = isset($_GET['stud_id']) ? intval($_GET['stud_id']) : 0;
-
                     // Prepare the query
                     $sql = "SELECT 
-                            tbl_students.*,
-                            tbl_student_requirements.*,
-                            tbl_genders.gender_name                            
-                        FROM tbl_students
-                        LEFT JOIN tbl_genders ON tbl_students.gender_id = tbl_genders.gender_id
-                        LEFT JOIN tbl_student_requirements ON tbl_students.stud_id = tbl_student_requirements.stud_id
-                        ";
-
-                    if ($stud_id > 0) {
-                        $sql .= " WHERE tbl_students.stud_id = $stud_id";
-                    }
+                            tbl_enrollments.*,
+                            tbl_course_name.course_name       
+                            FROM tbl_enrollments
+                            LEFT JOIN tbl_course_name ON tbl_enrollments.course_name_id = tbl_course_name.course_name";                         
 
                     // Execute the query
-                    $get_stud = $conn->query($sql);
+                    $get_course = $conn->query($sql);
 
                     // Check if query executed successfully
-                    if (!$get_stud) {
+                    if (!$get_course) {
                         die("Query Error: " . $conn->error);
                     }
 
-                    // Check if a student is selected to show the back button
-                    if ($stud_id > 0) {
-                        echo '<div class="row justify-content-center text-center">
-                            <a href="list-req-scholar.php" class="btn btn-primary mx-1">
-                                Click Me to See All Students
-                            </a>
-                        </div>';
-                    }
+                    
                 ?>
 
                 <div class="row mx-auto justify-content-center text-center">
@@ -137,24 +121,27 @@
                 <table class="table table-bordered text-center" id="myTable">
                     <thead>
                         <tr> 
-                            <th>Course</th>                     
-                            <th>Batch</th>     
-                            <th>Start Date</th>          
+                            <th>RQM</th>                     
+                            <th>Course Name</th>     
+                            <th>Batch Number</th>          
+                            <th>Year</th>
+                            <th>Student Count</th>
+                            <th>Start Date</th>
                             <th>End Date</th>
-                            <th>Actions</th>
-                            
-                            
-                            
+                            <th>Remarks</th>
                         </tr>  
                     </thead>                                             
                     <tbody>
-                        <?php while ($row = $get_stud->fetch_array()): ?>
+                        <?php while ($row = $get_course->fetch_array()): ?>
                             <tr>
-                                <td> </td>                  
-                                <td><?php echo $row['']; ?></td>
-                                <td><?php echo $row['']; ?></td>
-                                <td><?php echo $row['']; ?></td>
-                                <td><?php echo $row['']; ?></td>
+                                <td><?php echo $row['rqm']; ?></td>                  
+                                <td><?php echo $row['course_name']; ?></td>
+                                <td><?php echo $row['batch']; ?></td>
+                                <td><?php echo $row['year']; ?></td>
+                                <td><?php echo $row['student_count']; ?></td>
+                                <td><?php echo $row['start_date']; ?></td>
+                                <td><?php echo $row['end_date']; ?></td>
+                                <td><?php echo $row['remarks']; ?></td>
                             </tr>
                         <?php endwhile; ?>
                     </tbody>

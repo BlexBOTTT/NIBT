@@ -10,10 +10,10 @@ if ($stud_id > 0) {
     // Fetch student data from the database
     $query = "SELECT tbl_students.*, 
                  tbl_extension_name.ext_name,
-                 tbl_courses.course_name
+                 tbl_course_name.course_name
           FROM tbl_students 
           LEFT JOIN tbl_extension_name ON tbl_students.ext_name_id = tbl_extension_name.ext_name_id
-            LEFT JOIN tbl_courses ON tbl_students.course_id = tbl_courses.course_id
+            LEFT JOIN tbl_course_name ON tbl_students.course_name_id = tbl_course_name.course_name_id
           WHERE tbl_students.stud_id = '$stud_id'";
 
     $result = mysqli_query($conn, $query);
@@ -893,7 +893,7 @@ if ($stud_id > 0) {
         $pdf->SetFont('arial', 'IU', 11);
 
         // if case where tbl_student's course_id is equal to 0 or not.
-        if ($row['course_id'] != 0) {
+        if ($row['course_name_id'] != 0) {
         $pdf->Cell($margin, 5, $row['course_name'], 0, 1, 'L');
         } else {
             // Optionally, print a blank cell or just skip

@@ -12,7 +12,7 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        <?php include '../../includes/preloader.php'; ?>
+        <!-- <?php include '../../includes/preloader.php'; ?> -->
 
         <!-- Navbar -->
         <?php include '../../includes/navbar.php'; ?>
@@ -100,52 +100,94 @@
                                 <div class="row mx-auto">
                                     <div class="col-md-4">
                                         <div class="my-3">
-                                            <label class="form-label">First Name</label>
-                                            <input type="text" name="firstname" class="form-control" autocomplete="off"
+                                            <label class="form-label">Select Course Name</label>
+                                            <select class="form-control" id="courses" name="courses" required>
+                                                <option value="" selected disabled>Select Choice...</option>                                            
+                                                <?php 
+                                                $query_courses = mysqli_query($conn, "SELECT * FROM tbl_course_name WHERE course_name_id != 0");
+                                                while ($row_courses = mysqli_fetch_array($query_courses)) {
+                                                    $selected_courses = ($row['course_name_id'] == $row_courses['course_name_id']) ? 'selected' : '';
+                                                    echo '<option value="' . $row_courses['course_name_id'] . '" ' . $selected_courses . '>' . $row_courses['course_name'] . '</option>';
+                                                }
+                                                ?>
+                                            </select> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="my-3">
+                                            <label class="form-label">Batch Number</label>
+                                                <input type="number" id="batch" name="batch" min="1" max="100" step="1" class="form-control" placeholder="Enter Batch Number"
                                                 required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-1">
                                         <div class="my-3">
-                                            <label class="form-label">Last Name</label>
-                                            <input type="text" name="lastname" class="form-control" autocomplete="off"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="my-3">
-                                        <label class="form-label">Email Address</label>
-                                            <input type="email" name="email" class="form-control" autocomplete="off"
+                                            <label class="form-label">Year</label>
+                                                <input type="number" id="year" name="year" min="2000" max="2099" step="1" class="form-control" placeholder="Enter YYYY"
                                                 required>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mx-auto">
-                                    <div class="col-md-4">
+                                
+                                <div class="row mx-auto">                                   
+                                    <div class="col-md-3">
                                         <div class="my-3">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" name="username" class="form-control" autocomplete="off"
+                                            <label class="form-label">RQM Code (Regional Qualification Map)</label>
+                                                <input type="text" id="rqm" name="rqm" class="form-control" placeholder="Example: RQM###-YYYY-TWSP-####-####"
+                                                required>
+                                        </div>
+                                    </div>   
+                                </div>
+
+                                <div class="row mx-auto">                                   
+                                    <div class="col-md-2">
+                                        <div class="my-3">
+                                            <label class="form-label">Start Date</label>
+                                                <input type="date" id="start_date" name="start_date" min="1900" max="2099" step="1" class="form-control"
                                                 required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+
+                                    <div class="col-md-2">
                                         <div class="my-3">
-                                            <label class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control" autocomplete="off"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="my-3">
-                                            <label class="form-label">Confirm Password</label>
-                                            <input type="password" name="password2" class="form-control" autocomplete="off"
+                                                <label class="form-label">End Date</label>
+                                                <input type="date" id="end_date" name="end_date" min="1900" max="2099" step="1" class="form-control"
                                                 required>
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="row mx-auto">                                   
+                                    <div class="col-md-2">
+                                        <div class="my-3">
+                                            <label class="form-label">Course Trainor</label>
+                                            <select class="form-control" id="trainor" name="trainor" placeholder="Select your answer" required>
+                                                <option value="" selected disabled>Select Choice...</option>
+                                                <?php 
+                                                    $query_trainor = mysqli_query($conn, "SELECT * FROM tbl_trainor");
+                                                    while ($row_trainor = mysqli_fetch_array($query_trainor)) {
+                                                    $selected_trainor = ($row['trainor_id'] == $row_trainor['trainor_id']) ? 'selected' : '';
+                                                    echo '<option value="' . $row_trainor['trainor_id'] . '" ' . $selected_trainor . '>' . $row_trainor['trainor_name'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>   
+                                        </div>
+                                    </div>   
+                                </div>
+
+                                <div class="row mx-auto">                                   
+                                    <div class="col-md-6">
+                                        <div class="my-3">
+                                            <label class="form-label">Remarks</label>
+                                            <input type="text" id="remarks" name="remarks" class="form-control" placeholder="Any remarks/comments in this particular course-batch">   
+                                        </div>
+                                    </div>   
+                                </div>
+                                
+                               
+
                                 <div class="row mx-auto">
-                                <div class="col-md-4">
+                                    <div class="col-md-4">
                                         <a class="btn btn-secondary" href="list-scholar.php">Go Back</a>
                                     </div>
                                     <div class="col-md-4"></div>
