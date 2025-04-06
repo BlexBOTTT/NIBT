@@ -665,7 +665,7 @@ p {
 }
 
 .header-social ul li a:hover {
-    animation: bounce 1.2s;
+    /* animation: bounce 1.2s; */
     color: #ffc600;
 }
 
@@ -1095,6 +1095,7 @@ p {
     box-shadow: 0px 0px 191px 0px rgba(0,0,0,0.06);
     padding: 65px 70px 37px;
     background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 30px
 }
 .about-event .event-title h3{
     font-size: 36px;
@@ -1717,7 +1718,7 @@ p {
 	padding-right: 1 px;
 }   
 .footer-about p{
-    color: #fff;
+    color: #792c2c;
     padding-top: 15px;
 }
 .footer-about ul li{
@@ -1741,14 +1742,12 @@ p {
     
 }
 .footer-about ul li a:hover{
-    animation: bounce 1.4s;
+    /* animation: bounce 1.4s; */
     background-color: #ffc600;
     color: #021d3a;
     -webkit-transition: all 0.4s linear;
     transition: all 0.4s linear;
-    
 }
-
 
 .footer-title h6{
     font-size: 18px;
@@ -1818,12 +1817,11 @@ p {
 }
 .footer-copyright .copyright p{
     font-size: 13px;
-    color: #fff;
+    color: #8d8d8d;
 }
 .footer-copyright .copyright p span{
     font-weight: 600;
 }
-
 
 
 .back-to-top{
@@ -3026,6 +3024,7 @@ p {
 .events-area{
     background-color: #fff;
     padding: 45px 50px;
+    border-radius: 3px;
 }
 
 .events-left h3{
@@ -4048,6 +4047,64 @@ h2 {
     margin: 0px 20px 20px 20px;
   }
 
+.logo-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: rgb(255, 255, 255);
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 100%;
+    opacity: 0;
+    transition: opacity 0.6s;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0px 4px 6px rgba(118, 8, 11);
+}
+
+
+.logo-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.logo-container img {
+    cursor: pointer;
+}
+
+.tooltip h4 {
+    text-align: center;
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.tooltip p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Alternate tooltip positioning */
+.timeline-component:nth-child(odd) .tooltip {
+    left: 115%;
+    right: auto;
+}
+
+.timeline-component:nth-child(even) .tooltip {
+    left: auto;
+    right: 115%;
+}
+
+
   @media screen and (min-width: 768px) {
     .timeline {
       display: grid;
@@ -4081,32 +4138,54 @@ h2 {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    padding-bottom: 25px;
+    padding-bottom: 30px;
     padding: 30px;
 }
 
-/* Styles only apply to h2 inside #admission-section */
+
+.admbanner {
+    position: relative;
+    width: 100%;
+    height: 350px; 
+    overflow: hidden;
+    background-color: #f5f5f5; 
+}
+
+
+.admbanner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+    display: block;
+}
+
 #admission-section h2 {
-    color: #8B0000; /* Dark red */
+    color: #8B0000; 
     font-size: 28px;
     font-weight: bold;
     text-transform: uppercase;
+    padding-top: 10px;
     padding-bottom: 15px;
 }
 
-/* Optional: Styling for Admission Paragraph */
+
 #admission-section p {
     font-size: 16px;
     color: #333;
     line-height: 1.5;
     text-align: justify;
+    padding-bottom: 20px;
 }
 
 
-/* Admission Requirements section */
+/* Requirement Section */
 #requirement-section {
     background-color: #f7f7f7;
     padding: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .requirement-container {
@@ -4115,9 +4194,8 @@ h2 {
     text-align: center;
 }
 
-/* Scoped h1 to this section only */
 #requirement-section h1 {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #76080B;
     margin-bottom: 20px;
@@ -4138,7 +4216,7 @@ h2 {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Scoped h2 to this section only */
+
 #requirement-section h2 {
     font-size: 20px;
     margin-bottom: 10px;
@@ -4155,31 +4233,24 @@ h2 {
     font-size: 15px;
     margin-bottom: 8px;
     position: relative;
-    padding-left: 25px; /* Adjust spacing to align with text */
+    padding-left: 25px; 
 }
 
-/* Add "+" before each list item */
+/* Add "➤" before each list item */
 #requirement-section ul li::before {
     content: "➤";
     position: absolute;
     left: 0;
     font-weight: bold;
-    color: #8B0000; /* Dark red color to match heading */
+    color: #8B0000; 
     font-size: 11px;
-    top: 0; /* Adjust alignment to match text */
+    top: 0; 
 }
 
-#vmc-section {
-    background-color: transparent;
-}
-
-#vmc-section .vmcbanner img {
-    size-adjust: 90%;
-    width: 100px; 
-    height: auto; 
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
+/* Fade-in effect when the section comes into view */
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 .g-horizontalmenu {
@@ -4187,8 +4258,8 @@ h2 {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center; /* Centers menu items */
-    gap: 20px; /* Space between menu items */
+    justify-content: center;
+    gap: 20px;
     background-color: #eee;
     padding: 40px 0;
 }
@@ -4211,8 +4282,442 @@ h2 {
 
 .g-horizontalmenu a:hover {
     color: #fff;
-    background-color: #76080B; /* Slightly lighter shade on hover */
+    background-color: #76080B; 
 }
+
+
+/*Contact Us*/
+section.contact-us {
+    background-color: #fff;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 30px 0px 30px 10px;
+  }
+  
+  section.contact-us #contact {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 40px;
+  }
+  
+  section.contact-us #contact h2 {
+    text-transform: uppercase;
+    color: #1f272b;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 40px;
+    padding-bottom: 50px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  section.contact-us #contact input {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #f7f7f7;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    font-size: 13px;
+    font-weight: 500;
+    font-weight: bold;
+    color: #7a7a7a;
+    padding: 0px 15px;
+    margin-bottom: 30px;
+  }
+  
+  section.contact-us #contact textarea {
+    width: 100%;
+    min-height: 140px;
+    max-height: 180px;
+    border-radius: 20px;
+    background-color: #f7f7f7;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    font-size: 13px;
+    font-weight: 500;
+    font-weight: bold;
+    color: #7a7a7a;
+    padding: 15px;
+    margin-bottom: 30px;
+  }
+  
+  section.contact-us #contact button {
+    font-size: 13px;
+    color: #fff;
+    background-color: #76080B;
+    padding: 12px 30px;
+    display: inline-block;
+    border-radius: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all .3s;
+    border: none;
+    outline: none;
+  }
+  
+  section.contact-us #contact button:hover {
+    opacity: 0.8;
+  }
+  
+  section.contact-us .right-info {
+    background-color: #a12c2f;
+    border-radius: 20px;
+    padding: 40px;
+  }
+  
+  section.contact-us .right-info ul li {
+    display: inline-block;
+    border-bottom: 1px solid rgba(250,250,250,0.15);
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+  
+  section.contact-us .right-info ul li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  
+  section.contact-us .right-info ul li h6 {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  section.contact-us .right-info ul li span {
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  #contact-section .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 30px;
+    padding: 30px;
+}
+
+/* Contact Banner Text Styling */
+.lpBnr__text {
+    text-align: center;
+    padding-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.lpBnr__text .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.lpBnr__text .ttl {
+    font-size: 36px;
+    font-weight: bold;
+    color: #76080B;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 10px 0 30px
+}
+
+
+/* Contact Branches */
+#contact-branches {
+    font-family: "Raleway", sans-serif;
+    line-height: 1.5625;
+    padding: 40px 0;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+#contact-branches h2 {
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* Flexbox Layout */
+#contact-branches .row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+#contact-branches .col {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    flex: 1;
+}
+
+#contact-branches .col h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #76080B;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
+
+#contact-branches .col__inner {
+    text-align: center;
+}
+
+/* Info Section */
+#contact-branches .info {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#contact-branches .info__item {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #76080B;
+}
+
+/* Links & Contact */
+#contact-branches .phone a,
+#contact-branches a {
+    text-decoration: none;
+    color: #76080B;
+    font-weight: bold;
+}
+
+#contact-branches .phone a:hover,
+#contact-branches a:hover {
+    color: #ffc600;
+}
+
+/* Social Media Links */
+#contact-branches .sns {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+    list-style: none;
+}
+
+#contact-branches .sns__item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    color: #76080B;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+
+#contact-branches .sns__item a:hover {
+    color: #ffc600;
+}
+
+/* Google Maps */
+#contact-branches .g-map {
+    margin-top: 20px;
+}
+
+#contact-branches .g-map iframe {
+    width: 100%;
+    height: 250px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #contact-branches .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #contact-branches .col {
+        max-width: 100%;
+    }
+}
+#vmc-section .vision-container {
+    background-color: transparent;
+}
+
+#vmc-section .vision-container h3{
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    color: #76080B;
+}
+
+.vision-container span {
+    size: 100px;
+    text-align: center;
+    align-items: center;
+    color: #76080B;
+    font-weight: bold;
+}
+
+
+/* ================================ */
+/*  Fade-in-Up Animation */
+/* ================================ */
+/* @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+
+/* ================================ */
+/*  Registration - General Styles  */
+/* ================================ */
+.registration {
+    padding: 30px 0;
+    background-color: #f8f8f8;
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.registration .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* ================================ */
+/*  Tabs Section  */
+/* ================================ */
+.registration .tabs-reg-flexbox {
+    list-style: none;
+    display: flex;
+    justify-content: left;
+    padding: 0;
+    border-bottom: 2px solid #ccc;
+}
+
+.registration .tabs__reg.item {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+    border-bottom: 3px solid transparent;
+}
+
+.registration .tabs__reg.item.is-active {
+    color: #76080B;
+    border-bottom: 2px solid #c0c0c0;
+    margin-left: 8px;
+}
+
+.registration .tabs__reg.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* ================================ */
+/*  Panels Section  */
+/* ================================ */
+.registration .panelWrap_reg {
+    background: white;
+    padding: 40px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.registration .panelWrap_reg h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #76080B;
+    margin-bottom: -9px;
+}
+
+.registration .panelWrap_reg p {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.registration .panel {
+    display: none;
+}
+
+.registration .panel.is-visible {
+    display: block;
+}
+
+/* ================================ */
+/*  Enrollment Section  */
+/* ================================ */
+.registration .flexbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.registration .col {
+    flex: 1;
+    min-width: 300px;
+}
+
+.registration .col strong {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: -20px;
+}
+
+.registration .col img {
+    max-width: 250px;
+    height: auto;
+}
+
+/* ================================ */
+/*  Responsive Adjustments  */
+/* ================================ */
+@media (max-width: 768px) {
+    .registration .tabs-reg-flexbox {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .registration .flexbox {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+
 
 
 
