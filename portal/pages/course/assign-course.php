@@ -89,26 +89,8 @@
               <!-- /.card-header -->
               
               <!-- card-body -->
-              <div class="card-body pad table-responsive">  
+              <div class="card-body pad table-responsive">                
                 
-                <?php
-                    // Prepare the query
-                    $sql = "SELECT 
-                            tbl_enrollments.*,
-                            tbl_course_name.course_name       
-                            FROM tbl_enrollments
-                            LEFT JOIN tbl_course_name ON tbl_enrollments.course_name_id = tbl_course_name.course_name";                         
-
-                    // Execute the query
-                    $get_course = $conn->query($sql);
-
-                    // Check if query executed successfully
-                    if (!$get_course) {
-                        die("Query Error: " . $conn->error);
-                    }
-
-                    
-                ?>
 
                 <div class="row mx-auto justify-content-center text-center">
                     <div class="col-md-4 my-4">
@@ -117,31 +99,57 @@
                         </a>
                     </div>
                 </div>
-
-                <table class="table table-bordered text-center" id="myTable">
+       
+                <table class="table justify-content-center" id="myTable" style="width:100%">
                     <thead>
                         <tr> 
                             <th>RQM</th>                     
                             <th>Course Name</th>     
-                            <th>Batch Number</th>          
+                            <th>Batch</th>          
                             <th>Year</th>
                             <th>Student Count</th>
                             <th>Start Date</th>
                             <th>End Date</th>
-                            <th>Remarks</th>
+                            <!-- <th>Remarks</th> -->
+                            <th>Actions</th>
                         </tr>  
                     </thead>                                             
                     <tbody>
-                        <?php while ($row = $get_course->fetch_array()): ?>
+                        <?php                       
+                          // Prepare the query
+                          $sql = "SELECT 
+                                  tbl_batch.*,
+                                  tbl_course_name.course_name       
+                                  FROM tbl_batch
+                                  LEFT JOIN tbl_course_name ON tbl_course_name.course_name_id = tbl_batch.course_name_id";                         
+      
+                          // Execute the query
+                          $get_course = $conn->query($sql);
+      
+                          // Check if query executed successfully
+                          if (!$get_course) {
+                              die("Query Error: " . $conn->error);
+                          }
+      
+                          
+                          while ($row = $get_course->fetch_array()): 
+                              // $id = $row['enroll_id'];
+                        ?>
                             <tr>
                                 <td><?php echo $row['rqm']; ?></td>                  
                                 <td><?php echo $row['course_name']; ?></td>
-                                <td><?php echo $row['batch']; ?></td>
+                                <td><?php echo $row['batch_number']; ?></td>
                                 <td><?php echo $row['year']; ?></td>
                                 <td><?php echo $row['student_count']; ?></td>
                                 <td><?php echo $row['start_date']; ?></td>
                                 <td><?php echo $row['end_date']; ?></td>
-                                <td><?php echo $row['remarks']; ?></td>
+                                <!-- <td><?php echo $row['remarks']; ?></td> -->
+                                <td>
+                                <a href="view-course.php<?php echo '?batch_id=' . $row['batch_id']; ?>" type="button" class="btn btn-info mx-1" target="_blank" 
+                                  title="View Scholar Profile">
+                                  <i class="fa fa-eye"></i> <i class="fa fa-user"></i> 
+                                  </a>  
+                                </td>
                             </tr>
                         <?php endwhile; ?>
                     </tbody>
@@ -182,12 +190,6 @@
 <!-- ./wrapper -->
 
 <?php include '../../includes/script.php'; ?> 
-
-<script>
-  $(document).ready(function () {
-    $('#dataTable').DataTable();
-  });
-</script>
 
 </body>
 </html>
