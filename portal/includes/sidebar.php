@@ -160,12 +160,12 @@
                         </a>
                       </li>
 
-                      <li class="nav-header">Courses Configuration</li>
+                      <li class="nav-header">Class Configuration</li>
     
                         <li class="nav-item">
-                          <a href="../course/assign-course.php" class="nav-link">
+                          <a href="../classes/list-class.php" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
-                            <p>Assign Course/Batches</p>
+                            <p>Class List</p>
                           </a>
                         </li>                          
 

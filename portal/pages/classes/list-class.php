@@ -28,13 +28,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Course Config</h1>
+            <h1 class="m-0">Class Config</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item active">Home</li>
-              <li class="breadcrumb-item active">Course Config</li>
-              <li class="breadcrumb-item active">Assign Course/Batches</li>
+              <li class="breadcrumb-item active">Class Configuration</li>
+              <li class="breadcrumb-item active">Class List</li>
             </ol>
           </div><!-- /.col -->
           
@@ -118,10 +118,10 @@
                         <?php                       
                           // Prepare the query
                           $sql = "SELECT 
-                                  tbl_batch.*,
+                                  tbl_classes.*,
                                   tbl_course_name.course_name       
-                                  FROM tbl_batch
-                                  LEFT JOIN tbl_course_name ON tbl_course_name.course_name_id = tbl_batch.course_name_id";                         
+                                  FROM tbl_classes
+                                  LEFT JOIN tbl_course_name ON tbl_course_name.course_name_id = tbl_classes.course_name_id";                         
       
                           // Execute the query
                           $get_course = $conn->query($sql);
@@ -145,7 +145,7 @@
                                 <td><?php echo $row['end_date']; ?></td>
                                 <!-- <td><?php echo $row['remarks']; ?></td> -->
                                 <td>
-                                <a href="view-course.php<?php echo '?batch_id=' . $row['batch_id']; ?>" type="button" class="btn btn-info mx-1" target="_blank" 
+                                <a href="view-class.php<?php echo '?class_id=' . $row['class_id']; ?>" type="button" class="btn btn-info mx-1" target="_blank" 
                                   title="View Scholar Profile">
                                   <i class="fa fa-eye"></i> <i class="fa fa-user"></i> 
                                   </a>  

@@ -28,13 +28,14 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Scholar List</h1>
+                    <h1 class="m-0">View Class</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item active">Home</li>
-                        <li class="breadcrumb-item active">Course Config</li>
-                        <li class="breadcrumb-item active">Add New Course-Batch</li>
+                        <li class="breadcrumb-item active">Class Configuration</li>
+                        <li class="breadcrumb-item active">Class List</li>
+                        <li class="breadcrumb-item active">View Class: ####</li>
 
                     </ol>
                 </div><!-- /.col -->
