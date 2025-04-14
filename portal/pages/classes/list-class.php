@@ -33,7 +33,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item active">Home</li>
-              <li class="breadcrumb-item active">Class Configuration</li>
+              <li class="breadcrumb-item active">Class Configuration    </li>
               <li class="breadcrumb-item active">Class List</li>
             </ol>
           </div><!-- /.col -->

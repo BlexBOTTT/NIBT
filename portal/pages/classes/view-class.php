@@ -100,13 +100,13 @@
 
                                 <?php
                                     $get_batch = $conn->query("SELECT 
-                                                                tbl_batch.*,
+                                                                tbl_classes.*,
                                                                 tbl_course_name.course_name,
                                                                 tbl_trainor.trainor_name     
-                                                                FROM tbl_batch
-                                                                LEFT JOIN tbl_course_name ON tbl_course_name.course_name_id = tbl_batch.course_name_id
-                                                                LEFT JOIN tbl_trainor ON tbl_trainor.trainor_id = tbl_batch.trainor_id
-                                                                WHERE batch_id = '$_GET[batch_id]'");
+                                                                FROM tbl_classes
+                                                                LEFT JOIN tbl_course_name ON tbl_course_name.course_name_id = tbl_classes.course_name_id
+                                                                LEFT JOIN tbl_trainor ON tbl_trainor.trainor_id = tbl_classes.trainor_id
+                                                                WHERE class_id = '$_GET[class_id]'");
                                     $res_count = $get_batch->num_rows;
                                     if ($res_count == 0) {
                                         // error code
@@ -139,7 +139,8 @@
                                     <div class="col-md-3">
                                         <div class="my-3">
                                             <label class="form-label">RQM Code (Regional Qualification Map)</label>
-                                            <p><?php echo $row['rqm']; ?></p>
+                                            <p><?php echo isset($row['rqm']) && !empty($row['rqm']) ? $row['rqm'] : 'RQM unavailable'; ?></p>
+
                                         </div>
                                     </div>   
                                 </div>
@@ -184,6 +185,52 @@
                                     <div class="col-md-4">
                                         <a class="btn btn-secondary" href="assign-course.php">Go Back</a>
                                     </div>
+
+                                    <div class="col-md-4">
+
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
+                                        Launch Info Modal
+                                    </button>
+
+                                    <div class="modal fade" id="modal-info">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-info">
+                                        <h4 class="modal-title">Info                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Modal</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                        <p>One fine body&hellip;</p>
+                                        
+                                            <form action="user-add-scholar-class.php" method="POST" enctype="multipart/form-data">
+
+                                                <div class="form-group">
+                                                <label for="subject">Select Subject</label>
+                                                <select name="scholars" id="scholars " multiple multiselect-search="true" multiselect-select-all="true" required class="select form-control">
+                                                    <option>English</option>
+                                                    <option>Math</option>
+                                                    <option>Hindi</option>
+                                                    <option>Science</option>
+                                                    <option>Computer</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                            
+
+                                        </div>
+                                        <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-info   ">Save changes</button>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                    </div>  
                                     
                                 </div>
 
