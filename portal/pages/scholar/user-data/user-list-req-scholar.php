@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['approve'])) {
 
 
 // Mark Pending Scholar as Enrolled Student
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['stud_id'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enroll'])) {
     $stud_id = $_POST['stud_id'];
 
     // Update the student's enrollment status
@@ -104,4 +104,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['stud_id'])) {
     header("Location: ../list-req-scholar.php"); // Change this to your main page
     exit();
 }
+
+// drop a scholar
+
+if (isset($_POST['drop']) && $_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitize the student ID
+    $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
+
+    // Update the student's enrollment status
+    $query = "UPDATE tbl_students SET enroll_status_id = 2 WHERE stud_id = $stud_id";
+
+    // Execute the query
+    if (mysqli_query($conn, $query)) {
+        // Redirect back to the page after successful update
+        header("Location: ../list-req-scholar.php?stud_id=$stud_id");
+        exit();
+    } else {
+        // Show error message if the query fails
+        die("Database Error: " . mysqli_error($conn));
+    }
+}
 ?>
+
+

@@ -59,6 +59,11 @@
     $result_pending = $conn->query($sql_pending);
     $totalPending = ($result_pending) ? $result_pending->fetch_assoc()['total_students'] : 0;
 
+    // Query to count dropped students
+    $sql_pending = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 2";
+    $result_pending = $conn->query($sql_pending);
+    $totalPending = ($result_pending) ? $result_pending->fetch_assoc()['total_students'] : 0;
+
     ?>
 
     <!-- Define role-based content -->
@@ -113,7 +118,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>##?</h3>
+                                <h3><?php echo $totalPending; ?></h3>
                                 <p>Dropped Scholars</p>
                             </div>
                             <div class="icon">

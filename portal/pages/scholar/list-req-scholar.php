@@ -630,7 +630,7 @@
                                                                 <div class="modal-footer">
                                                                     <form method="POST" action="user-data/user-list-req-scholar.php">
                                                                         <input type="hidden" name="stud_id" value="<?php echo $row['stud_id']; ?>">
-                                                                        <button type="submit" class="btn btn-success">Yes, Enroll</button>
+                                                                        <button type="submit" name="enroll" class="btn btn-success">Yes, Enroll</button>
                                                                     </form>
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                                                 </div>
@@ -642,10 +642,40 @@
                                                 break;
 
                                             case 1:
-                                                echo '<span class="badge badge-success">ENROLLED</span> <br>
-                                                <a href="../forms/scholar-profile-a4.php?stud_id=' . $id . '" type="button" class="btn btn-primary mx-1" target="_blank" title="View Printable Scholar Profile">
-                                                      <i class="fa fa-print"></i> 
-                                                  </a>';
+                                                echo '
+                                                    <span class="badge badge-success">ENROLLED</span> <br>
+                                                    <a href="../forms/scholar-profile-a4.php?stud_id=' . $id . '" type="button" class="btn btn-primary mx-1" target="_blank" title="View Printable Scholar Profile">
+                                                        <i class="fa fa-print"></i> 
+                                                    </a>                                          
+
+                                                    <button type="button" class="btn btn-danger mx-1" data-toggle="modal" data-target="#dropScholarModal-' . $id . '" title="Drop Scholar">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+
+                                                    <div class="modal fade" id="dropScholarModal-' . $id . '" tabindex="-1" role="dialog" aria-labelledby="dropScholarLabel-' . $id . '" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-danger">
+                                                                    <h5 class="modal-title" id="dropScholarLabel-' . $id . '">Confirm Drop</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure you want to drop scholar <b>' . $row['firstname'] . ' ' . $row['lastname'] . '</b> ?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <form method="POST" action="user-data/user-list-req-scholar.php">
+                                                                        <input type="hidden" name="stud_id" value="' . $id . '">
+                                                                        <button type="submit" name="drop" class="btn btn-secondary">Yes, Drop Scholar</button>
+                                                                    </form>
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                  ';
                                                 break;
 
                                             case 2:
