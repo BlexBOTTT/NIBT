@@ -112,7 +112,7 @@ if (isset($_POST['drop']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $stud_id = mysqli_real_escape_string($conn, $_POST['stud_id']);
 
     // Update the student's enrollment status
-    $query = "UPDATE tbl_students SET enroll_status_id = 2 WHERE stud_id = $stud_id";
+    $query = "UPDATE tbl_students SET enroll_status_id = 3 WHERE stud_id = $stud_id";
 
     // Execute the query
     if (mysqli_query($conn, $query)) {

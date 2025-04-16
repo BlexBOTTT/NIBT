@@ -187,13 +187,13 @@
                                     </div>
 
                                     <div class="col-md-4">
-
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
-                                        Launch Info Modal
-                                    </button>
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
+                                            Add Scholars to this class
+                                        </button>
+                                    </div>
 
                                     <div class="modal fade" id="modal-info">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header bg-info">
                                         <h4 class="modal-title">Info                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Modal</h4>
@@ -203,20 +203,36 @@
                                         </div>
                                         <div class="modal-body">
 
-                                        <p>One fine body&hellip;</p>
+                                        <!-- <p>One fine body&hellip;</p> -->
                                         
                                             <form action="user-add-scholar-class.php" method="POST" enctype="multipart/form-data">
 
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                 <label for="subject">Select Subject</label>
-                                                <select name="scholars" id="scholars " multiple multiselect-search="true" multiselect-select-all="true" required class="select form-control">
+                                                <select name="scholars" id="scholars" multiple multiselect-search="true" multiselect-select-all="true" required class="select form-control">
                                                     <option>English</option>
                                                     <option>Math</option>
                                                     <option>Hindi</option>
                                                     <option>Science</option>
                                                     <option>Computer</option>
                                                     </select>
-                                                </div>
+                                                </div> -->
+
+                                                <div class="col-md-12">
+                <div class="form-group">
+                  <label>Multiple</label>
+                  <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
+                    <option>Alabama</option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+                
                                             </form>
                                             
 

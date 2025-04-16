@@ -45,12 +45,21 @@
                 <li class="breadcrumb-item active">Home</li>
                 <li class="breadcrumb-item active">Scholar Config</li>
 
-                <?php
+                <?php   
                     $stud_id = isset($_GET['stud_id']) ? intval($_GET['stud_id']) : 0;
 
                     if ($stud_id > 0) {
                         // Fetch student's name
-                        $query = "SELECT firstname, lastname FROM tbl_students WHERE stud_id = $stud_id LIMIT 1";
+                        $query = "SELECT 
+                                    tbl_students.firstname, 
+                                    tbl_students.lastname, 
+                                    tbl_students.enroll_status_id, 
+                                    tbl_enroll_status.enroll_status_name
+                                FROM tbl_students 
+                                LEFT JOIN tbl_enroll_status 
+                                    ON tbl_enroll_status.enroll_status_id = tbl_students.enroll_status_id
+                                WHERE tbl_students.stud_id = $stud_id 
+                                LIMIT 1";
                         $result = $conn->query($query);
                         if ($result && $row = $result->fetch_assoc()) {
                             $student_name = "{$row['firstname']} {$row['lastname']}";
@@ -125,10 +134,12 @@
                     $sql = "SELECT 
                             tbl_students.*,
                             tbl_student_requirements.*,
-                            tbl_genders.gender_name                            
+                            tbl_genders.gender_name,
+                            tbl_enroll_status.*                            
                         FROM tbl_students
                         LEFT JOIN tbl_genders ON tbl_students.gender_id = tbl_genders.gender_id
                         LEFT JOIN tbl_student_requirements ON tbl_students.stud_id = tbl_student_requirements.stud_id
+                        LEFT JOIN tbl_enroll_status ON tbl_students.enroll_status_id = tbl_enroll_status.enroll_status_id
                         ";
 
                     if ($stud_id > 0) {
@@ -170,7 +181,8 @@
                     <tbody>
                         <?php 
                             while ($row = $get_stud->fetch_array()):
-                            $id = $row['stud_id']; 
+                                $id = $row['stud_id'];
+                                $enroll_status = $row['enroll_status_name']; 
                         ?>
                             <tr>
                                 <td>
@@ -605,7 +617,7 @@
                                     <?php 
                                         switch ($row['enroll_status_id']) {
                                             case 0:
-                                                echo '<span class="badge badge-warning">PENDING</span>';
+                                                echo '<span class="badge badge-secondary">' . $row['enroll_status_name'] . '</span>';
                                                 
                                                 // Show the enroll button only if all required fields are present
                                                 if (empty($missing_fields) && ($row['birth_cert_status'] == 'approved') && ($row['diploma_tor_status'] == 'approved') && ($row['1x1_status'] == 'approved')) { ?>
@@ -679,7 +691,15 @@
                                                 break;
 
                                             case 2:
-                                                echo '<span class="badge badge-danger">REJECTED</span>';
+                                                echo '<span class="badge badge-danger">' . $row['enroll_status_name'] . '</span>';
+                                                break;
+
+                                            case 2:
+                                                echo '<span class="badge badge-danger">' . $row['enroll_status_name'] . '</span>';
+                                                break;
+
+                                            case 3:
+                                                echo '<span class="badge badge-danger">' . $row['enroll_status_name'] . '</span>';
                                                 break;
 
                                             default:

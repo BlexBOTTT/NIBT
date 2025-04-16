@@ -60,9 +60,9 @@
     $totalPending = ($result_pending) ? $result_pending->fetch_assoc()['total_students'] : 0;
 
     // Query to count dropped students
-    $sql_pending = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 2";
-    $result_pending = $conn->query($sql_pending);
-    $totalPending = ($result_pending) ? $result_pending->fetch_assoc()['total_students'] : 0;
+    $sql_dropped = "SELECT COUNT(*) AS total_students FROM tbl_students WHERE enroll_status_id = 3";
+    $result_dropped = $conn->query($sql_dropped);
+    $totaldropped = ($result_dropped) ? $result_dropped->fetch_assoc()['total_students'] : 0;
 
     ?>
 
@@ -118,7 +118,7 @@
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3><?php echo $totalPending; ?></h3>
+                                <h3><?php echo $totaldropped; ?></h3>
                                 <p>Dropped Scholars</p>
                             </div>
                             <div class="icon">
@@ -171,36 +171,12 @@
                 </table>
         </section>
 
-        <!-- PIE CHART -->
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-        
- 
-
         <?php
     } elseif ($_SESSION['role'] == "Student") {
         ?>
 
-          <div class="row justify-content-around">
-            <section class="col-lg-5">
+          <div class="row justify-content-center">
+            <section class="col-lg-6">
               <div class="card card-primary">
                 <div class="card-header">
                   <h3 class="card-title">Navigation</h3>
@@ -228,7 +204,7 @@
                   </div>
                 </div>
             </section>
-            <section class="col-lg-3">
+            <section class="col-lg-1">
                 <div class="card card-primary">
                   <div class="card-header">
                     <h3 class="card-title">Navigation</h3>

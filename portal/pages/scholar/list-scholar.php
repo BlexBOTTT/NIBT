@@ -217,23 +217,27 @@
                                 <?php 
                                   // Display the enrollment status via enroll_status_id from the database
                                     switch ($row['enroll_status_id']) {
-                                        case 0:
-                                          echo '<span class="badge badge-warning">PENDING</span>';                                            
-                                          break;
-                                         case 1:
-                                            echo '<span class="badge badge-success">ENROLLED</span> <br>
-                                                  <a href="../forms/scholar-profile-a4.php?stud_id=' . $id . '" type="button" class="btn btn-primary mx-1" target="_blank" title="View Printable Scholar Profile">
-                                                      <i class="fa fa-print"></i> 
-                                                  </a>';
-                                          break;
-                                        
-                                          break;
-                                        case 2:
-                                          echo '<span class="badge badge-danger">REJECTED</span>'; // Replace with appropriate status
+                                      case 0:
+                                        echo '<span class="badge badge-warning">' . $row['enroll_status_name'] . '</span>';                                            
                                         break;
-                                        default:
-                                          echo '<span class="badge badge-secondary">UNKNOWN</span>'; // Default case for unexpected values
-                                        break;
+                                      case 1:
+                                        echo '<span class="badge badge-success">ENROLLED</span> <br>
+                                              <a href="../forms/scholar-profile-a4.php?stud_id=' . $id . '" type="button" class="btn btn-primary mx-1" target="_blank" title="View Printable Scholar Profile">
+                                                  <i class="fa fa-print"></i> 
+                                              </a>';
+                                      break;
+                                                                          
+                                      case 2:
+                                        echo '<span class="badge badge-danger">' .   $row['enroll_status_name'] . '</span>'; // Replace with appropriate status
+                                      break;
+
+                                      case 3:
+                                        echo '<span class="badge badge-danger">' . $row['enroll_status_name'] . '</span>'; // Replace with appropriate status
+                                      break;
+
+                                      default:
+                                        echo '<span class="badge">UNNOWN</span>'; // Default case for unexpected values
+                                      break;
                                     }
                                 ?>
                               </td>
