@@ -55,7 +55,6 @@
 
  body {
 	font-family: 'Roboto', sans-serif;
-    font-family: 'Jost' sans-serif;
 	font-weight: 400;
 	font-style: normal;
     -webkit-font-smoothing: antialiased;
@@ -1395,7 +1394,8 @@ p {
 .feature ul li .singel-feature .icon{
     overflow: hidden;
     display: inline-block;
-    padding-right: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 .feature ul li .singel-feature .cont {
 	width: 78%;
@@ -4288,12 +4288,14 @@ h2 {
 
 /*Contact Us*/
 section.contact-us {
-    background-color: #fff;
     background-position: center center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #eee;
     padding: 30px 0px 30px 10px;
+    padding-left: 270px;
+    position: relative;
   }
   
   section.contact-us #contact {
@@ -4456,23 +4458,22 @@ section.contact-us {
 
 #contact-branches .col {
     background: #fff;
-    padding: 20px;
-    border-radius: 10px;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
+    max-width: 560px;
     flex: 1;
 }
 
 #contact-branches .col h2 {
-    font-size: 17px;
+    font-size: 24px;
     font-weight: 600;
     color: #ffffff;
     background-color: #76080B;
     text-align: center;
     margin-bottom: 20px;
-    padding-top: 5px;
+    padding-top: 8px;
     padding-bottom: 5px;
-    border-radius: 10px;
+    width: 100%;
+
 }
 
 #contact-branches .col__inner {
