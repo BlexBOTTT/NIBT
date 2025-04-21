@@ -223,32 +223,39 @@
                     echo '
                         <li class="nav-item">
                             <a href="../dashboard/index.php" class="nav-link">
+                            
                                 <p>Home</p>
                             </a>
                         </li>                          
                 
-                        <li class="nav-header">Scholar:</li>
+                        <li class="nav-header">Scholar Config:</li>
 
                         <li class="nav-item">
                             <a href="../scholar/edit-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
                                 <p>Update Profile</p>
                             </a>
                         </li>
                         
                         <li class="nav-item">
                             <a href="../scholar/view-prof-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
                                 <p>View Profile</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="../scholar/edit-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
                                 <p>Update Account</p>
                             </a>
                         </li>
 
+                        <li class="nav-header">Scholar:</li>
+
                         <li class="nav-item">
                             <a href="../scholar/submit-req-scholar.php?stud_id=' . $_SESSION['stud_id'] . '" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
                                 <p>Submit Requirements</p>
                             </a>
                         </li>  

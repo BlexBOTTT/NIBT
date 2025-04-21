@@ -28,7 +28,7 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $civilstatus = mysqli_real_escape_string($conn, $_POST['civilstatus']);
 
-    $courses = mysqli_real_escape_string($conn, $_POST['courses']);
+    $courses = mysqli_real_escape_string($conn, $_POST['course_name']);
 
     // ADDRESS 
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -71,66 +71,54 @@ if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
 
     // Update section
-    $image = (!empty($_FILES['prof_img']['tmp_name'])) ? addslashes(file_get_contents($_FILES['prof_img']['tmp_name'])) : null;
+    // Only add image if uploaded
+    $updateFields = "
+    lastname = '$lastname',
+    firstname = '$firstname',
+    middlename = '$middlename',
+    middleinitial = '$middleinitial',
+    ext_name_id = '$extname',
+    bpprovince = '$bpprovince',
+    bpmunicity = '$bpmunicity',
+    birthdate = '$birthdate',
+    gender_id = '$gender',
+    course_name_id = '$courses',
+    civil_status_id = '$civilstatus',
+    province = '$province',
+    age = '$age',
+    bpregion = '$bpregion',
+    nationality = '$nationality',
+    email = '$email',
+    contact = '$contact',
+    num_street = '$numstreet',
+    barangay = '$barangay',
+    district = '$district',
+    addmunicity = '$addmunicity',
+    region = '$region',
+    fb_account = '$fbacc',
+    fb_mess = '$fbmess',
+    learner_iduli = '$learneriduli',
+    attainment_id = '$attainment',
+    employment_id = '$employment',
+    type_disability_id = '$type_disability',
+    cause_disability_id = '$cause_disability',
+    scholar_package_id = '$scholar_package',
+    classification_id = '$classification',
+    cfullname = '$cfullname',
+    ccell_no = '$ccell_no',
+    cbirthdate = '$cbirthdate',
+    caddress = '$caddress',
+    relationship = '$relationship',
+    disclaimer = '$disclaimer'
+    ";
 
-    $query = "UPDATE tbl_students SET 
+    // Conditionally add image if uploaded
+    if (!empty($_FILES['prof_img']['tmp_name'])) {
+    $image = addslashes(file_get_contents($_FILES['prof_img']['tmp_name']));
+    $updateFields = "img = '$image', " . $updateFields;
+    }
 
-        /* Personal Info */
-        img = '$image',
-        lastname = '$lastname',
-        firstname = '$firstname',
-        middlename = '$middlename',
-        middleinitial = '$middleinitial',
-        ext_name_id = '$extname',
-
-        bpprovince = '$bpprovince',
-        bpmunicity = '$bpmunicity',
-        birthdate = '$birthdate',
-        gender_id = '$gender',
-        -- civilstatus = '$civilstatus',
-
-        course_id = '$courses',
-        civil_status_id = '$civilstatus',
-        province = '$province',
-        age = '$age',
-        bpregion = '$bpregion',
-        nationality = '$nationality',
-        
-        -- ADDRESS 
-        email = '$email',
-        contact = '$contact',
-        num_street = '$numstreet',
-        barangay = '$barangay',
-        district = '$district',
-        addmunicity = '$addmunicity',
-        region = '$region',
-
-        fb_account = '$fbacc',
-        fb_mess = '$fbmess',
-     
-        -- NIBT SCHOLAR INFO
-        -- qualification CHECKBOX
-        learner_iduli = '$learneriduli',
-        attainment_id = '$attainment',
-        -- institutional requirements CHECKBOX
-        employment_id = '$employment',
-        type_disability_id = '$type_disability',
-        cause_disability_id = '$cause_disability',
-
-        scholar_package_id = '$scholar_package',
-        classification_id = '$classification',
-        -- CONTACT PERSON
-
-        cfullname = '$cfullname',
-        ccell_no = '$ccell_no',
-        cbirthdate = '$cbirthdate',
-        caddress = '$caddress',
-        relationship = '$relationship',
-
-        disclaimer = '$disclaimer'
-
-
-        WHERE stud_id = '$student_id'";
+    $query = "UPDATE tbl_students SET $updateFields WHERE stud_id = '$student_id'";
 
     $updateUser = mysqli_query($conn, $query);
     if (!$updateUser) {

@@ -526,6 +526,16 @@
                                         </div>                                 
                                     </div>
 
+                                    <div class="row mx-auto">                                  
+                                        <div class="col-md-3 mx-auto">
+                                            <div class="my-3">
+                                                <label>Learners ID/ULI No. (For those who have already taken up any TESDA Course before)</label>
+                                                <input type="text" name="learneriduli" class="form-control" 
+                                                autocomplete="off"  value="<?php echo $row['learner_iduli']; ?>" placeholder="Skip this section if first time taking a tesda course">
+                                            </div>
+                                        </div>                                
+                                    </div>
+
                                     <div class="row mx-auto justify-content-around">               
                                         <div class="col-md-3">
                                             <div class="my-3">
@@ -653,15 +663,8 @@
 
 
 
-                                     <!-- <div class="row mx-auto">                                  
-                                        <div class="col-md-3 mx-auto">
-                                            <div class="my-3">
-                                                <label>Learners ID/ULI No. (For those who have already taken up any TESDA Course before)</label>
-                                                <input type="text" name="learneriduli" class="form-control" 
-                                                autocomplete="off"  value="learner_iduli'" placeholder="Skip this section if first time taking a tesda course">
-                                            </div>
-                                        </div>                                
-                                    </div> -->
+                                    
+
                                     <div class="row mx-auto">
                                         <div class="col-md-6">
                                             <div class="input-group input-group-outline my-3">                                          
