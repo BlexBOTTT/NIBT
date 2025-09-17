@@ -9,14 +9,14 @@ def formatted_random_time_output():
 
     for _ in range(25):  # Loop 28 times
         # Editable date
-        date_str = "2/28/2025"
+        date_str = "5/23/2025"
         # 
         # Generate first time (4:30:00 PM - 4:40:00 PM, 2% chance up to 5:00:00 PM)
-        base_time = datetime.datetime.strptime("21:02:00", "%H:%M:%S")
-        max_time = datetime.datetime.strptime("21:15:00", "%H:%M:%S")
-        extra_time = datetime.datetime.strptime("22:00:00", "%H:%M:%S")
+        base_time = datetime.datetime.strptime("15:05:00", "%H:%M:%S")
+        max_time = datetime.datetime.strptime("15:17:00", "%H:%M:%S")
+        extra_time = datetime.datetime.strptime("15:32:00", "%H:%M:%S")
 
-        if random.random() < 0.08:  # 5% chance to go beyond 4:40:00 PM
+        if random.random() < 0.10:  # 5% chance to go beyond 4:40:00 PM
             time_diff = (extra_time - base_time).seconds
         else:
             time_diff = (max_time - base_time).seconds
@@ -42,10 +42,10 @@ def formatted_random_time_output():
         third_time = first_time.replace(second=0)
 
         # Store results
-        first_times.append(f"{date_str} {first_time.strftime('%I:%M:%S %p')}")
-        date_repeats.append(date_str)  # Repeat date 28 times
-        second_times.append(f"{second_time.strftime('%I:%M:%S %p')}")
-        third_times.append(f"{third_time.strftime('%I:%M:%S %p')}")
+        first_times.append(f"{date_str} {first_time.strftime('%H:%M:%S')}")
+        # date_repeats.append(date_str)  # Repeat date 28 times
+        # second_times.append(f"{second_time.strftime('%I:%M:%S %p')}")
+        # third_times.append(f"{third_time.strftime('%I:%M:%S %p')}")
 
     return "\n".join(first_times) + "\n\n" + "\n".join(date_repeats) + "\n\n" + "\n".join(second_times) + "\n\n" + "\n".join(third_times)
 
