@@ -2,11 +2,11 @@ import datetime, random
 
 # ⚙️ Configurations
 CONFIG = {
-    "date_start": (2024, 12, 26),
-    "date_end":   (2024, 12, 26),
+    "date_start": (2025, 9, 29),
+    "date_end":   (2025, 9, 29),
     "logs_per_day": 25,
-    "time_in_range": ("16:04:00", "16:58:00"),
-    "time_out_range": ("17:10:00", "17:54:00"),
+    "time_in_range": ("14:13:00", "14:59:00"),
+    "time_out_range": ("21:09:00", "21:59:00"),
     "overtime_chance": 5,           # % chance of extending max time
     "overtime_minutes": (1, 14),     # min-max minutes
     "sort_time_ins": True,
